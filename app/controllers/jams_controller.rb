@@ -55,6 +55,7 @@ class JamsController < ApplicationController
 
   # PUT /jams/1
   # PUT /jams/1.json
+=begin
   def update
     @jam = Jam.find(params[:id])
 
@@ -68,9 +69,10 @@ class JamsController < ApplicationController
       end
     end
   end
-
+=end
   # DELETE /jams/1
   # DELETE /jams/1.json
+=begin
   def destroy
     @jam = Jam.find(params[:id])
     @jam.destroy
@@ -80,4 +82,6 @@ class JamsController < ApplicationController
       format.json { head :no_content }
     end
   end
+=end
+
 end

@@ -38,6 +38,14 @@
   <!-- JavaScript at the bottom for fast page loading -->
   <%= javascript_include_tag "application" %>
   <!-- end scripts -->
+<%= javascript_include_tag "/js/jcanvas.min.js"%>
+<%= javascript_include_tag "/js/dsp.js"%>
+<%= javascript_include_tag "/js/sound.variables.constants.js"%>
+<%= javascript_include_tag "/js/sound.variables.js"%>
+<%= javascript_include_tag "/js/sound.draw.js" %>
+<%= javascript_include_tag "/js/sound.init.js" %>
+<%= javascript_include_tag "/js/sound.core.js" %>
+<%= javascript_include_tag "/js/sound.robo.js" %>
 
 
   <% if Rails.env.production? %>

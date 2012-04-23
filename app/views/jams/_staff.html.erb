@@ -1,0 +1,114 @@
+      <div class="staff-container">
+            <canvas width="1000" height="375" class="staff"></canvas>
+            <canvas width="1000" height="375" class="bar"></canvas>
+
+        </div>
+        <!--<div class="button-col">-->
+        <!--<input type="button" value="pen" />-->
+        <!--</div>-->
+        <div class="doc-block">
+        </div>
+    </div>
+</div>
+
+<div id="buttons">
+
+    <div class="button_grouping">
+        <button type="button" onClick="playSound(this)">play</button>
+        <div>
+            Volume:
+            <div class="range_wrapper">
+                <input type="range" min="0.0" max="1.0" step="0.01" value ="0.1" id="slider" onchange="changeVolume(event)"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="button_grouping">
+        <!-- <button type="button" onClick="animateLine(this)">animate</button> -->
+
+        <button type="button" onClick="resetStaff()">clear</button>
+        <button type="button" onClick="clearRed()">clear red</button>
+        <button type="button" onClick="clearGreen()">clear green</button>
+        <button type="button" onClick="clearBlue()">clear blue</button>
+    </div>
+
+
+    <div class="button_grouping">
+        <button type="button" onClick="switchToolStyle(this)">eraser</button>
+        <div class="range_wrapper">
+            <input type="range" min="1" max="15" step="1" value ="5" id="pen_stroke_width" onchange="changePenStrokeWidth($(this).val());"/>
+        </div>
+        <select id="penColor">
+            <option value="COLOR_RED">Red</option>
+            <option value="COLOR_GREEN">Green</option>
+            <option value="COLOR_BLUE">Blue</option>
+        </select>
+        <ul class="checkbox_list">
+            <li>
+                <label><input type="checkbox" id="red_toggle" onclick="toggleLayer(COLOR_RED);" checked=checked> Red enabled</label>
+                <select id="dspwave_red">
+                    <option value="DSP.SINE">SINE</option>
+                    <option value="DSP.SAW"> SAW </option>
+                    <option value="DSP.SQUARE"> SQUARE </option>
+                    <option value="DSP.TRIANGLE"> TRIANGLE </option>
+                </select>
+            </li>
+            <li>
+                <label><input type="checkbox" id="green_toggle" onclick="toggleLayer(COLOR_GREEN);" checked=checked> Green enabled</label>
+                <select id="dspwave_green">
+                    <option value="DSP.SINE">SINE</option>
+                    <option value="DSP.SAW"> SAW </option>
+                    <option value="DSP.SQUARE"> SQUARE </option>
+                    <option value="DSP.TRIANGLE"> TRIANGLE </option>
+                </select>
+            </li>
+            <li>
+                <label><input type="checkbox" id="blue_toggle" onclick="toggleLayer(COLOR_BLUE);" checked=checked> Blue enabled</label>
+                <select id="dspwave_blue">
+                    <option value="DSP.SINE">SINE</option>
+                    <option value="DSP.SAW"> SAW </option>
+                    <option value="DSP.SQUARE"> SQUARE </option>
+                    <option value="DSP.TRIANGLE"> TRIANGLE </option>
+                </select>
+            </li>
+        </ul>
+    </div>
+
+    <div class="button_grouping">
+        <select id="dspwave">
+            <option value="DSP.SINE">SINE</option>
+            <option value="DSP.SAW"> SAW </option>
+            <option value="DSP.SQUARE"> SQUARE </option>
+            <option value="DSP.TRIANGLE"> TRIANGLE </option>
+        </select>
+        <select id="js_node_buffer_size">
+            <option>256</option>
+            <option selected=selected>512</option>
+            <option>1024</option>
+            <option>2048</option>
+            <option>4096</option>
+            <option>8192</option>
+            <option>16384</option>
+        </select>
+
+    </div>
+
+    <div class="button_grouping">
+        <label><input type="checkbox" id="robo" onclick="toggleRobo()" /> Robo Mode</label>
+
+        <div class="subgroup">
+            <fieldset>
+                <!--<legend> Robo mode mode</legend>-->
+                <label> <input type=radio name=robo_mode value="chaos">  Chaos </label>
+                <label> <input type=radio name=robo_mode value="random" checked=checked> Random </label>
+                <label> <input type=radio name=robo_mode value="curve"> Curve </label>
+            </fieldset>
+        </div>
+
+        <div>
+            Decay:
+            <div class="range_wrapper">
+                <input type="range" min="0" max="255" step="1" value="60" id="robo_decay" />
+            </div>
+        </div>
+    </div>

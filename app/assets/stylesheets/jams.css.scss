@@ -101,6 +101,21 @@ header p, footer p {
 
 }
 
+nav {
+	float: right;
+}
+
+nav a:link{
+	margin: 40px;
+	text-decoration: none;
+}
+
+nav a:hover{
+#	text-decoration: underline;
+}
+
+
+
 header {
 	# position:absolute;
 	# top: 0px;

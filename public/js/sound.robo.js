@@ -237,6 +237,8 @@ function roboMode()
         }
         else if (robo_mode == 'curve')
         {
+            //TODO: can't fade because everything gets erased, figure out how to do this. whole mode is fucked for now.
+
             clearCanvas();
             var y1 = parseInt(Math.random() * STAFF_HEIGHT - BORDER_WIDTH * 2) + BORDER_WIDTH;
             var y2 = parseInt(Math.random() * STAFF_HEIGHT - BORDER_WIDTH * 2) + BORDER_WIDTH;
@@ -255,7 +257,8 @@ function roboMode()
             staff_canvas_context.strokeStyle = robo_directive.strokeStyle;
             staff_canvas_context.stroke();
 
-            fadeSound($('#robo_decay').val());
+
+            //fadeSound($('#robo_decay').val());
 
             bufferSound();
             soundOn();

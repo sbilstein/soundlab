@@ -150,6 +150,8 @@ function drawBorder()
  */
 function startPen(e)
 {
+    window.getSelection().removeAllRanges()
+
     pen_directive["x1"] = e.pageX;
     pen_directive["y1"] = e.pageY;
     $("canvas.bar").mousemove(movePen);
@@ -165,6 +167,8 @@ function startPen(e)
  */
 function movePen(e)
 {
+    window.getSelection().removeAllRanges()
+
     pen_directive["x2"] = e.pageX;
     pen_directive["y2"] = e.pageY;
 

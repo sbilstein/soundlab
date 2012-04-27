@@ -347,3 +347,21 @@ function clearBlue()
         animateLine();
     }
 }
+
+// TODO move stuff below this comment to sound.data.js once I understand the JS include system
+function getStorableData()
+{
+    return $('canvas.staff')[0].toDataURL('image/bmp');
+}
+
+function loadFromDataURL(dataURL)
+{
+    var img = new Image();
+
+    img.onload = function()
+    {
+        $('canvas.staff')[0].getContext('2d').drawImage(img, 0, 0);
+    }
+
+    img.src = dataURL;
+}

@@ -201,7 +201,6 @@ function changeVolume(event)
 {
     gain = $("#slider").val();
     gain_node.gain.value = gain;
-    console.log("gain: " + gain);
 }
 
 function setDSPWave(wave)

@@ -58,8 +58,14 @@ $(document).ready(function()
     })
 
     // Save/Load
-
-    $('input[name="commit"]').submit(function() { $('#jam_song').text(getStorableData()); return true; });
+    if ($('#stored_data').length)
+    {
+        loadFromDataURL($('#stored_data').attr('data'));
+    }
+    else
+    {
+        $('#new_jam').submit(function() { $('#jam_song').val(getStorableData()); return true; });
+    }
 });
 
 /**

@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
-  <%= @jam.title %>
-</p>
-
-<p>
-  <b>Song:</b>
-  <%= @jam.song %>
-</p>
 
 
-<%= link_to 'Back', jams_path %>
+<div id="below_staff_area">
+    <p id="notice"><%= notice %></p>
+
+    <h1><%= @jam.title %></h1>
+
+    <%= link_to 'Back', jams_path %>
+
+    <div id="stored_data" class="hidden" data="<%= @jam.song %>"></div>
+</div>
+
+<%= render 'staff' %>

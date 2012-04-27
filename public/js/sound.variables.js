@@ -76,7 +76,9 @@ var scrub_line_directive = {
 
 var pen_directive = {
     strokeStyle : COLOR_RED,
-    strokeWidth : PEN_STROKE_WIDTH.toString()
+    strokeWidth : PEN_STROKE_WIDTH.toString(),
+	strokeCap : "round"
+
 }
 
 /**

@@ -53,11 +53,12 @@ var scale =     [true, false, false, true, false, false, true, false, false, tru
  */
 
 
-var PEN_STROKE_WIDTH = 5;
+var tool_style = PEN;
+var PEN_STROKE_WIDTH = 3;
+var ERASER_STROKE_WIDTH = 20;
 
 var bar_canvas_context;
 var staff_canvas_context;
-var tool_style = PEN;
 
 var is_drawing = false;
 

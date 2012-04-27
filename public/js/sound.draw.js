@@ -8,16 +8,15 @@ function switchToolStyle(el)
     {
         tool_style = ERASER;
         el.textContent = "pen";
-        pen_directive.strokeStyle = COLOR_WHITE;
+        pen_directive.strokeStyle = COLOR_NONE;
         pen_directive.strokeWidth = PEN_STROKE_WIDTH.toString();
     }
     else
     {
         tool_style = PEN;
         el.textContent = "eraser";
-        //pen_directive.strokeStyle = COLOR_BLACK,
-        pen_directive.strokeStyle = COLOR_NONE;
-        pen_directive.strokeWidth = PEN_STROKE_WIDTH.toString();
+
+        pen_directive.strokeWidth = ERASER_STROKE_WIDTH.toString();
     }
 }
 
@@ -169,7 +168,22 @@ function movePen(e)
     pen_directive["x2"] = e.pageX;
     pen_directive["y2"] = e.pageY;
 
-    $("canvas.staff").drawLine(pen_directive);
+    if (tool_style == PEN)
+    {
+        $("canvas.staff").drawLine(pen_directive);
+    }
+    else if (tool_style == ERASER)
+    {
+        $("canvas.staff").clearCanvas(
+            {
+                x: Math.min(pen_directive["x1"], pen_directive["x2"]),
+                y: Math.min(pen_directive["y1"], pen_directive["y2"]),
+                width: ERASER_STROKE_WIDTH,
+                height: ERASER_STROKE_WIDTH
+            });
+    }
+
+
     pen_directive["x1"] = e.pageX;
     pen_directive["y1"] = e.pageY;
 
@@ -199,7 +213,6 @@ function setPenColor(color_style)
 {
     pen_directive.strokeStyle = color_style;
 }
-
 
 function changePenStrokeWidth(width)
 {

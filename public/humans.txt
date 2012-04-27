@@ -3,18 +3,23 @@
 
 
 /* TEAM */
-  <your title>: <your name>
+  #SwaggerSoft Engineer: Siegfried Bilstein
+  Site: http://www.sbilstein.com
+  Twitter: @sbilstein
+  Location: Planet Swagger
+
+  #SwaggerSoft Engineer: Jonathan Pezzino
   Site:
   Twitter:
-  Location:
+  Location: 1337 Hustlin St,
 
 /* THANKS */
-  Names (& URL):
+  Names (& URL): The Frenchman, Headphones Guy, Alien Dude
 
 /* SITE */
   Standards: HTML5, CSS3
-  Components: Modernizr, jQuery
-  Software:
+  Components: Modernizr, jQuery, AudioContext, BrowserDetect (http://www.quirksmode.org/js/detect.html)
+  Software: Ruby on Rails, PostgreSQL, Heroku
 
 
 

@@ -67,6 +67,8 @@ function initAudio() {
 
     if (window.AudioContext)
     {
+        // TODO: alert here if browser is not Chrome using BrowserDetect
+
         audio_context = new AudioContext();
         audio_buffer_source = audio_context.createBufferSource();
         audio_buffer_source.buffer = audio_context.createBuffer(NUM_CHANNELS, NUM_SAMPLES, SAMPLE_RATE);
@@ -82,6 +84,10 @@ function initAudio() {
         js_node.connect(gain_node);
         gain_node.connect(audio_context.destination);
     }
+    else
+    {
+        alert("You are not using a browser that supports the AudioContext API! DrawJam will not work!!! We recommend using Google Chrome, which you can download at http://www.google.com/chrome");
+    }
 }
 
 /**
@@ -95,7 +101,7 @@ function initSignals()
     // pdelt = (108.0-21.0)/STAFFHEIGHT;
     pdelt = (108.0 - 40.0) / STAFF_HEIGHT;
     //pdelt = (96.0 - 40.0) / STAFF_HEIGHT;
-    for (i = 0; i < STAFF_HEIGHT; i++)
+    for (var i = 0; i < STAFF_HEIGHT; i++)
     {
         // i + 5
         freq = 440.0 * Math.pow(2, (((i * pdelt) + 40) - 69.0) / 12.0);

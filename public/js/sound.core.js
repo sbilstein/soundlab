@@ -62,6 +62,10 @@ function jsBufferSound(evt)
 
             if (JSBG_pix[JSBG_pixel_index + ALPHA_INDEX_OFFSET] != 0)
             {
+                JSBG_fire_red_signal = false;
+                JSBG_fire_green_signal = false;
+                JSBG_fire_blue_signal = false;
+
                 if (layer_enabled_config[COLOR_RED] && JSBG_pix[JSBG_pixel_index + RED_INDEX_OFFSET] != 0)
                 {
                     JSBG_fire_red_signal = true;
@@ -72,7 +76,7 @@ function jsBufferSound(evt)
                     JSBG_fire_green_signal = true;
                     JSBG_color_signal = COLOR_GREEN;
                 }
-                else
+                else if(layer_enabled_config[COLOR_BLUE] && JSBG_pix[JSBG_pixel_index + BLUE_INDEX_OFFSET] != 0)
                 {
                     JSBG_fire_blue_signal = true;
                     JSBG_color_signal = COLOR_BLUE;

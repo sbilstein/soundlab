@@ -169,6 +169,7 @@ function fadeSound(rate)
 
 var robo_mode = "random";
 
+// TODO: Clean up this mess!
 function roboMode()
 {
     var robo_directive = pen_directive;
@@ -253,6 +254,8 @@ function roboMode()
             staff_canvas_context.lineWidth = PEN_STROKE_WIDTH;
             staff_canvas_context.strokeStyle = robo_directive.strokeStyle;
             staff_canvas_context.stroke();
+
+            fadeSound($('#robo_decay').val());
 
             bufferSound();
             soundOn();

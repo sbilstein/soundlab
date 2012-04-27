@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/views/jams/Jams.iml" filepath="$PROJECT_DIR$/app/views/jams/Jams.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/views/layouts/Layouts.iml" filepath="$PROJECT_DIR$/app/views/layouts/Layouts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/public/Public.iml" filepath="$PROJECT_DIR$/public/Public.iml" />
+    </modules>
+  </component>
+</project>
+

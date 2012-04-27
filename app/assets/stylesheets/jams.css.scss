@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+*
+{
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit browsers */
+}
+
+#new_jam input
+{
+  -moz-user-select: text;
+  -khtml-user-select: text;
+}
+
 div.center-col
 {
     margin: auto;
@@ -9,7 +21,8 @@ div.center-col
 
 div.staff-container 
 {
- 
+  /* TODO: custom pointers from .cur/.ani files */
+  cursor:pointer;
 }
 
 div.button-col
@@ -20,7 +33,6 @@ div.button-col
     left: 0px;
     top: 300px;
 }
-
 
 canvas.staff 
 {
@@ -50,10 +62,10 @@ canvas.bar
 
 #buttons
 {
-    padding:30px;
-    float:right;
-    -moz-user-select: none; /* mozilla browsers */
-    -khtml-user-select: none; /* webkit browsers */
+    position: absolute;
+    top:1em;
+    left:1015px;
+    width:300px;
 }
 
 .button_grouping
@@ -84,44 +96,25 @@ canvas.bar
     font-weight:bold;
 }
 
-footer {
-	position:absolute;
-	bottom:0px;
-	width: 100%;
-	height: 60px;
-	background-color: #333;
-	border-top: 1px solid grey;
-	color: #999;
+#below_staff_area
+{
+  position:absolute;
+  top:400px;
+  left:1em;
 }
 
-header p, footer p {
-	font-family : "Helvetica Neue", helvetica, sans-serif;
-	font-weight: 200;
-	
+/* TODO: Is this the right place/methodology for relocating the header footer since we are constrained to absolute
+positioning for the canvas? */
+ header
+ {
+   position:absolute;
+   top: 600px;
+   left:1em;
+ }
 
+footer
+{
+  position:absolute;
+  top: 650px;
+  left:1em;
 }
-
-nav {
-	float: right;
-}
-
-nav a:link{
-	margin: 40px;
-	text-decoration: none;
-}
-
-nav a:hover{
-#	text-decoration: underline;
-}
-
-
-
-header {
-	# position:absolute;
-	# top: 0px;
-	width: 100%;
-	height: 60px;
-	background-color: #FFF;
-	border-bottom: 1px solid #dedede;
-}
-

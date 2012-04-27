@@ -44,7 +44,6 @@ test:
   database: soundlab_test
   pool: 5
   username: soundlab
-  password:
 
 production:
   adapter: postgresql
@@ -52,4 +51,3 @@ production:
   database: soundlab_production
   pool: 5
   username: soundlab
-  password:

@@ -56,6 +56,10 @@ $(document).ready(function()
     {
         setColorSignal(COLOR_BLUE, $(this).val());
     })
+
+    // Save/Load
+
+    $('input[name="commit"]').submit(function() { $('#jam_song').text(getStorableData()); return true; });
 });
 
 /**

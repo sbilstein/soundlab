@@ -4,6 +4,12 @@
  * Sound variables
  */
 
+var loopPeriod = 1000; // looping period in ms. TODO: hook this up where appropriate, later on make adjustable.
+
+var premute_volume; // saves volume for muting/unmuting
+
+var decayInterval;
+
 var current_audio_time;
 
 var start_time;

@@ -2,6 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+div.th
+{
+  display:table-header-group;
+  font-weight:bold;
+}
+
+div.table
+{
+  display:table;
+}
+
+div.tr
+{
+  display: table-row;
+}
+
+div.td
+{
+  display:table-cell;
+}
+
+body
+{
+  background-image: url(/assets/gplaypattern.png);
+}
+
+.lalign
+{
+  text-align: left;
+}
+
+
+/* disable selecting since it tends to happen accidentally when drawing */
 *
 {
     -moz-user-select: none; /* mozilla browsers */
@@ -23,6 +57,7 @@ div.staff-container
 {
   /* TODO: custom pointers from .cur/.ani files */
   cursor:pointer;
+  position:absolute;
 }
 
 div.button-col
@@ -42,6 +77,7 @@ canvas.staff
     position : absolute;
     top: 0;
     left: 0;
+    background-image:url(/assets/gridme.png);
 }
 
 canvas.bar 
@@ -64,8 +100,8 @@ canvas.bar
 {
     position: absolute;
     top:1em;
-    left:1015px;
-    width:300px;
+    left:335px;
+    /*width:300px;*/
 }
 
 .button_grouping
@@ -74,6 +110,8 @@ canvas.bar
     margin:4px;
     border:thin green dotted;
     border-radius: 5px;
+  background: rgba(255, 255, 255, 0.65);
+
 }
 
 .range_wrapper, .subgroup
@@ -101,20 +139,63 @@ canvas.bar
   position:absolute;
   top:400px;
   left:1em;
+  width:285px;
 }
 
-/* TODO: Is this the right place/methodology for relocating the header footer since we are constrained to absolute
-positioning for the canvas? */
- header
- {
-   position:absolute;
-   top: 600px;
-   left:1em;
- }
+/*
+header
+{
+  position:absolute;
+  top: 600px;
+  left:1em;
+}
+*/
 
 footer
 {
   position:absolute;
   top: 650px;
   left:1em;
+}
+
+#layer_control_table
+{
+  text-align: center;
+  /*width:100%;*/
+}
+
+#layer_control_table .tr
+{
+  line-height: 25px;
+}
+
+#layer_control_table .td
+{
+  padding-right:5px;
+  padding-left:5px;
+}
+
+.td .layer_control_color_label
+{
+  border-radius:3px;
+  margin:3px;
+  padding:0 4px;
+  display: inline-block;
+  width:45px;
+  text-align: center;
+}
+
+#red_layer_label
+{
+  background: rgba(255, 0, 0, 0.25);
+}
+
+#green_layer_label
+{
+  background: rgba(0, 255, 0, 0.25);
+}
+
+#blue_layer_label
+{
+  background: rgba(0, 0, 255, 0.25);
 }

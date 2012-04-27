@@ -1,5 +1,6 @@
 // JSBG = javascript buffer globals.
 // Keeping these as globals increases performance.
+
 var JSBG_pixel_index;
 
 var JSBG_ending_sample_index;
@@ -199,9 +200,43 @@ function playSound(el)
  */
 function changeVolume(event)
 {
-    gain = $("#slider").val();
-    gain_node.gain.value = gain;
+    var newVolume = $("#slider").val();
+
+    if (newVolume != 0)
+    {
+        $("#mute").attr('checked', false)
+    }
+
+    gain_node.gain.value = newVolume;
 }
+
+function toggleMute()
+{
+    if ($('#mute').is(":checked"))
+    {
+        premute_volume = parseFloat($('#slider').val())
+        $('#slider').val(0)
+        changeVolume(true);
+    }
+    else
+    {
+        $('#slider').val(premute_volume);
+        changeVolume(premute_volume);
+    }
+}
+
+function toggleDecay()
+{
+    if ($('#decay_enabled').is(":checked"))
+    {
+        decayInterval = setInterval(function() { fadeSound($("#robo_decay").val()); }, 1000);
+    }
+    else
+    {
+        clearInterval(decayInterval);
+    }
+}
+
 
 function setDSPWave(wave)
 {

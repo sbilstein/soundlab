@@ -159,12 +159,14 @@ function fadeSound(rate)
     imgd.data = data;
     staff_canvas_context.putImageData(imgd, BORDER_WIDTH, BORDER_WIDTH);
 
+    /*
     if (audio_is_playing)
     {
         bufferSound();
         soundOn();
         animateLine();
     }
+    */
 }
 
 var robo_mode = "random";

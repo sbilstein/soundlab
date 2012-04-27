@@ -7,6 +7,11 @@ $(document).ready(function()
     staff_canvas_context = $("canvas.staff")[0].getContext("2d");
     bar_canvas_context = $("canvas.bar")[0].getContext("2d");
 
+    // position canvas
+    $('.staff-container').css({top:CANVAS_HEIGHT_OFFSET, left: CANVAS_WIDTH_OFFSET});
+    $("#below_staff_area").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET});
+    $("#buttons").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET});
+
     // Initialization events
     drawBorder();
     initSignals();
@@ -17,11 +22,12 @@ $(document).ready(function()
     $("canvas.bar").mousedown(startPen);
 
 
-    $("#penColor").change(function()
+    $('input[name="layer_select"]').change(function()
         {
-            setPenColor(eval($(this).val()));
+            setPenColor(COLOR_VALUE_MAPPING[$('input[name="layer_select"]:checked').val()]);
         }
     );
+
 
     $("input[name='robo_mode']").change(function()
     {
@@ -66,6 +72,9 @@ $(document).ready(function()
     {
         $('#new_jam').submit(function() { $('#jam_song').val(getStorableData()); return true; });
     }
+
+    // Start the scrub line
+    playSound(true);
 });
 
 /**

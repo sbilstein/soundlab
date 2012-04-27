@@ -83,3 +83,45 @@ canvas.bar
 {
     font-weight:bold;
 }
+
+footer {
+	position:absolute;
+	bottom:0px;
+	width: 100%;
+	height: 60px;
+	background-color: #333;
+	border-top: 1px solid grey;
+	color: #999;
+}
+
+header p, footer p {
+	font-family : "Helvetica Neue", helvetica, sans-serif;
+	font-weight: 200;
+	
+
+}
+
+nav {
+	float: right;
+}
+
+nav a:link{
+	margin: 40px;
+	text-decoration: none;
+}
+
+nav a:hover{
+#	text-decoration: underline;
+}
+
+
+
+header {
+	# position:absolute;
+	# top: 0px;
+	width: 100%;
+	height: 60px;
+	background-color: #FFF;
+	border-bottom: 1px solid #dedede;
+}
+

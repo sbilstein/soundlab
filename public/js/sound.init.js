@@ -1,8 +1,15 @@
 /**
  * Initialize contexts for canvases, audio context for audio API, preprocesses signals.
  */
+
 $(document).ready(function()
-{
+{	
+	//Check to see if canvas exists on this page. if not, return since we are not on a drawing page.
+	if ($("canvas.staff").length == 0) {
+	    return true;
+	}
+	
+	
     // Load up context for canvas
     staff_canvas_context = $("canvas.staff")[0].getContext("2d");
     bar_canvas_context = $("canvas.bar")[0].getContext("2d");

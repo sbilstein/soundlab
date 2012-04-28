@@ -73,28 +73,45 @@
     </div>
 
     <div class="td">
-        <div class="button_grouping">
-            <!-- <button type="button" onClick="animateLine(this)">animate</button> -->
 
-            <button type="button" onClick="resetStaff()">clear</button>
-            <!--
-            <button type="button" onClick="clearRed()">clear red</button>
-            <button type="button" onClick="clearGreen()">clear green</button>
-            <button type="button" onClick="clearBlue()">clear blue</button>
-            -->
-        </div>
 
 
         <div class="button_grouping">
 
+            <div class="table">
             <!-- TODO: Map these to other tools instead of toggling if we add more -->
-            <span class="bold">Tool:</span>
-            <label><input type="radio" name="tool_style" value="pen"  checked="checked"/> Pen</label>
-            <label><input type="radio" name="tool_style" value="eraser" /> Eraser</label>
-
-            <div class="range_wrapper">
-                <input type="range" min="1" max="15" step="1" value ="5" id="pen_stroke_width" onchange="changePenStrokeWidth($(this).val());"/>
+            <div class="th">
+                <div class="td">Tool</div>
+                <div class="td">Functions</div>
             </div>
+                <div class="tr">
+                    <div class="td">
+                        <label><input type="radio" name="tool_style" value="pen"  checked="checked"/> Pen</label>
+                    </div>
+                    <div class="td">
+                        Size:
+                    <div class="range_wrapper">
+                        <input type="range" min="1" max="15" step="1" value ="5" id="pen_stroke_width" onchange="changePenStrokeWidth($(this).val());"/>
+                    </div>
+                    </div>
+                    </div>
+
+                <div class="tr">
+                    <div class="td">
+                        <label><input type="radio" name="tool_style" value="eraser" /> Eraser</label>
+                        </div>
+                    <div class="td">
+                        <button type="button" onClick="resetStaff()">Erase all layers</button>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+            <hr/>
 
             <!-- Layer/Color selection table -->
 

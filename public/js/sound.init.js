@@ -28,6 +28,8 @@ $(document).ready(function()
         }
     );
 
+    $('input[name="tool_style"]').change(switchToolStyle);
+
 
     $("input[name='robo_mode']").change(function()
     {

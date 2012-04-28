@@ -34,6 +34,11 @@ body
   text-align: left;
 }
 
+span.bold
+{
+  font-weight:bold;
+}
+
 
 /* disable selecting since it tends to happen accidentally when drawing */
 *
@@ -185,17 +190,41 @@ footer
   text-align: center;
 }
 
-#red_layer_label
+#red_layer_control_row .layer_control_color_label,
+/*
+#red_layer_control_row button,
+#red_layer_control_row select
+*/
 {
-  background: rgba(255, 0, 0, 0.25);
+  background: rgba(255, 0, 0, 0.3);
 }
 
-#green_layer_label
+#green_layer_control_row .layer_control_color_label,
+/*
+#green_layer_control_row button,
+#green_layer_control_row select
+*/
 {
-  background: rgba(0, 255, 0, 0.25);
+  background: rgba(0, 255, 0, 0.3);
 }
 
-#blue_layer_label
+#blue_layer_control_row .layer_control_color_label,
+/*
+#blue_layer_control_row button,
+#blue_layer_control_row select
+*/
 {
-  background: rgba(0, 0, 255, 0.25);
+  background: rgba(0, 0, 255, 0.3);
+}
+
+
+/* neat little hack to get visual representation of waves in unicode*/
+#dspwave_red, #dspwave_green, #dspwave_blue
+{
+  width:105px;
+}
+
+.wave_select
+{
+  letter-spacing:-3px;
 }

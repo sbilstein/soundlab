@@ -87,8 +87,10 @@
 
         <div class="button_grouping">
 
-
-            <button type="button" onClick="switchToolStyle(this)">eraser</button>
+            <!-- TODO: Map these to other tools instead of toggling if we add more -->
+            <span class="bold">Tool:</span>
+            <label><input type="radio" name="tool_style" value="pen"  checked="checked"/> Pen</label>
+            <label><input type="radio" name="tool_style" value="eraser" /> Eraser</label>
 
             <div class="range_wrapper">
                 <input type="range" min="1" max="15" step="1" value ="5" id="pen_stroke_width" onchange="changePenStrokeWidth($(this).val());"/>
@@ -107,26 +109,26 @@
                 </div>
 
                 <!-- RED -->
-                <div class="tr">
+                <div id="red_layer_control_row" class="tr">
 
                     <div class="td">
-                        <label>
-                            <input type="radio" name="layer_select" value="COLOR_RED">
-                            <div id="red_layer_label" class="layer_control_color_label">
-                                Red
-                            </div>
-                        </label>
-                    </div>
+                    <label>
+                        <input type="radio" name="layer_select" value="COLOR_RED" checked="checked">
+                        <div class="layer_control_color_label">
+                            Red
+                        </div>
+                    </label>
+                </div>
                     <div class="td">
                         <label><input type="checkbox" id="red_toggle" onclick="toggleLayer(COLOR_RED);" checked=checked></label>
                     </div>
 
                     <div class="td">
-                        <select id="dspwave_red">
-                            <option value="DSP.SINE">SINE</option>
-                            <option value="DSP.SAW"> SAW </option>
-                            <option value="DSP.SQUARE"> SQUARE </option>
-                            <option value="DSP.TRIANGLE"> TRIANGLE </option>
+                        <select id="dspwave_red" class="wave_select">
+                            <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
+                            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
+                            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
+                            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
                         </select>
                     </div>
 
@@ -137,13 +139,13 @@
 
 
                 <!-- GREEN -->
-                <div class="tr">
+                <div id="green_layer_control_row" class="tr">
 
 
                     <div class="td">
                         <label>
                             <input type="radio" name="layer_select" value="COLOR_GREEN">
-                            <div id="green_layer_label" class="layer_control_color_label">
+                            <div class="layer_control_color_label">
                                 Green
                             </div>
                         </label>
@@ -153,12 +155,14 @@
                     </div>
 
                     <div class="td">
-                        <select id="dspwave_green">
-                            <option value="DSP.SINE">SINE</option>
-                            <option value="DSP.SAW"> SAW </option>
-                            <option value="DSP.SQUARE"> SQUARE </option>
-                            <option value="DSP.TRIANGLE"> TRIANGLE </option>
-                        </select>
+
+                            <select id="dspwave_green" class="wave_select">
+                                <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
+                                <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
+                                <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
+                                <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
+                            </select>
+
                     </div>
 
                     <div class="td">
@@ -169,10 +173,10 @@
                 <!-- BLUE -->
                 <div class="tr">
 
-                    <div class="td">
+                    <div id="blue_layer_control_row" class="td">
                         <label>
                             <input type="radio" name="layer_select" value="COLOR_BLUE">
-                            <div id="blue_layer_label" class="layer_control_color_label">
+                            <div class="layer_control_color_label">
                                 Blue
                             </div>
                         </label>
@@ -183,11 +187,11 @@
                     </div>
 
                     <div class="td">
-                        <select id="dspwave_blue">
-                            <option value="DSP.SINE">SINE</option>
-                            <option value="DSP.SAW"> SAW </option>
-                            <option value="DSP.SQUARE"> SQUARE </option>
-                            <option value="DSP.TRIANGLE"> TRIANGLE </option>
+                        <select id="dspwave_blue" class="wave_select">
+                            <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
+                            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
+                            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
+                            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
                         </select>
                     </div>
 

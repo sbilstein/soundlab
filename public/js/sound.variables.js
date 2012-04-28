@@ -44,6 +44,7 @@ layer_signal_config[COLOR_RED] = dsp_wave;
 layer_signal_config[COLOR_GREEN] = dsp_wave;
 layer_signal_config[COLOR_BLUE] = dsp_wave;
 
+var js_buffer;
 var js_node;
 
 /*                 C     C#    D    D#    E      F      F#    G     G#     A     A#     B */

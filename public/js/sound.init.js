@@ -99,7 +99,16 @@ function initAudio() {
 
 
         js_node = audio_context.createJavaScriptNode(512, 1, 1);
-        js_node.onaudioprocess = jsBufferSound;
+        js_buffer = JSBuffer();
+
+        //if (useClosure)
+        //{
+            js_node.onaudioprocess = js_buffer.BufferSound;
+        //}
+        //else
+        //{
+           // js_node.onaudioprocess = JSBufferSound;
+        //}
 
         audio_buffer_source.connect(js_node);
         js_node.connect(gain_node);

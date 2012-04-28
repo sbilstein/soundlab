@@ -1,7 +1,11 @@
 <div id="below_staff_area">
-    <h1>New jam</h1>
-    <%= render 'form' %>
-    <%= link_to 'Back', jams_path %>
+    <div class="button_grouping">
+        <h1>New jam</h1>
+        <%= render 'form' %>
+
+        <!-- TODO: Do we really need this back button? Commenting out for now. -->
+        <!-- <%= link_to 'Back', jams_path %> -->
+     </div>
 </div>
 
 <%= render 'staff' %>

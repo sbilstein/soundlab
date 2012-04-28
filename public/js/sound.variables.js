@@ -4,6 +4,12 @@
  * Sound variables
  */
 
+var loopPeriod = 1000; // looping period in ms. TODO: hook this up where appropriate, later on make adjustable.
+
+var premute_volume; // saves volume for muting/unmuting
+
+var decayInterval;
+
 var current_audio_time;
 
 var start_time;
@@ -38,6 +44,7 @@ layer_signal_config[COLOR_RED] = dsp_wave;
 layer_signal_config[COLOR_GREEN] = dsp_wave;
 layer_signal_config[COLOR_BLUE] = dsp_wave;
 
+var js_buffer;
 var js_node;
 
 /*                 C     C#    D    D#    E      F      F#    G     G#     A     A#     B */

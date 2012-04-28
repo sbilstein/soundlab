@@ -3,9 +3,12 @@
 <div id="below_staff_area">
     <p id="notice"><%= notice %></p>
 
-    <h1><%= @jam.title %></h1>
+    <div class="button_grouping">
+        <h1><%= @jam.title %></h1>
 
-    <%= link_to 'Back', jams_path %>
+        <!-- TODO: Do we really need this back button? Commenting out for now. -->
+        <!-- <%= link_to 'Back', jams_path %> -->
+    </div>
 
     <div id="stored_data" class="hidden" data="<%= @jam.song %>"></div>
 </div>

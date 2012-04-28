@@ -2,7 +2,7 @@
  * Toggles between pen and eraser
  * @param el The button calling for the switch
  */
-function switchToolStyle(el)
+function switchToolStyle()
 {
     if (tool_style == PEN)
     {
@@ -152,8 +152,9 @@ function startPen(e)
 {
     window.getSelection().removeAllRanges()
 
-    pen_directive["x1"] = e.pageX;
-    pen_directive["y1"] = e.pageY;
+    pen_directive["x1"] = e.pageX - CANVAS_WIDTH_OFFSET;
+    pen_directive["y1"] = e.pageY - CANVAS_HEIGHT_OFFSET;
+
     $("canvas.bar").mousemove(movePen);
     $("canvas.bar").mouseup(endPen);
     $("canvas.bar").mouseleave(endPen);
@@ -169,8 +170,8 @@ function movePen(e)
 {
     window.getSelection().removeAllRanges()
 
-    pen_directive["x2"] = e.pageX;
-    pen_directive["y2"] = e.pageY;
+    pen_directive["x2"] = e.pageX - CANVAS_WIDTH_OFFSET;
+    pen_directive["y2"] = e.pageY - CANVAS_HEIGHT_OFFSET;
 
     if (tool_style == PEN)
     {
@@ -188,8 +189,8 @@ function movePen(e)
     }
 
 
-    pen_directive["x1"] = e.pageX;
-    pen_directive["y1"] = e.pageY;
+    pen_directive["x1"] = e.pageX - CANVAS_WIDTH_OFFSET;
+    pen_directive["y1"] = e.pageY - CANVAS_HEIGHT_OFFSET;
 
     do_update = true;
 }
@@ -201,8 +202,8 @@ function movePen(e)
  */
 function endPen(e)
 {
-    pen_directive["x2"] = e.pageX;
-    pen_directive["y2"] = e.pageY;
+    pen_directive["x2"] = e.pageX - CANVAS_WIDTH_OFFSET;
+    pen_directive["y2"] = e.pageY - CANVAS_HEIGHT_OFFSET;
     $("canvas.staff").drawLine(pen_directive);
 
     //unbind drawing related events.

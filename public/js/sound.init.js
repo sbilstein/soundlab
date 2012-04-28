@@ -75,6 +75,8 @@ $(document).ready(function()
         $('#new_jam').submit(function() { $('#jam_song').val(getStorableData()); return true; });
     }
 
+    if ($("#autoflush").is(":checked"))
+
     // Start the scrub line
     playSound(true);
 });
@@ -82,7 +84,8 @@ $(document).ready(function()
 /**
  * Initializes audio.
  */
-function initAudio() {
+function initAudio()
+{
     // set window.AudioContext to either the webkit or moz context
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
@@ -97,22 +100,22 @@ function initAudio() {
         gain_node = audio_context.createGainNode();
         gain_node.gain.value = 0.1;
 
+        if (!asyncCalled)
+        {
+            js_node = audio_context.createJavaScriptNode(DEFAULT_BITRATE, 1, 1);
+            js_buffer = BufferController();
 
-        js_node = audio_context.createJavaScriptNode(512, 1, 1);
-        js_buffer = JSBuffer();
 
-        //if (useClosure)
-        //{
-            js_node.onaudioprocess = js_buffer.BufferSound;
-        //}
-        //else
-        //{
-           // js_node.onaudioprocess = JSBufferSound;
-        //}
+            js_node.onaudioprocess = js_buffer.BufferJIT;
 
-        audio_buffer_source.connect(js_node);
-        js_node.connect(gain_node);
-        gain_node.connect(audio_context.destination);
+            audio_buffer_source.connect(js_node);
+            js_node.connect(gain_node);
+            gain_node.connect(audio_context.destination);
+        }
+        else
+        {
+            soundOn();
+        }
     }
     else
     {

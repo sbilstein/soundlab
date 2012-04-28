@@ -5,6 +5,8 @@ const SAMPLE_RATE = 44100;
 const NUM_SAMPLES = 44100;
 const NUM_CHANNELS = 2;
 
+const DEFAULT_BITRATE = 1024;
+
 // Canvas pixel array accessor constants
 const RED_INDEX_OFFSET = 0;
 const GREEN_INDEX_OFFSET = 1;

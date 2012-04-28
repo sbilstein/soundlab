@@ -2,11 +2,11 @@
 // Keeping these as globals increases performance.
 
 
-useClosure = false;
+var asyncCalled = false;
 
 // CLOSURE =========================================================
 
-var JSBuffer = function()
+var BufferController = function()
 {
     var $JSBG_pixel_index;
 
@@ -36,9 +36,10 @@ var JSBuffer = function()
     var $JSBG_signal_wave;
 
 
-
-    this.BufferSound = function(evt)
+    /* Function to buffer while the user is drawing */
+    this.BufferJIT = function(evt)
     {
+
         // TODO only rebuffer when needed, store signal in buffer that can be sliced.
 
         $JSBG_inputBuffer = evt.inputBuffer.getChannelData(0);
@@ -55,6 +56,26 @@ var JSBuffer = function()
 
         $JSBG_starting_sample_index_multiplier = parseInt($JSBG_outputBuffer.length/$JSBG_x_pixel_range);
 
+        if (asyncCalled)
+        //if (false)
+        {
+            /*
+            var output_index = 0;
+            for (var sample_index = $JSBG_starting_x_pixel_index * $JSBG_starting_sample_index_multiplier;
+                sample_index < $JSBG_ending_x_pixel_index * $JSBG_starting_sample_index_multiplier;
+                sample_index++)
+            {
+                $JSBG_outputBuffer[output_index++] = sum_signal[sample_index];
+            }
+
+            evt.outputBuffer.getChannelData(0).set($JSBG_outputBuffer);
+            evt.outputBuffer.getChannelData(1).set($JSBG_outputBuffer);
+
+            return;
+            */
+            evt.outputBuffer.getChannelData(0).set($JSBG_inputBuffer)
+            evt.outputBuffer.getChannelData(1).set($JSBG_inputBuffer)
+        }
 
         // Loop through each pixel
         for (var x_pixel_index = $JSBG_starting_x_pixel_index; x_pixel_index < $JSBG_ending_x_pixel_index; x_pixel_index++)
@@ -65,7 +86,7 @@ var JSBuffer = function()
 
             // For every pixel that is on in this sample's time span, get and add the value of the signal with the
             // frequency corresponding to the y pixel index at the time corresponding to j, multiplied by the value of
-            // the pixel's alpha index (for volume).
+            // the pixel's alpha index (for volume/gain).
             for ($JSBG_y_pixel_index = BORDER_WIDTH; $JSBG_y_pixel_index < STAFF_HEIGHT - BORDER_WIDTH; $JSBG_y_pixel_index++)
             {
                 $JSBG_pixel_index = $JSBG_y_pixel_index * 4;
@@ -101,6 +122,14 @@ var JSBuffer = function()
                         $JSBG_ending_sample_index = Math.min($JSBG_maxOutputBufferIndex, $JSBG_starting_sample_index + samples_per_pixel);
 
                         // Iterate over the samples in the time span of this pixel.
+                        // TODO: Should be sampling from signals at appropiate sample rate, below sounds weird but hard to tell if perf
+                        // or error in math.
+                        /*
+                        for ($JSBG_sample_index = $JSBG_starting_sample_index;
+                             $JSBG_sample_index < $JSBG_ending_sample_index;
+                             $JSBG_sample_index += parseInt($JSBG_inputBuffer.length/evt.inputBuffer.duration))
+                        */
+
                         for ($JSBG_sample_index = $JSBG_starting_sample_index; $JSBG_sample_index < $JSBG_ending_sample_index; $JSBG_sample_index++)
                         {
                             // TODO signals[(STAFF_HEIGHT - BORDER_WIDTH) - y_pixel_index][sample_index] should be something like
@@ -120,6 +149,95 @@ var JSBuffer = function()
         evt.outputBuffer.getChannelData(1).set($JSBG_outputBuffer);
     }
 
+    /* Asynchronously build sum_signals while the user is not drawing */
+    this.BufferAsync = function()
+    {
+        asyncCalled = true;
+
+        //soundOff();
+
+        // TODO only rebuffer when needed, store signal in buffer that can be sliced.
+
+        sum_signal = new Float32Array(NUM_SAMPLES);
+        for (var i = 0; i < NUM_SAMPLES; i++)
+        {
+            sum_signal[i] = 0;
+        }
+
+        var starting_x_pixel_index = BORDER_WIDTH;
+        var ending_x_pixel_index = STAFF_WIDTH - BORDER_WIDTH;
+
+        var max_sample_index = (STAFF_WIDTH - BORDER_WIDTH) * samples_per_pixel;
+
+        // Loop through each pixel
+        for (var x_pixel_index = starting_x_pixel_index; x_pixel_index < ending_x_pixel_index; x_pixel_index++)
+        {
+            // each pixel is (NUM_SAMPLES/STAFF_WIDTH)
+            var imgd = staff_canvas_context.getImageData(x_pixel_index, 0, 1, STAFF_HEIGHT);
+            var pix = imgd.data;
+
+            // For every pixel that is on in this sample's time span, get and add the value of the signal with the
+            // frequency corresponding to the y pixel index at the time corresponding to j, multiplied by the value of
+            // the pixel's alpha index (for volume/gain).
+            for (var y_pixel_index = BORDER_WIDTH; y_pixel_index < STAFF_HEIGHT - BORDER_WIDTH; y_pixel_index++)
+            {
+                var pixel_index = y_pixel_index * 4;
+
+                if (pix[pixel_index + ALPHA_INDEX_OFFSET] != 0)
+                {
+                    var fire_red_signal = false;
+                    var fire_green_signal = false;
+                    var fire_blue_signal = false;
+                    var color_signal;
+
+                    if (layer_enabled_config[COLOR_RED] && pix[pixel_index + RED_INDEX_OFFSET] != 0)
+                    {
+                        fire_red_signal = true;
+                        color_signal = COLOR_RED;
+                    }
+                    else if(layer_enabled_config[COLOR_GREEN] && pix[pixel_index + GREEN_INDEX_OFFSET] != 0)
+                    {
+                        fire_green_signal = true;
+                        color_signal = COLOR_GREEN;
+                    }
+                    else if(layer_enabled_config[COLOR_BLUE] && pix[pixel_index + BLUE_INDEX_OFFSET] != 0)
+                    {
+                        fire_blue_signal = true;
+                        color_signal = COLOR_BLUE;
+                    }
+
+                    var signal_wave = layer_signal_config[color_signal];
+
+                    if (fire_red_signal || fire_green_signal || fire_blue_signal)
+                    {
+                        //console.log('found a pixel that was on',x_pixel_index,y_pixel_index);
+                        var starting_sample_index = x_pixel_index * samples_per_pixel;
+
+                        var ending_sample_index = Math.min(max_sample_index, starting_sample_index + samples_per_pixel);
+
+                        for (var sample_index = starting_sample_index; sample_index < ending_sample_index; sample_index++)
+                        {
+                            if (sum_signal[sample_index])
+                            {
+                                sum_signal[sample_index] += (pix[pixel_index + ALPHA_INDEX_OFFSET]/255) *
+                                    signals_waves[signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - y_pixel_index][sample_index];
+                            }
+                            else
+                            {
+                                sum_signal[sample_index] = (pix[pixel_index + ALPHA_INDEX_OFFSET]/255) *
+                                    signals_waves[signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - y_pixel_index][sample_index];
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+        audio_buffer_source.buffer.getChannelData(0).set(sum_signal);
+        audio_buffer_source.buffer.getChannelData(1).set(sum_signal);
+    }
+
     return this;
 }
 
@@ -128,13 +246,14 @@ var JSBuffer = function()
 
 function setJSNodeBufferSize(size)
 {
+    // TODO: I think we might want the gain node going to audio_buffer_source, not JS node.
     audio_buffer_source.disconnect(0);
     js_node.disconnect(0);
     js_node = audio_context.createJavaScriptNode(size, 1, 1);
 
     //if (useClosure)
     //{
-        js_node.onaudioprocess = js_buffer.BufferSound;
+        js_node.onaudioprocess = js_buffer.BufferJIT;
     //}
    // else
     //{
@@ -162,8 +281,6 @@ function soundOn()
 
     // connect the gainNode;
     gain_node.connect(audio_context.destination);
-    // TODO get value with jQuery
-    // gainNode.gain = document.getElementById("slider").value;
 
     // Animate here also
     // need to fix pausing timing issue.
@@ -257,6 +374,7 @@ function toggleDecay()
     else
     {
         clearInterval(decayInterval);
+        decayInterval = null;
     }
 }
 

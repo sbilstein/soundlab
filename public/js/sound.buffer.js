@@ -31,7 +31,7 @@ var JSBuffer = function()
 
 
 
-    this.BufferSound = function(evt)
+    this.BufferJIT = function(evt)
     {
         // TODO only rebuffer when needed, store signal in buffer that can be sliced.
 

@@ -150,6 +150,7 @@ function drawBorder()
  */
 function startPen(e)
 {
+    asyncCalled = false;
     window.getSelection().removeAllRanges()
 
     pen_directive["x1"] = e.pageX - CANVAS_WIDTH_OFFSET;
@@ -212,6 +213,7 @@ function endPen(e)
     $("canvas.bar").unbind('mouseleave', endPen);
 
     do_update = true;
+    js_buffer.BufferAsync()
 }
 
 function setPenColor(color_style)

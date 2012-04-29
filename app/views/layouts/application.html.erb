@@ -34,9 +34,12 @@
 
 <body>
 	<header>
-	<p> <%= link_to "About" %> <%= link_to "FAQ" %> <%= link_to "Contact Us"%> 
-			DrawJam 2012 Siegfried Bilstein and Jonathan Pezzino
-		</p>
+	<nav> <%= link_to "About" %> <%= link_to "FAQ" %> <%= link_to "Contact Us"%> 
+		</nav>
+		<div id="attribution">
+			DrawJam by <%= link_to "Siegfried Bilstein", "http://www.sbilstein.com" %>  and 
+			<%= link_to "Jonathan Pezzino", "http://www.linkedin.com/pub/jonathan-pezzino/30/60b/211" %> 
+		</div>
 	
 	</header>
   <%= yield %>

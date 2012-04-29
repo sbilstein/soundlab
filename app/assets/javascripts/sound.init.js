@@ -155,13 +155,12 @@ function initSignals()
     {
 		i_mod = Math.round(i / gran);
 		freq = keys[i_mod];  
-		//console.log(freq)
-
+		
 		// i_mod = Math.round( i / signal_granularity ) * signal_granularity;
 		// freq = 440.0 * Math.pow(2, (((i_mod * pdelt) + 40) - 69.0) / 12.0);
             
          // if(scale[scale_index])
-   /*
+        /*
      	if (true)
 		{
             freq = 440.0 * Math.pow(2, (i - 49) / 12);

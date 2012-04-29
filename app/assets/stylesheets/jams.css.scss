@@ -139,6 +139,11 @@ canvas.bar
   width:285px;
 }
 
+h1 
+{
+	text-transform : uppercase;
+	font-weight: bold;
+}
 
 header
 {
@@ -147,8 +152,31 @@ header
   background: rgba(255, 255, 255, 0.65);
   border-bottom: dotted thin green;	
   width: 100%;
+  color: black;
   font-family: inherit;
- 
+  height: 20px; 	
+}
+
+header a {
+	text-transform: uppercase;
+	color: #666;
+	text-decoration: none;
+
+}
+
+header a:hover {
+	text-decoration: underline;
+}
+
+nav {
+	margin-left: 10px;
+	float: left;
+}
+
+#attribution
+{
+	float: right;
+	margin-right: 5px;
 }
 
 #layer_control_table
@@ -178,28 +206,16 @@ header
 }
 
 #red_layer_control_row .layer_control_color_label,
-/*
-#red_layer_control_row button,
-#red_layer_control_row select
-*/
 {
   background: rgba(255, 0, 0, 0.3);
 }
 
 #green_layer_control_row .layer_control_color_label,
-/*
-#green_layer_control_row button,
-#green_layer_control_row select
-*/
 {
   background: rgba(0, 255, 0, 0.3);
 }
 
 #blue_layer_control_row .layer_control_color_label,
-/*
-#blue_layer_control_row button,
-#blue_layer_control_row select
-*/
 {
   background: rgba(0, 0, 255, 0.3);
 }
@@ -214,4 +230,11 @@ header
 .wave_select
 {
   letter-spacing:-3px;
+}
+
+.list-staff
+{
+	height: 75px;
+	width: 200px;
+
 }

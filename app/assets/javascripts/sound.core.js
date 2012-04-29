@@ -1,13 +1,10 @@
-// JSBG = javascript buffer globals.
-// Keeping these as globals increases performance.
-
-
 var asyncCalled = false;
-
-// CLOSURE =========================================================
+var asyncBuffered = false;
 
 var BufferController = function()
 {
+    // $JSBG_* = javascript buffer globals (holdover from before using closure, will rename eventually)
+
     var $JSBG_pixel_index;
 
     var $JSBG_ending_sample_index;
@@ -28,60 +25,45 @@ var BufferController = function()
     var $JSBG_starting_x_pixel_index;
     var $JSBG_ending_x_pixel_index;
     var $JSBG_x_pixel_range;
+    var $JSBG_x_pixel_index;
 
-    var $JSBG_fire_red_signal;
-    var $JSBG_fire_green_signal;
-    var $JSBG_fire_blue_signal;
     var $JSBG_color_signal;
     var $JSBG_signal_wave;
 
+    var $JSBG_base_signal_index;
+    var $JSBG_fire_signal;
+
 
     /* Function to buffer while the user is drawing */
-    this.BufferJIT = function(evt)
+    this.GetBuffer = function(evt)
     {
-
-        // TODO only rebuffer when needed, store signal in buffer that can be sliced.
-
+        $JSBG_buffer_time = audio_context.currentTime % 1.0;
         $JSBG_inputBuffer = evt.inputBuffer.getChannelData(0);
+
+        if (asyncBuffered)
+        {
+            evt.outputBuffer.getChannelData(0).set($JSBG_inputBuffer);
+            evt.outputBuffer.getChannelData(1).set($JSBG_inputBuffer);
+            return;
+        }
+
         $JSBG_outputBuffer = new Float32Array($JSBG_inputBuffer.length);
         $JSBG_maxOutputBufferIndex = $JSBG_outputBuffer.length - 1;
 
-        $JSBG_buffer_time = audio_context.currentTime % 1.0;
 
         $JSBG_starting_x_pixel_index = parseInt($JSBG_buffer_time * STAFF_WIDTH);
         $JSBG_ending_x_pixel_index = ($JSBG_buffer_time + evt.inputBuffer.duration) * STAFF_WIDTH;
         $JSBG_x_pixel_range = (($JSBG_buffer_time + evt.inputBuffer.duration) * STAFF_WIDTH) - $JSBG_starting_x_pixel_index;
 
-        //var base_signal_index = parseInt(NUM_SAMPLES * buffer_time);
+        $JSBG_base_signal_index = parseInt(NUM_SAMPLES * $JSBG_buffer_time);
 
         $JSBG_starting_sample_index_multiplier = parseInt($JSBG_outputBuffer.length/$JSBG_x_pixel_range);
 
-        if (asyncCalled)
-        //if (false)
-        {
-            /*
-            var output_index = 0;
-            for (var sample_index = $JSBG_starting_x_pixel_index * $JSBG_starting_sample_index_multiplier;
-                sample_index < $JSBG_ending_x_pixel_index * $JSBG_starting_sample_index_multiplier;
-                sample_index++)
-            {
-                $JSBG_outputBuffer[output_index++] = sum_signal[sample_index];
-            }
-
-            evt.outputBuffer.getChannelData(0).set($JSBG_outputBuffer);
-            evt.outputBuffer.getChannelData(1).set($JSBG_outputBuffer);
-
-            return;
-            */
-            evt.outputBuffer.getChannelData(0).set($JSBG_inputBuffer)
-            evt.outputBuffer.getChannelData(1).set($JSBG_inputBuffer)
-        }
-
         // Loop through each pixel
-        for (var x_pixel_index = $JSBG_starting_x_pixel_index; x_pixel_index < $JSBG_ending_x_pixel_index; x_pixel_index++)
+        for ($JSBG_x_pixel_index = $JSBG_starting_x_pixel_index; $JSBG_x_pixel_index < $JSBG_ending_x_pixel_index; $JSBG_x_pixel_index++)
         {
             // each pixel is (NUM_SAMPLES/STAFF_WIDTH)
-            $JSBG_imgd = staff_canvas_context.getImageData(x_pixel_index, 0, 1, STAFF_HEIGHT);
+            $JSBG_imgd = staff_canvas_context.getImageData($JSBG_x_pixel_index, 0, 1, STAFF_HEIGHT);
             $JSBG_pix = $JSBG_imgd.data;
 
             // For every pixel that is on in this sample's time span, get and add the value of the signal with the
@@ -93,52 +75,37 @@ var BufferController = function()
 
                 if ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET] != 0)
                 {
-                    $JSBG_fire_red_signal = false;
-                    $JSBG_fire_green_signal = false;
-                    $JSBG_fire_blue_signal = false;
+                    $JSBG_fire_signal = false;
 
                     if (layer_enabled_config[COLOR_RED] && $JSBG_pix[$JSBG_pixel_index + RED_INDEX_OFFSET] != 0)
                     {
-                        $JSBG_fire_red_signal = true;
+                        $JSBG_fire_signal = true;
                         $JSBG_color_signal = COLOR_RED;
                     }
                     else if(layer_enabled_config[COLOR_GREEN] && $JSBG_pix[$JSBG_pixel_index + GREEN_INDEX_OFFSET] != 0)
                     {
-                        $JSBG_fire_green_signal = true;
+                        $JSBG_fire_signal = true;
                         $JSBG_color_signal = COLOR_GREEN;
                     }
                     else if(layer_enabled_config[COLOR_BLUE] && $JSBG_pix[$JSBG_pixel_index + BLUE_INDEX_OFFSET] != 0)
                     {
-                        $JSBG_fire_blue_signal = true;
+                        $JSBG_fire_signal = true;
                         $JSBG_color_signal = COLOR_BLUE;
                     }
 
                     $JSBG_signal_wave = layer_signal_config[$JSBG_color_signal];
 
-                    if ($JSBG_fire_red_signal || $JSBG_fire_green_signal || $JSBG_fire_blue_signal)
+                    if ($JSBG_fire_signal)
                     {
-                        $JSBG_starting_sample_index = Math.min($JSBG_maxOutputBufferIndex, (x_pixel_index - $JSBG_starting_x_pixel_index) * $JSBG_starting_sample_index_multiplier);
+                        $JSBG_starting_sample_index = Math.min($JSBG_maxOutputBufferIndex, ($JSBG_x_pixel_index - $JSBG_starting_x_pixel_index) * $JSBG_starting_sample_index_multiplier);
 
                         $JSBG_ending_sample_index = Math.min($JSBG_maxOutputBufferIndex, $JSBG_starting_sample_index + samples_per_pixel);
 
                         // Iterate over the samples in the time span of this pixel.
-                        // TODO: Should be sampling from signals at appropiate sample rate, below sounds weird but hard to tell if perf
-                        // or error in math.
-                        /*
-                        for ($JSBG_sample_index = $JSBG_starting_sample_index;
-                             $JSBG_sample_index < $JSBG_ending_sample_index;
-                             $JSBG_sample_index += parseInt($JSBG_inputBuffer.length/evt.inputBuffer.duration))
-                        */
-
                         for ($JSBG_sample_index = $JSBG_starting_sample_index; $JSBG_sample_index < $JSBG_ending_sample_index; $JSBG_sample_index++)
                         {
-                            // TODO signals[(STAFF_HEIGHT - BORDER_WIDTH) - y_pixel_index][sample_index] should be something like
-                            // signals[(STAFF_HEIGHT - BORDER_WIDTH) - y_pixel_index][base_signal_index + sample_index - starting_sample_index], but that sounds fucked up
-                            // and this sounds awesome. Investigate.
-
-                            //$JSBG_outputBuffer[$JSBG_sample_index] += ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET]/255) * signals[(STAFF_HEIGHT - BORDER_WIDTH) - $JSBG_y_pixel_index][$JSBG_sample_index];
                             $JSBG_outputBuffer[$JSBG_sample_index] += ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET]/255) *
-                                signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $JSBG_y_pixel_index][$JSBG_sample_index];
+                                signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
                         }
                     }
                 }
@@ -149,85 +116,88 @@ var BufferController = function()
         evt.outputBuffer.getChannelData(1).set($JSBG_outputBuffer);
     }
 
+
+    // $BA_* = BufferAsync closure variables, preallocated for perf.
+
+    // constant-ish
+    var $BA_max_sample_index = (STAFF_WIDTH - BORDER_WIDTH) * samples_per_pixel;
+    var $BA_starting_x_pixel_index = BORDER_WIDTH;
+    var $BA_ending_x_pixel_index = STAFF_WIDTH - BORDER_WIDTH;
+
+    // dynamic
+    var $BA_imgd;
+    var $BA_pix;
+    var $BA_color_signal;
+    var $BA_signal_wave;
+    var $BA_pixel_index;
+    var $BA_fire_signal;
+    var $BA_starting_sample_index;
+    var $BA_ending_sample_index;
+    var $BA_x_pixel_index;
+    var $BA_y_pixel_index;
+    var $BA_sample_index;
+
     /* Asynchronously build sum_signals while the user is not drawing */
     this.BufferAsync = function()
     {
-        asyncCalled = true;
-
-        //soundOff();
-
-        // TODO only rebuffer when needed, store signal in buffer that can be sliced.
-
-        sum_signal = new Float32Array(NUM_SAMPLES);
-        for (var i = 0; i < NUM_SAMPLES; i++)
+        for (var i = 0; i < sum_signal.length; i++)
         {
-            sum_signal[i] = 0;
+            sum_signal[i] = 0.0;
         }
 
-        var starting_x_pixel_index = BORDER_WIDTH;
-        var ending_x_pixel_index = STAFF_WIDTH - BORDER_WIDTH;
-
-        var max_sample_index = (STAFF_WIDTH - BORDER_WIDTH) * samples_per_pixel;
-
         // Loop through each pixel
-        for (var x_pixel_index = starting_x_pixel_index; x_pixel_index < ending_x_pixel_index; x_pixel_index++)
+        for ($BA_x_pixel_index = $BA_starting_x_pixel_index; $BA_x_pixel_index < $BA_ending_x_pixel_index; $BA_x_pixel_index++)
         {
             // each pixel is (NUM_SAMPLES/STAFF_WIDTH)
-            var imgd = staff_canvas_context.getImageData(x_pixel_index, 0, 1, STAFF_HEIGHT);
-            var pix = imgd.data;
+            $BA_imgd = staff_canvas_context.getImageData($BA_x_pixel_index, 0, 1, STAFF_HEIGHT);
+            $BA_pix = $BA_imgd.data;
 
             // For every pixel that is on in this sample's time span, get and add the value of the signal with the
             // frequency corresponding to the y pixel index at the time corresponding to j, multiplied by the value of
             // the pixel's alpha index (for volume/gain).
-            for (var y_pixel_index = BORDER_WIDTH; y_pixel_index < STAFF_HEIGHT - BORDER_WIDTH; y_pixel_index++)
+            for ($BA_y_pixel_index = BORDER_WIDTH; $BA_y_pixel_index < STAFF_HEIGHT - BORDER_WIDTH; $BA_y_pixel_index++)
             {
-                var pixel_index = y_pixel_index * 4;
+                $BA_pixel_index = $BA_y_pixel_index * 4;
 
-                if (pix[pixel_index + ALPHA_INDEX_OFFSET] != 0)
+                if ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] != 0)
                 {
-                    var fire_red_signal = false;
-                    var fire_green_signal = false;
-                    var fire_blue_signal = false;
-                    var color_signal;
+                    $BA_fire_signal = false;
 
-                    if (layer_enabled_config[COLOR_RED] && pix[pixel_index + RED_INDEX_OFFSET] != 0)
+                    if (layer_enabled_config[COLOR_RED] && $BA_pix[$BA_pixel_index + RED_INDEX_OFFSET] != 0)
                     {
-                        fire_red_signal = true;
-                        color_signal = COLOR_RED;
+                        $BA_fire_signal = true;
+                        $BA_color_signal = COLOR_RED;
                     }
-                    else if(layer_enabled_config[COLOR_GREEN] && pix[pixel_index + GREEN_INDEX_OFFSET] != 0)
+                    else if(layer_enabled_config[COLOR_GREEN] && $BA_pix[$BA_pixel_index + GREEN_INDEX_OFFSET] != 0)
                     {
-                        fire_green_signal = true;
-                        color_signal = COLOR_GREEN;
+                        $BA_fire_signal = true;
+                        $BA_color_signal = COLOR_GREEN;
                     }
-                    else if(layer_enabled_config[COLOR_BLUE] && pix[pixel_index + BLUE_INDEX_OFFSET] != 0)
+                    else if(layer_enabled_config[COLOR_BLUE] && $BA_pix[$BA_pixel_index + BLUE_INDEX_OFFSET] != 0)
                     {
-                        fire_blue_signal = true;
-                        color_signal = COLOR_BLUE;
+                        $BA_fire_signal = true;
+                        $BA_color_signal = COLOR_BLUE;
                     }
 
-                    var signal_wave = layer_signal_config[color_signal];
+                    $BA_signal_wave = layer_signal_config[$BA_color_signal];
 
-                    if (fire_red_signal || fire_green_signal || fire_blue_signal)
+                    if ($BA_fire_signal)
                     {
-                        //console.log('found a pixel that was on',x_pixel_index,y_pixel_index);
-                        var starting_sample_index = x_pixel_index * samples_per_pixel;
+                        $BA_starting_sample_index = $BA_x_pixel_index * samples_per_pixel;
+                        $BA_ending_sample_index = Math.min($BA_max_sample_index, $BA_starting_sample_index + samples_per_pixel);
 
-                        var ending_sample_index = Math.min(max_sample_index, starting_sample_index + samples_per_pixel);
-
-                        for (var sample_index = starting_sample_index; sample_index < ending_sample_index; sample_index++)
+                        for ($BA_sample_index = $BA_starting_sample_index; $BA_sample_index < $BA_ending_sample_index; $BA_sample_index++)
                         {
-                            if (sum_signal[sample_index])
+                            if (!sum_signal[$BA_sample_index])
                             {
-                                sum_signal[sample_index] += (pix[pixel_index + ALPHA_INDEX_OFFSET]/255) *
-                                    signals_waves[signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - y_pixel_index][sample_index];
+                                sum_signal[$BA_sample_index] = ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET]/255) *
+                                    signals_waves[$BA_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $BA_y_pixel_index][$BA_sample_index];
                             }
                             else
                             {
-                                sum_signal[sample_index] = (pix[pixel_index + ALPHA_INDEX_OFFSET]/255) *
-                                    signals_waves[signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - y_pixel_index][sample_index];
+                                sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET]/255) *
+                                    signals_waves[$BA_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $BA_y_pixel_index][$BA_sample_index];
                             }
-
                         }
                     }
                 }
@@ -236,31 +206,45 @@ var BufferController = function()
 
         audio_buffer_source.buffer.getChannelData(0).set(sum_signal);
         audio_buffer_source.buffer.getChannelData(1).set(sum_signal);
+
+        audio_buffer_source.noteOn(0);
+
+
+        //js_node.disconnect(0);
+        //audio_buffer_source.disconnect(0);
+        //audio_buffer_source.connect(gain_node);
+
+        asyncBuffered = true;
     }
 
     return this;
 }
 
-// END CLOSURE ======================================================
+function disconnectNodes()
+{
+    audio_buffer_source.disconnect(0);
+    js_node.disconnect(0);
+    gain_node.disconnect(0);
+    //dynamic_compressor_node.disconnect(0);
+}
 
+function connectNodes()
+{
+    disconnectNodes();
+
+    audio_buffer_source.connect(js_node);
+    js_node.connect(gain_node);
+    //gain_node.connect(dynamic_compressor_node);
+    //dynamic_compressor_node.connect(audio_context.destination);
+    gain_node.connect(audio_context.destination)
+}
 
 function setJSNodeBufferSize(size)
 {
-    // TODO: I think we might want the gain node going to audio_buffer_source, not JS node.
-    audio_buffer_source.disconnect(0);
-    js_node.disconnect(0);
     js_node = audio_context.createJavaScriptNode(size, 1, 1);
+    js_node.onaudioprocess = js_buffer.GetBuffer;
 
-    //if (useClosure)
-    //{
-        js_node.onaudioprocess = js_buffer.BufferJIT;
-    //}
-   // else
-    //{
-        //js_node.onaudioprocess = JSBufferSound;
-    //}
-    audio_buffer_source.connect(js_node);
-    js_node.connect(gain_node);
+    connectNodes();
 }
 
 function setColorSignal(color, signal)
@@ -279,8 +263,7 @@ function soundOn()
     audio_buffer_source.buffer.getChannelData(0).set(sum_signal);
     audio_buffer_source.buffer.getChannelData(1).set(sum_signal);
 
-    // connect the gainNode;
-    gain_node.connect(audio_context.destination);
+    connectNodes();
 
     // Animate here also
     // need to fix pausing timing issue.
@@ -288,7 +271,6 @@ function soundOn()
     start_time = audio_context.currentTime;
     audio_buffer_source.noteOn(0);
 
-    // TODO move to draw module
     animateLine();
 }
 
@@ -298,18 +280,17 @@ function soundOn()
 function soundOff()
 {
     // turn off
+    disconnectNodes();
     audio_is_playing = false;
-    // source.noteOff(0);
-    gain_node.disconnect(0);
+
     // position is where in the loop we stopped.
     // currentTime - start_time is the amount of time elapsed since start
     // needs to include position offset.
     // TODO don't use global here, will be calling from another function.
     scrub_line_position = ((audio_context.currentTime - start_time) + scrub_line_position) % 1.0;
+
     // call to animate toggle.
     animateLine();
-    // el.textContent = 'play';
-    //drawScrubLine(0);
 }
 
 /**
@@ -321,17 +302,11 @@ function playSound(el)
     if (audio_is_playing)
     {
         soundOff();
-        return null;
     }
-
-    //bufferSound();
-
-    // Start scanning left to right and loop
-    soundOn();
-
-    //setInterval(fadeSound, 1000);
-    //setInterval(roboMode, 1000);
-    //setInterval(function() { roboMode(false, true)}, 1000);
+    else
+    {
+        soundOn();
+    }
 }
 
 /**
@@ -378,7 +353,6 @@ function toggleDecay()
     }
 }
 
-
 function setDSPWave(wave)
 {
     eval("dsp_wave = "+wave);
@@ -408,7 +382,6 @@ function resetStaff()
 
     if (audio_is_playing)
     {
-        //bufferSound();
         soundOn();
         animateLine();
     }
@@ -457,7 +430,6 @@ function clearRed()
 
     if (audio_is_playing)
     {
-        //bufferSound();
         soundOn();
         animateLine();
     }

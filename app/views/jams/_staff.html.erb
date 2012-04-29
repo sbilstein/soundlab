@@ -1,6 +1,6 @@
 <div class="staff-container noselect">
-    <canvas width="1000" height="375" class="staff"></canvas>
-    <canvas width="1000" height="375" class="bar"></canvas>
+  <canvas width="1000" height="375" class="staff"></canvas>
+  <canvas width="1000" height="375" class="bar"></canvas>
 </div>
 
 <!--<div class="button-col">-->
@@ -14,247 +14,227 @@
 <!-- Table for button_grouping-level positioning -->
 <div class="table">
 
-<!-- First row: main controls + tool options -->
 <div class="tr">
 
-    <div class="button_grouping">
-        <button type="button" onClick="playSound(this)">play</button>
-
-        <div class="table">
-
-            <div class="tr">
-                <div class="td">Volume:</div>
-
-                <div class="td">
-                    <div class="range_wrapper">
-                        <input type="range" min="0.0" max="1.0" step="0.01" value ="0.1" id="slider" onchange="changeVolume(event)"/>
-                    </div>
-                </div>
-
-                <div class="td">
-                    <label><input type="checkbox" id="mute" onchange="toggleMute();"/> Mute</label>
-                </div>
-            </div>
-
-            <div class="tr">
-                <div class="td">Decay:</div>
-
-                <div class="td">
-                    <div class="range_wrapper">
-                        <input type="range" min="0" max="255" step="1" value="60" id="robo_decay" />
-                    </div>
-
-                </div>
-
-                <div class="td">
-                    <label><input type="checkbox" id="decay_enabled" onchange="toggleDecay();" /> Enabled</label>
-                </div>
-            </div>
-
-            <div class="tr">
-                <div class="td">Bit rate:</div>
-
-                <div class="td">
-                    <select id="js_node_buffer_size">
-                        <option>256</option>
-                        <option>512</option>
-                        <option selected=selected>1024</option>
-                        <option>2048</option>
-                        <option>4096</option>
-                        <option>8192</option>
-                        <option>16384</option>
-                    </select>
-                </div>
-
-                <div class="td"><label><input type="checkbox" disabled="disabled" id="autoflush"/>Auto Flush</label></div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="td">
-
-
-
-        <div class="button_grouping">
-
-            <div class="table">
-            <!-- TODO: Map these to other tools instead of toggling if we add more -->
-            <div class="th">
-                <div class="td">Tool</div>
-                <div class="td">Functions</div>
-            </div>
-                <div class="tr">
-                    <div class="td">
-                        <label><input type="radio" name="tool_style" value="pen"  checked="checked"/> Pen</label>
-                    </div>
-                    <div class="td">
-                        Size:
-                    <div class="range_wrapper">
-                        <input type="range" min="1" max="15" step="1" value ="5" id="pen_stroke_width" onchange="changePenStrokeWidth($(this).val());"/>
-                    </div>
-                    </div>
-                    </div>
-
-                <div class="tr">
-                    <div class="td">
-                        <label><input type="radio" name="tool_style" value="eraser" /> Eraser</label>
-                        </div>
-                    <div class="td">
-                        <button type="button" onClick="resetStaff()">Erase all layers</button>
-                    </div>
-                </div>
-
-
-
-
-            </div>
-
-
-            <hr/>
-
-            <!-- Layer/Color selection table -->
-
-            <div id="layer_control_table" class="table">
-
-                <div class="th">
-
-                    <div class="td">Layer</div>
-                    <div class="td">On</div>
-                    <div class="td">Wave</div>
-                    <div class="td">Clear</div>
-                </div>
-
-                <!-- RED -->
-                <div id="red_layer_control_row" class="tr">
-
-                    <div class="td">
-                    <label>
-                        <input type="radio" name="layer_select" value="COLOR_RED" checked="checked">
-                        <div class="layer_control_color_label">
-                            Red
-                        </div>
-                    </label>
-                </div>
-                    <div class="td">
-                        <label><input type="checkbox" id="red_toggle" onclick="toggleLayer(COLOR_RED);" checked=checked></label>
-                    </div>
-
-                    <div class="td">
-                        <select id="dspwave_red" class="wave_select">
-                            <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
-                            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
-                            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
-                            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
-                        </select>
-                    </div>
-
-                    <div class="td">
-                        <button type="button" onClick="clearRed()">X</button>
-                    </div>
-                </div>
-
-
-                <!-- GREEN -->
-                <div id="green_layer_control_row" class="tr">
-
-
-                    <div class="td">
-                        <label>
-                            <input type="radio" name="layer_select" value="COLOR_GREEN">
-                            <div class="layer_control_color_label">
-                                Green
-                            </div>
-                        </label>
-                    </div>
-                    <div class="td">
-                        <label><input type="checkbox" id="green_toggle" onclick="toggleLayer(COLOR_GREEN);" checked=checked></label>
-                    </div>
-
-                    <div class="td">
-
-                            <select id="dspwave_green" class="wave_select">
-                                <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
-                                <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
-                                <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
-                                <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
-                            </select>
-
-                    </div>
-
-                    <div class="td">
-                        <button type="button" onClick="clearGreen()">X</button>
-                    </div>
-                </div>
-
-                <!-- BLUE -->
-                <div class="tr">
-
-                    <div id="blue_layer_control_row" class="td">
-                        <label>
-                            <input type="radio" name="layer_select" value="COLOR_BLUE">
-                            <div class="layer_control_color_label">
-                                Blue
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="td">
-                        <label><input type="checkbox" id="blue_toggle" onclick="toggleLayer(COLOR_BLUE);" checked=checked></label>
-                    </div>
-
-                    <div class="td">
-                        <select id="dspwave_blue" class="wave_select">
-                            <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
-                            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
-                            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
-                            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
-                        </select>
-                    </div>
-
-                    <div class="td">
-                        <button type="button" onClick="clearBlue()">X</button>
-                    </div>
-                </div>
-
-
-            </div>
-
-            <!-- End Layer/Color selection table -->
-
-        </div>
-    </div>
-</div>
-
-<!--
 <div class="button_grouping">
+  <button type="button" onClick="playSound(this)">play</button>
 
-    <select id="dspwave">
-        <option value="DSP.SINE">SINE</option>
-        <option value="DSP.SAW"> SAW </option>
-        <option value="DSP.SQUARE"> SQUARE </option>
-        <option value="DSP.TRIANGLE"> TRIANGLE </option>
-    </select>
-</div>
--->
+  <div class="table">
 
-<!-- 2nd row: Robo mode + beats + scale -->
-<div class="tr">
-    <div class="td">
-        <div class="button_grouping">
-            <label><input type="checkbox" id="robo" onclick="toggleRobo()" /> Robo Mode</label>
+    <div class="tr">
+      <div class="td">Volume:</div>
 
-            <div class="subgroup">
-                <fieldset>
-                    <!--<legend> Robo mode mode</legend>-->
-                    <label> <input type=radio name=robo_mode value="chaos">  Chaos </label>
-                    <label> <input type=radio name=robo_mode value="random" checked=checked> Random </label>
-                    <!--<label> <input type=radio name=robo_mode value="curve"> Curve </label>-->
-                </fieldset>
-            </div>
+      <div class="td">
+        <div class="range_wrapper">
+          <input type="range" min="0.0" max="1.0" step="0.01" value ="0.1" id="slider" onchange="changeVolume(event)"/>
         </div>
+      </div>
+
+      <div class="td">
+        <label><input type="checkbox" id="mute" onchange="toggleMute();"/> Mute</label>
+      </div>
     </div>
+
+    <div class="tr">
+      <div class="td">Decay:</div>
+
+      <div class="td">
+        <div class="range_wrapper">
+          <input type="range" min="0" max="255" step="1" value="60" id="robo_decay" />
+        </div>
+
+      </div>
+
+      <div class="td">
+        <label><input type="checkbox" id="decay_enabled" onchange="toggleDecay();" /> Enabled</label>
+      </div>
+    </div>
+
+    <div class="tr">
+      <div class="td">Bit rate:</div>
+
+      <div class="td">
+        <select id="js_node_buffer_size">
+          <option>256</option>
+          <option>512</option>
+          <option>1024</option>
+          <option selected=selected>2048</option>
+          <option>4096</option>
+          <option>8192</option>
+          <option>16384</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
 </div>
+
+
+<div class="button_grouping">
+  <label><input type="checkbox" id="robo" onclick="toggleRobo()" /> Robo Mode</label>
+
+  <div class="subgroup">
+    <fieldset>
+      <!--<legend> Robo mode mode</legend>-->
+      <label> <input type=radio name=robo_mode value="chaos">  Chaos </label>
+      <label> <input type=radio name=robo_mode value="random" checked=checked> Random </label>
+      <!--<label> <input type=radio name=robo_mode value="curve"> Curve </label>-->
+    </fieldset>
+  </div>
+</div>
+
+
+<div class="td">
+
+
+
+  <div class="button_grouping">
+
+    <div class="table">
+      <!-- TODO: Map these to other tools instead of toggling if we add more -->
+      <div class="th">
+        <div class="td">Tool</div>
+        <div class="td">Functions</div>
+      </div>
+      <div class="tr">
+        <div class="td">
+          <label><input type="radio" name="tool_style" value="pen"  checked="checked"/> Pen</label>
+        </div>
+        <div class="td">
+          Size:
+          <div class="range_wrapper">
+            <input type="range" min="1" max="15" step="1" value ="5" id="pen_stroke_width" onchange="changePenStrokeWidth($(this).val());"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="tr">
+        <div class="td">
+          <label><input type="radio" name="tool_style" value="eraser" /> Eraser</label>
+        </div>
+        <div class="td">
+          <button type="button" onClick="resetStaff()">Erase all layers</button>
+        </div>
+      </div>
+
+    </div>
+
+
+    <hr/>
+
+    <!-- Layer/Color selection table -->
+
+    <div id="layer_control_table" class="table">
+
+      <div class="th">
+
+        <div class="td">Layer</div>
+        <div class="td">On</div>
+        <div class="td">Wave</div>
+        <div class="td">Clear</div>
+      </div>
+
+      <!-- RED -->
+      <div id="red_layer_control_row" class="tr">
+
+        <div class="td">
+          <label>
+            <input type="radio" name="layer_select" value="COLOR_RED" checked="checked">
+            <div class="layer_control_color_label">
+              Red
+            </div>
+          </label>
+        </div>
+        <div class="td">
+          <label><input type="checkbox" id="red_toggle" onclick="toggleLayer(COLOR_RED);" checked=checked></label>
+        </div>
+
+        <div class="td">
+          <select id="dspwave_red" class="wave_select">
+            <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
+            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
+            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
+            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
+          </select>
+        </div>
+
+        <div class="td">
+          <button type="button" onClick="clearRed()">X</button>
+        </div>
+      </div>
+
+
+      <!-- GREEN -->
+      <div id="green_layer_control_row" class="tr">
+
+
+        <div class="td">
+          <label>
+            <input type="radio" name="layer_select" value="COLOR_GREEN">
+            <div class="layer_control_color_label">
+              Green
+            </div>
+          </label>
+        </div>
+        <div class="td">
+          <label><input type="checkbox" id="green_toggle" onclick="toggleLayer(COLOR_GREEN);" checked=checked></label>
+        </div>
+
+        <div class="td">
+
+          <select id="dspwave_green" class="wave_select">
+            <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
+            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
+            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
+            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
+          </select>
+
+        </div>
+
+        <div class="td">
+          <button type="button" onClick="clearGreen()">X</button>
+        </div>
+      </div>
+
+      <!-- BLUE -->
+      <div class="tr">
+
+        <div id="blue_layer_control_row" class="td">
+          <label>
+            <input type="radio" name="layer_select" value="COLOR_BLUE">
+            <div class="layer_control_color_label">
+              Blue
+            </div>
+          </label>
+        </div>
+
+        <div class="td">
+          <label><input type="checkbox" id="blue_toggle" onclick="toggleLayer(COLOR_BLUE);" checked=checked></label>
+        </div>
+
+        <div class="td">
+          <select id="dspwave_blue" class="wave_select">
+            <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
+            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
+            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
+            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
+          </select>
+        </div>
+
+        <div class="td">
+          <button type="button" onClick="clearBlue()">X</button>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- End Layer/Color selection table -->
+
+  </div>
+</div>
+</div>
+
 </div>
 </div>
 

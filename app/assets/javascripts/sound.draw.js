@@ -108,37 +108,6 @@ function animateLine()
 }
 
 /**
- * Draw a black border around the canvas.
- */
-function drawBorder()
-{
-    border_directive["x1"] = BORDER_WIDTH;
-    border_directive["y1"] = BORDER_WIDTH;
-    border_directive["x2"] = STAFF_WIDTH - BORDER_WIDTH;
-    border_directive["y2"] = BORDER_WIDTH;
-    $("canvas.bar").drawLine(border_directive);
-
-    border_directive["x1"] = border_directive["x2"];
-    border_directive["y1"] = border_directive["y2"];
-    border_directive["x2"] = STAFF_WIDTH - BORDER_WIDTH;
-    border_directive["y2"] = STAFF_HEIGHT - BORDER_WIDTH;
-    $("canvas.bar").drawLine(border_directive);
-
-    border_directive["x1"] = border_directive["x2"];
-    border_directive["y1"] = border_directive["y2"];
-    border_directive["x2"] = BORDER_WIDTH;
-    border_directive["y2"] = STAFF_HEIGHT -BORDER_WIDTH;
-    $("canvas.bar").drawLine(border_directive);
-
-    border_directive["x1"] = border_directive["x2"];
-    border_directive["y1"] = border_directive["y2"];
-    border_directive["x2"] = BORDER_WIDTH;
-    border_directive["y2"] = BORDER_WIDTH;
-    $("canvas.bar").drawLine(border_directive);
-}
-
-
-/**
  * ===========================
  * PEN FUNCTIONS
  * ===========================
@@ -150,7 +119,8 @@ function drawBorder()
  */
 function startPen(e)
 {
-    asyncCalled = false;
+    asyncBuffered = false;
+
     window.getSelection().removeAllRanges()
 
     pen_directive["x1"] = e.pageX - CANVAS_WIDTH_OFFSET;
@@ -192,8 +162,6 @@ function movePen(e)
 
     pen_directive["x1"] = e.pageX - CANVAS_WIDTH_OFFSET;
     pen_directive["y1"] = e.pageY - CANVAS_HEIGHT_OFFSET;
-
-    do_update = true;
 }
 
 /**
@@ -212,7 +180,7 @@ function endPen(e)
     $("canvas.bar").unbind('mouseup', endPen);
     $("canvas.bar").unbind('mouseleave', endPen);
 
-    do_update = true;
+    asyncBuffered = false;
     js_buffer.BufferAsync()
 }
 

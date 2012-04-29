@@ -5,14 +5,16 @@
 $(document).ready(function()
 {	
 	//Check to see if canvas exists on this page. if not, return since we are not on a drawing page.
-	if ($("canvas.staff").length == 0) {
+	if ($("canvas.staff").length == 0)
+    {
 	    return true;
 	}
-	
-	
+
     // Load up context for canvas
     staff_canvas_context = $("canvas.staff")[0].getContext("2d");
     bar_canvas_context = $("canvas.bar")[0].getContext("2d");
+
+    staff_canvas_context.lineCap = 'round';
 
     // position canvas
     $('.staff-container').css({top:CANVAS_HEIGHT_OFFSET, left: CANVAS_WIDTH_OFFSET});
@@ -20,7 +22,6 @@ $(document).ready(function()
     $("#buttons").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET});
 
     // Initialization events
-    drawBorder();
     initSignals();
     initAudio();
     resetStaff();
@@ -45,32 +46,27 @@ $(document).ready(function()
         {
             $('#robo_decay').val(255);
         }
-    })
+    });
 
     $("#js_node_buffer_size").change(function()
     {
         setJSNodeBufferSize($(this).val());
-    })
-
-    $("#dspwave").change(function()
-    {
-        setDSPWave($(this).val());
-    })
+    });
 
     $("#dspwave_red").change(function()
     {
         setColorSignal(COLOR_RED, $(this).val());
-    })
+    });
 
     $("#dspwave_green").change(function()
     {
         setColorSignal(COLOR_GREEN, $(this).val());
-    })
+    });
 
     $("#dspwave_blue").change(function()
     {
         setColorSignal(COLOR_BLUE, $(this).val());
-    })
+    });
 
     // Save/Load
     if ($('#stored_data').length)
@@ -82,10 +78,8 @@ $(document).ready(function()
         $('#new_jam').submit(function() { $('#jam_song').val(getStorableData()); return true; });
     }
 
-    if ($("#autoflush").is(":checked"))
-
     // Start the scrub line
-    playSound(true);
+    //playSound(true);
 });
 
 /**
@@ -101,28 +95,21 @@ function initAudio()
         // TODO: alert here if browser is not Chrome using BrowserDetect
 
         audio_context = new AudioContext();
+
         audio_buffer_source = audio_context.createBufferSource();
         audio_buffer_source.buffer = audio_context.createBuffer(NUM_CHANNELS, NUM_SAMPLES, SAMPLE_RATE);
         audio_buffer_source.looping = true;  // TODO Deprecated, use loop instead
+
+        js_node = audio_context.createJavaScriptNode(DEFAULT_BITRATE, 1, 1);
+        js_buffer = BufferController();
+        js_node.onaudioprocess = js_buffer.GetBuffer;
+
         gain_node = audio_context.createGainNode();
         gain_node.gain.value = 0.1;
 
-        if (!asyncCalled)
-        {
-            js_node = audio_context.createJavaScriptNode(DEFAULT_BITRATE, 1, 1);
-            js_buffer = BufferController();
+        dynamic_compressor_node = audio_context.createDynamicsCompressor();
 
-
-            js_node.onaudioprocess = js_buffer.BufferJIT;
-
-            audio_buffer_source.connect(js_node);
-            js_node.connect(gain_node);
-            gain_node.connect(audio_context.destination);
-        }
-        else
-        {
-            soundOn();
-        }
+        connectNodes();
     }
     else
     {
@@ -181,6 +168,7 @@ function makeSignal(frequency, wave)
     {
         wave = dsp_wave;
     }
+
     var osc = new Oscillator(wave, frequency, 1, NUM_SAMPLES, SAMPLE_RATE);
 
     osc.generate();

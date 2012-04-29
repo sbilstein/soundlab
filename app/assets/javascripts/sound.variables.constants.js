@@ -5,7 +5,7 @@ const SAMPLE_RATE = 44100;
 const NUM_SAMPLES = 44100;
 const NUM_CHANNELS = 2;
 
-const DEFAULT_BITRATE = 1024;
+const DEFAULT_BITRATE = 2048;
 
 // Canvas pixel array accessor constants
 const RED_INDEX_OFFSET = 0;
@@ -22,7 +22,8 @@ const CANVAS_HEIGHT_OFFSET = 50;
 
 const BELOW_STAFF_HEIGHT_OFFSET = 25;
 
-const BORDER_WIDTH = 2;
+//const BORDER_WIDTH = 2;
+const BORDER_WIDTH = 0;
 
 const COLOR_NONE = "rgba(0,0,0,0)";
 const COLOR_BLACK = "#000000";

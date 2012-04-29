@@ -103,7 +103,11 @@ function initAudio()
 
     if (window.AudioContext)
     {
-        // TODO: alert here if browser is not Chrome using BrowserDetect
+        if (!$.browser.webkit)
+        {
+            alert("You area browser that supports the AudioContext API, but does not appear to be Google Chrome. DrawJam will probably not work correctly for you! "+
+                "DrawJam is only supported in Google Chrome, which you can download at http://www.google.com/chrome");
+        }
 
         audio_context = new AudioContext();
 
@@ -125,7 +129,8 @@ function initAudio()
     }
     else
     {
-        alert("You are not using a browser that supports the AudioContext API! DrawJam will not work!!! We recommend using Google Chrome, which you can download at http://www.google.com/chrome");
+        alert("You are not using a browser that supports the AudioContext API! DrawJam will not work!!!" +
+            " DrawJam is only supported in Google Chrome, which you can download at http://www.google.com/chrome");
     }
 }
 
@@ -146,10 +151,11 @@ function initSignals()
     pdelt = (108.0 - 40.0) / STAFF_HEIGHT;
     //pdelt = (96.0 - 40.0) / STAFF_HEIGHT;
 	
-    for (var i = 0; i < STAFF_HEIGHT; i++){
+    for (var i = 0; i < STAFF_HEIGHT; i++)
+    {
 		i_mod = Math.round(i / gran);
 		freq = keys[i_mod];  
-		console.log(freq)
+		//console.log(freq)
 
 		// i_mod = Math.round( i / signal_granularity ) * signal_granularity;
 		// freq = 440.0 * Math.pow(2, (((i_mod * pdelt) + 40) - 69.0) / 12.0);
@@ -166,7 +172,6 @@ function initSignals()
         }
          */
 
-        //signals[i] = makeSignal(freq);
         signals_waves[DSP.SINE][i] = makeSignal(freq, DSP.SINE);
         signals_waves[DSP.SAW][i] = makeSignal(freq, DSP.SAW);
         signals_waves[DSP.SQUARE][i] = makeSignal(freq, DSP.SQUARE);

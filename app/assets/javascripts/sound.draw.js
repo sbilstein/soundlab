@@ -7,14 +7,15 @@ function switchToolStyle()
     if (tool_style == PEN)
     {
         tool_style = ERASER;
-        el.textContent = "pen";
+        $('div.staff-container').css({'cursor':"url(/assets/eraser.cur) 10 10, default"});
+
         pen_directive.strokeStyle = COLOR_NONE;
         pen_directive.strokeWidth = PEN_STROKE_WIDTH.toString();
     }
     else
     {
         tool_style = PEN;
-        el.textContent = "eraser";
+        $('div.staff-container').css({'cursor':"url(/assets/pen.cur) 0 23, default"});
 
         pen_directive.strokeWidth = ERASER_STROKE_WIDTH.toString();
     }
@@ -68,11 +69,13 @@ function step()
     // time elapsed since last started
     time_elapsed = time - start_time;
 
-    // figure out positon modulo length of note, ie 1 sec
+    // Figure out position modulo length of note, ie 1 sec
     // progress is the absolute position in a second.
     // so if we paused at .3 seconds, .2 seconds have elapsed
     // we want to draw something at .5 seconds.
+
     var progress = (time_elapsed + scrub_line_position) % 1.0;
+
     // using where in a second we are, we can calc exactly where we need to
     // draw.
 
@@ -193,6 +196,6 @@ function setPenColor(color_style)
 
 function changePenStrokeWidth(width)
 {
-    PEN_STROKE_WIDTH = width;
-    pen_directive.strokeWidth = PEN_STROKE_WIDTH.toString();
+    pen_stroke_width = width;
+    pen_directive.strokeWidth = pen_stroke_width.toString();
 }

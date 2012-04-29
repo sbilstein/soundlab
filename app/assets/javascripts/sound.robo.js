@@ -226,11 +226,11 @@ function roboMode()
                 /*
                  if (STAFF_WIDTH - (x+length_to_draw) > 100)
                  {
-                 length_to_draw = parseInt(((Math.random() * STAFF_WIDTH - (x+length_to_draw) - BORDER_WIDTH * 2) + BORDER_WIDTH)/4);
+                    length_to_draw = parseInt(((Math.random() * STAFF_WIDTH - (x+length_to_draw) - BORDER_WIDTH * 2) + BORDER_WIDTH)/4);
                  }
                  else
                  {
-                 length_to_draw = STAFF_WIDTH - (x+length_to_draw)
+                    length_to_draw = STAFF_WIDTH - (x+length_to_draw)
                  }
                  */
             }
@@ -255,7 +255,7 @@ function roboMode()
                 ctrl_x_2, ctrl_y_2,
                 STAFF_WIDTH - BORDER_WIDTH, y2);
 
-            staff_canvas_context.lineWidth = PEN_STROKE_WIDTH;
+            staff_canvas_context.lineWidth = pen_stroke_width;
             staff_canvas_context.strokeStyle = robo_directive.strokeStyle;
             staff_canvas_context.stroke();
 

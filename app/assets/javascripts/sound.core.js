@@ -367,18 +367,18 @@ function toggleDecay()
 {
     if ($('#decay_enabled').is(":checked"))
     {
-        decayInterval = setInterval(function() { fadeSound($("#robo_decay").val()); js_buffer.BufferAsync(); }, 1000);
+        decay_interval = setInterval(function() { fadeSound($("#robo_decay").val()); js_buffer.BufferAsync(); }, 1000);
     }
     else
     {
         clearInterval(decayInterval);
-        decayInterval = null;
+        decay_interval = null;
     }
 }
 
 function setDSPWave(wave)
 {
-    eval("dsp_wave = "+wave);
+    dsp_wave = DSP_WAVE_MAPPING[wave];
     signals = signals_waves[dsp_wave];
 }
 

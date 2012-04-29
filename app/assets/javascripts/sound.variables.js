@@ -1,56 +1,74 @@
-// VARIABLES
-
-/**
- * Sound variables
+/*
+ ********************
+ * GLOBAL VARIABLES *
+ ********************
  */
 
-var loopPeriod = 1000; // looping period in ms. TODO: hook this up where appropriate, later on make adjustable.
+/**
+ * SOUND ==============================================================================================================
+ */
 
-var premute_volume; // saves volume for muting/unmuting
-
-var decayInterval;
-
-var current_audio_time;
-
-var start_time;
-var scrub_line_position = 0;
-
-var pdelt;
-var signals;
-var signals_waves = {};
-var signal_granularity = 25;
-
-signals_waves[DSP.SINE] = new Array(STAFF_HEIGHT);
-signals_waves[DSP.SAW] = new Array(STAFF_HEIGHT);
-signals_waves[DSP.SQUARE] = new Array(STAFF_HEIGHT);
-signals_waves[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
-
-var glitch_mode_on = false;
-
-// Options/variables to enable switching back and forth between realtime buffering and asynchronous buffering - not exposed to user for now
-// since experience is inconsistent.
-var realtime_buffering_enabled = false;
-var asyncBuffered = false;
-
+/**
+ * Nodes and core Audio API variables.
+ */
 var audio_context = null;
 var audio_buffer_source = null;
 
 var gain_node = null;
 var dynamic_compressor_node = null;
 
-
-// Object that decides whether to buffer on the fly or use asynchronously populated buffer
-var js_buffer;
+var js_buffer; // Object that decides whether to buffer on the fly or use asynchronously populated buffer
 var js_node;
 
-var audio_is_playing = false;
+/***
+ * Variables to enable switching back and forth between realtime buffering and asynchronous buffering.
+ *
+ * Currently only glitch_mode_on is used. asyncBuffered is supported functionally but not used. realtime_buffering_enabled is not
+ * fully supported yet. There are three possible modes:
+ *      1. Asynchronous buffering. This is the default. The sound will be buffered after (not during) any changes to the
+ *         canvas. This is the default as it is the most reliable and most performant.
+ *
+ *      2. Synchronous/Realtime buffering. The sound is buffered on the fly as the Audio Context requests it. Changes to the
+ *         canvas will be buffered as they occur. Due to unknown issues stemming from either a bug in the realtime
+ *         buffering and sampling function or fundamental performance limitations, the sound is different/worse than
+ *         asynchronous. This is sound heard in Glitch Mode.
+ *
+ *      3. Asynchronous + Synchronous buffering. In this mode, the buffering strategy is swapped depending on whether
+ *         the canvas is changing in order to provide superior performance whenver possible while also reacting to user
+ *         input in real-time. This is supported and can be enabled by switching realtime_buffering_enabled to true.
+ *         However it is not exposed to the user and is shelved for now due to the inconsistency in sound between realtime
+ *         buffering and asynchronous buffering. Come back and investigate eventually.
+  */
+var glitch_mode_on = false;
+var realtime_buffering_enabled = false;
+var asyncBuffered = false;
 
-var sum_signal = new Float32Array(NUM_SAMPLES);
+/**
+ * Signals and samples variables
+ */
+var dsp_wave = DSP.SINE; // initial default wave.
+
 var samples_per_pixel = Math.floor(NUM_SAMPLES / STAFF_WIDTH);
 
-var dsp_wave = DSP.SINE;
+var signals;
+var signals_waves = {};
+var signal_granularity = 25;
 
-//Layer configuration
+var sum_signal = new Float32Array(NUM_SAMPLES);
+
+signals_waves[DSP.SINE] = new Array(STAFF_HEIGHT);
+signals_waves[DSP.SAW] = new Array(STAFF_HEIGHT);
+signals_waves[DSP.SQUARE] = new Array(STAFF_HEIGHT);
+signals_waves[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
+
+/*                 C     C#    D    D#    E      F      F#    G     G#     A     A#     B */
+//var scale = [true, false, true, true, false, true, false, true, true, false, false, false];
+var scale =   [true, false, false, true, false, false, true, false, false, true, false, false];
+var pdelt;
+
+/**
+ * Layer configuration
+ */
 var layer_enabled_config = new Array();
 layer_enabled_config[COLOR_RED] = true;
 layer_enabled_config[COLOR_GREEN] = true;
@@ -61,22 +79,28 @@ layer_signal_config[COLOR_RED] = dsp_wave;
 layer_signal_config[COLOR_GREEN] = dsp_wave;
 layer_signal_config[COLOR_BLUE] = dsp_wave;
 
+/**
+ * Miscellaneous control variables
+ */
+var premute_volume; // saves volume for muting/unmuting
 
-/*                 C     C#    D    D#    E      F      F#    G     G#     A     A#     B */
-//var scale = [true, false, true, true, false, true, false, true, true, false, false, false];
-var scale =     [true, false, false, true, false, false, true, false, false, true, false, false];
+var decay_interval;
+
+var current_audio_time;
+var start_time;
+var scrub_line_position = 0;
+var audio_is_playing = false;
 
 /**
- * End Sound variables
+ * END SOUND ===========================================================================================================
  */
 
 /**
- * Drawing variables
+ * DRAWING =============================================================================================================
  */
-
 
 var tool_style = PEN;
-var PEN_STROKE_WIDTH = 2;
+var pen_stroke_width = 2;
 var ERASER_STROKE_WIDTH = 20;
 
 var bar_canvas_context;
@@ -106,13 +130,12 @@ var scrub_line_directive = {
 
 var pen_directive = {
     strokeStyle : COLOR_RED,
-    strokeWidth : PEN_STROKE_WIDTH.toString(),
+    strokeWidth : pen_stroke_width.toString(),
 	strokeCap : "round"
-
 }
 
 /**
- * End Drawing variables
+ * END DRAWING =========================================================================================================
  */
 
 // Begin swag variables

@@ -53,8 +53,7 @@ div.center-col
 
 div.staff-container
 {
-/* TODO: custom pointers from .cur/.ani files */
-  cursor:pointer;
+  cursor:url(/assets/pen.cur) 0 23, default;
   position:absolute;
 }
 

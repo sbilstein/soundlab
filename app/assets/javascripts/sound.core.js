@@ -531,3 +531,16 @@ function loadFromDataURL(dataURL)
 
     img.src = dataURL;
 }
+
+// Swagg functions
+
+function saveState()
+{
+    saved_state = staff_canvas_context.getImageData(0, 0, STAFF_WIDTH, STAFF_WIDTH);
+}
+
+function loadState()
+{
+    staff_canvas_context.putImageData(saved_state, 0, 0);
+    js_buffer.BufferAsync();
+}

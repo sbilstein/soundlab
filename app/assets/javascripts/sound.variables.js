@@ -25,10 +25,18 @@ signals_waves[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
 
 var audio_context = null;
 var audio_buffer_source = null;
+
 var gain_node = null;
+var dynamic_compressor_node = null;
+
+
+// Object that decides whether to buffer on the fly or use asynchronously populated buffer
+var js_buffer;
+var js_node;
+
 var audio_is_playing = false;
 
-var sum_signal = new Array(NUM_SAMPLES);
+var sum_signal = new Float32Array(NUM_SAMPLES);
 var samples_per_pixel = Math.floor(NUM_SAMPLES / STAFF_WIDTH);
 
 var dsp_wave = DSP.SINE;
@@ -44,8 +52,6 @@ layer_signal_config[COLOR_RED] = dsp_wave;
 layer_signal_config[COLOR_GREEN] = dsp_wave;
 layer_signal_config[COLOR_BLUE] = dsp_wave;
 
-var js_buffer;
-var js_node;
 
 /*                 C     C#    D    D#    E      F      F#    G     G#     A     A#     B */
 //var scale = [true, false, true, true, false, true, false, true, true, false, false, false];
@@ -61,7 +67,7 @@ var scale =     [true, false, false, true, false, false, true, false, false, tru
 
 
 var tool_style = PEN;
-var PEN_STROKE_WIDTH = 3;
+var PEN_STROKE_WIDTH = 2;
 var ERASER_STROKE_WIDTH = 20;
 
 var bar_canvas_context;
@@ -72,6 +78,14 @@ var is_drawing = false;
 var border_directive = {
     strokeStyle : COLOR_BLACK,
     strokeWidth : BORDER_WIDTH.toString()
+}
+
+var linear_directive = {
+  x1: 0, y1: 0,
+  x2: 10, y2: 0,
+  c1: "#fff",
+  c2: "#000",
+  c3: "#fff"
 }
 
 var scrub_line_directive = {

@@ -29,22 +29,16 @@ body
   background-image: url(/assets/gplaypattern.png);
 }
 
-.lalign
-{
-  text-align: left;
-}
-
 span.bold
 {
   font-weight:bold;
 }
 
-
 /* disable selecting since it tends to happen accidentally when drawing */
 *
 {
-    -moz-user-select: none; /* mozilla browsers */
-    -khtml-user-select: none; /* webkit browsers */
+  -moz-user-select: none; /* mozilla browsers */
+  -khtml-user-select: none; /* webkit browsers */
 }
 
 #new_jam input
@@ -55,88 +49,88 @@ span.bold
 
 div.center-col
 {
-    margin: auto;
+  margin: auto;
 }
 
-div.staff-container 
+div.staff-container
 {
-  /* TODO: custom pointers from .cur/.ani files */
+/* TODO: custom pointers from .cur/.ani files */
   cursor:pointer;
   position:absolute;
 }
 
 div.button-col
 {
-    float: left;
-    display: inline;
-    position : absolute;
-    left: 0px;
-    top: 300px;
+  float: left;
+  display: inline;
+  position : absolute;
+  left: 0px;
+  top: 300px;
 }
 
-canvas.staff 
+canvas.staff
 {
-    float: left;
-    display:inline;
-    z-index: 0;
-    position : absolute;
-    top: 0;
-    left: 0;
-    background-image:url(/assets/gridme.png);
+  float: left;
+  display:inline;
+  z-index: 0;
+  position : absolute;
+  top: 0;
+  left: 0;
+  background-image:url(/assets/gridme.png);
+  border:thin solid green;
 }
 
-canvas.bar 
+canvas.bar
 {
-    float: left;
-    display:inline;
-    z-index: 1;
+  float: left;
+  display:inline;
+  z-index: 1;
 
-    position: absolute;
-    left : 0px;
-    top: 0px;
+  position: absolute;
+  left : 0px;
+  top: 0px;
 }
 
 .checkbox_list
 {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 #buttons
 {
-    position: absolute;
-    top:1em;
-    left:335px;
-    /*width:300px;*/
+  position: absolute;
+  top:1em;
+  left:335px;
 }
 
 .button_grouping
 {
-    padding:10px;
-    margin:4px;
-    border:thin green dotted;
-    border-radius: 5px;
+  padding:10px;
+  margin:4px;
+  border:thin green dotted;
+  border-radius: 5px;
   background: rgba(255, 255, 255, 0.65);
-
+  display:block;
 }
 
 .range_wrapper, .subgroup
 {
-    padding:3px;
-    display:inline-block;
-    border: thin gray dotted;
-    border-radius:5px;
-    vertical-align: middle;
-    margin: 5px;
+  padding:3px;
+  display:inline-block;
+  border: thin gray dotted;
+  border-radius:5px;
+  vertical-align: middle;
+  margin: 5px;
 }
 
 .range_wrapper input
 {
-    display:block;
+  display:block;
 }
 
 .subgroup legend
 {
-    font-weight:bold;
+  font-weight:bold;
 }
 
 #below_staff_area
@@ -161,15 +155,20 @@ header
 
 footer
 {
+  margin:4px;
+  background: rgba(255, 255, 255, 0.65);
   position:absolute;
-  top: 650px;
-  left:1em;
+  bottom: 0px;
+  border-top: dotted thin green;
+  width: 100%;
+  font-family: inherit;
+
+
 }
 
 #layer_control_table
 {
   text-align: center;
-  /*width:100%;*/
 }
 
 .button_grouping .tr

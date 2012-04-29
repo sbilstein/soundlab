@@ -28,8 +28,7 @@ function switchToolStyle()
 function drawScrubLine(time)
 {
     // Erase the line
-    //scrub_line_directive["strokeStyle"] = COLOR_WHITE;
-    //$("canvas.bar").drawLine(scrub_line_directive);
+
     $("canvas.bar").clearCanvas(
         {
             x: STAFF_WIDTH / 2,
@@ -98,14 +97,15 @@ function animateLine()
     if (is_drawing)
     {
         is_drawing = false;
-        // el.textContent = 'animate';
+
         return;
     }
 
     current_audio_time = audio_context.currentTime;
+
     // set up starting position
     is_drawing = true;
-    // el.textContent = 'pause';
+
     window.webkitRequestAnimationFrame(step);
 }
 

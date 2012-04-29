@@ -18,10 +18,12 @@ var scrub_line_position = 0;
 var pdelt;
 var signals;
 var signals_waves = {};
+
 signals_waves[DSP.SINE] = new Array(STAFF_HEIGHT);
 signals_waves[DSP.SAW] = new Array(STAFF_HEIGHT);
 signals_waves[DSP.SQUARE] = new Array(STAFF_HEIGHT);
 signals_waves[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
+
 
 var audio_context = null;
 var audio_buffer_source = null;

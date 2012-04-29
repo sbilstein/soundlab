@@ -50,7 +50,6 @@ var BufferController = function()
         $JSBG_outputBuffer = new Float32Array($JSBG_inputBuffer.length);
         $JSBG_maxOutputBufferIndex = $JSBG_outputBuffer.length - 1;
 
-
         $JSBG_starting_x_pixel_index = parseInt($JSBG_buffer_time * STAFF_WIDTH);
         $JSBG_ending_x_pixel_index = ($JSBG_buffer_time + evt.inputBuffer.duration) * STAFF_WIDTH;
         $JSBG_x_pixel_range = (($JSBG_buffer_time + evt.inputBuffer.duration) * STAFF_WIDTH) - $JSBG_starting_x_pixel_index;
@@ -101,11 +100,23 @@ var BufferController = function()
 
                         $JSBG_ending_sample_index = Math.min($JSBG_maxOutputBufferIndex, $JSBG_starting_sample_index + samples_per_pixel);
 
+
+
                         // Iterate over the samples in the time span of this pixel.
-                        for ($JSBG_sample_index = $JSBG_starting_sample_index; $JSBG_sample_index < $JSBG_ending_sample_index; $JSBG_sample_index++)
+                        for ($JSBG_sample_index = $JSBG_starting_sample_index;
+                             $JSBG_sample_index < $JSBG_ending_sample_index && $JSBG_base_signal_index + $JSBG_sample_index < NUM_SAMPLES;
+                             $JSBG_sample_index++)
                         {
-                            $JSBG_outputBuffer[$JSBG_sample_index] += ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET]/255) *
-                                signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
+                            if (!$JSBG_outputBuffer[$JSBG_sample_index])
+                            {
+                                $JSBG_outputBuffer[$JSBG_sample_index] = ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET]/255) *
+                                    signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
+                            }
+                            else
+                            {
+                                $JSBG_outputBuffer[$JSBG_sample_index] += ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET]/255) *
+                                    signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
+                            }
                         }
                     }
                 }
@@ -186,7 +197,9 @@ var BufferController = function()
                         $BA_starting_sample_index = $BA_x_pixel_index * samples_per_pixel;
                         $BA_ending_sample_index = Math.min($BA_max_sample_index, $BA_starting_sample_index + samples_per_pixel);
 
-                        for ($BA_sample_index = $BA_starting_sample_index; $BA_sample_index < $BA_ending_sample_index; $BA_sample_index++)
+                        for ($BA_sample_index = $BA_starting_sample_index;
+                             $BA_sample_index < $BA_ending_sample_index && $BA_sample_index < NUM_SAMPLES;
+                             $BA_sample_index++)
                         {
                             if (!sum_signal[$BA_sample_index])
                             {
@@ -209,11 +222,6 @@ var BufferController = function()
 
         audio_buffer_source.noteOn(0);
 
-
-        //js_node.disconnect(0);
-        //audio_buffer_source.disconnect(0);
-        //audio_buffer_source.connect(gain_node);
-
         asyncBuffered = true;
     }
 
@@ -225,7 +233,7 @@ function disconnectNodes()
     audio_buffer_source.disconnect(0);
     js_node.disconnect(0);
     gain_node.disconnect(0);
-    //dynamic_compressor_node.disconnect(0);
+    dynamic_compressor_node.disconnect(0);
 }
 
 function connectNodes()
@@ -234,9 +242,8 @@ function connectNodes()
 
     audio_buffer_source.connect(js_node);
     js_node.connect(gain_node);
-    //gain_node.connect(dynamic_compressor_node);
-    //dynamic_compressor_node.connect(audio_context.destination);
-    gain_node.connect(audio_context.destination)
+    gain_node.connect(dynamic_compressor_node);
+    dynamic_compressor_node.connect(audio_context.destination);
 }
 
 function setJSNodeBufferSize(size)
@@ -459,7 +466,6 @@ function clearGreen()
 
     if (audio_is_playing)
     {
-        //bufferSound();
         soundOn();
         animateLine();
     }
@@ -489,7 +495,6 @@ function clearBlue()
 
     if (audio_is_playing)
     {
-        //bufferSound();
         soundOn();
         animateLine();
     }

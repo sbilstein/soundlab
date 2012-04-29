@@ -98,7 +98,8 @@ function initAudio()
 
         audio_buffer_source = audio_context.createBufferSource();
         audio_buffer_source.buffer = audio_context.createBuffer(NUM_CHANNELS, NUM_SAMPLES, SAMPLE_RATE);
-        audio_buffer_source.looping = true;  // TODO Deprecated, use loop instead
+
+        audio_buffer_source.loop = true;
 
         js_node = audio_context.createJavaScriptNode(DEFAULT_BITRATE, 1, 1);
         js_buffer = BufferController();
@@ -152,6 +153,38 @@ function initSignals()
         signals_waves[DSP.TRIANGLE][i] = makeSignal(freq, DSP.TRIANGLE);
 
         scale_index = (scale_index+1)%12;
+
+/*
+        if (i < 67)
+        {
+        for (var j = 0; j < signals_waves[DSP.SINE][i].length; j++)
+        {
+            if (!signals_waves[DSP.SINE][i][j])
+            {
+                console.log('sine was undefined for pixel',i,'at sample',j)
+                console.log(signals_waves[DSP.SINE][i][j])
+            }
+
+            if (!signals_waves[DSP.SAW][i][j])
+            {
+                console.log('saw was undefined for pixel',i,'at sample',j)
+                console.log(signals_waves[DSP.SAW][i][j])
+            }
+            if (!signals_waves[DSP.SQUARE][i][j])
+            {
+                console.log('square was undefined for pixel',i,'at sample',j)
+                console.log(signals_waves[DSP.SQUARE][i][j])
+            }
+            if (!signals_waves[DSP.TRIANGLE][i][j])
+            {
+                console.log('triangle was undefined for pixel',i,'at sample',j)
+                console.log(signals_waves[DSP.TRIANGLE][i][j])
+            }
+
+        }
+        }
+        */
+
     }
 
     signals = signals_waves[DSP.SINE];

@@ -10,16 +10,18 @@ $(document).ready(function()
 	    return true;
 	}
 
+    // Position canvas
+    $('.staff-container').css({top:CANVAS_HEIGHT_OFFSET, left: CANVAS_WIDTH_OFFSET}).removeClass('hidden');
+
     // Load up context for canvas
     staff_canvas_context = $("canvas.staff")[0].getContext("2d");
     bar_canvas_context = $("canvas.bar")[0].getContext("2d");
 
     staff_canvas_context.lineCap = 'round';
 
-    // position canvas
-    $('.staff-container').css({top:CANVAS_HEIGHT_OFFSET, left: CANVAS_WIDTH_OFFSET});
-    $("#below_staff_area").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET});
-    $("#buttons").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET});
+    // Position panels
+    $("#below_staff_area").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
+    $("#controls").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
 
     // Initialization events
     initSignals();
@@ -90,7 +92,7 @@ $(document).ready(function()
     }
 
     // Start the scrub line
-    //playSound(true);
+    playSound(true);
 });
 
 /**
@@ -134,27 +136,66 @@ function initAudio()
     }
 }
 
+
+/**
+ * Scale stuff
+ */
+
+var keys  = [ 220, 233, 247, 262, 277, 293, 311, 330, 349, 370, 392, 415, 440, 466, 494, 523, 554, 587, 622, 659,
+    698, 740, 784, 830, 880, 932, 987, 1046];
+
+var key_start_index = 12;
+var key_end_index = keys.length;
+
+/*                       A      A#     B      C      C#      D     D#     E      F      F#     G      G#         */
+var no_scale =          [false, false, false, false, false, false, false, false, false, false, false, false];
+
+var chromatic_scale =   [true,  true,  false, true,  false, false, true,  false, false, true,  false, false];
+
+var major_scale =       [true,  false, true,  true,  false, true,  false, true,  true,  false, true,  false];
+
+var octave_scale =      [true, false, false, false, false, false, false, false, false, false, false, false];
+
+//var scale =             [true,  false, false, true,  false, false, true,  false, false, true,  false, false];
+
+/*                       A      A#     B      C      C#      D     D#     E      F      F#     G      G#         */
+
+var pdelt;
+
 /**
  * Calculates the values for all the waves.
  */
 function initSignals()
 {
-    var scale_index = 0;
-    keys  =[ 220, 233, 247, 262, 277, 293, 311, 330, 349, 370, 392, 415, 440, 466, 494, 523, 554, 587, 622, 659,
-	 		698, 740, 784, 830, 880, 932, 987, 1046];   
-	var gran = STAFF_HEIGHT / keys.length;
+    var scale_index = key_start_index;
+    var scale = octave_scale;
+
+    var scale_keys = keys.slice(key_start_index, key_end_index);
+
+	var granularity = STAFF_HEIGHT / scale_keys.length
 
 
     // 400*2^((p-64)/12) = f
     // 108 hi key on 88key piano, 21 low key
-    // pdelt = (108.0-21.0)/STAFFHEIGHT;
+    // pdelt = (108.0-21.0) / STAFFHEIGHT;
     pdelt = (108.0 - 40.0) / STAFF_HEIGHT;
     //pdelt = (96.0 - 40.0) / STAFF_HEIGHT;
+
+    var freq;
+    var i_mod;
 	
     for (var i = 0; i < STAFF_HEIGHT; i++)
     {
-		i_mod = Math.round(i / gran);
-		freq = keys[i_mod];  
+		i_mod = Math.round(i / granularity);
+
+        if (scale[scale_index])
+        {
+		    freq = scale_keys[i_mod];
+        }
+        else
+        {
+            freq = 0;
+        }
 		
 		// i_mod = Math.round( i / signal_granularity ) * signal_granularity;
 		// freq = 440.0 * Math.pow(2, (((i_mod * pdelt) + 40) - 69.0) / 12.0);
@@ -176,8 +217,7 @@ function initSignals()
         signals_waves[DSP.SQUARE][i] = makeSignal(freq, DSP.SQUARE);
         signals_waves[DSP.TRIANGLE][i] = makeSignal(freq, DSP.TRIANGLE);
 
-        scale_index = (scale_index+1)%12;
-
+        scale_index = (scale_index + 1) % 12;
     }
 
     signals = signals_waves[DSP.SINE];

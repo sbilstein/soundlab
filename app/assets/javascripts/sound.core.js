@@ -37,6 +37,7 @@ var BufferController = function()
         $JSBG_buffer_time = audio_context.currentTime % 1.0;
         $JSBG_inputBuffer = evt.inputBuffer.getChannelData(0);
 
+        // See (long) note in sound.variables.js for explanation of these variables and what they do..
         if ((asyncBuffered || !realtime_buffering_enabled) && !glitch_mode_on)
         {
             evt.outputBuffer.getChannelData(0).set($JSBG_inputBuffer);
@@ -102,12 +103,12 @@ var BufferController = function()
                             if (!$JSBG_outputBuffer[$JSBG_sample_index])
                             {
                                 $JSBG_outputBuffer[$JSBG_sample_index] = ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET]/255) *
-                                    signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
+                                    signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
                             }
                             else
                             {
                                 $JSBG_outputBuffer[$JSBG_sample_index] += ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET]/255) *
-                                    signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
+                                    signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
                             }
                         }
                     }
@@ -123,7 +124,7 @@ var BufferController = function()
     // $BA_* = BufferAsync closure variables, preallocated for perf.
 
     // constant-ish
-    var $BA_max_sample_index = (STAFF_WIDTH - BORDER_WIDTH) * samples_per_pixel;
+    var $BA_max_sample_index = (STAFF_WIDTH - BORDER_WIDTH * 2) * samples_per_pixel;
     var $BA_starting_x_pixel_index = BORDER_WIDTH;
     var $BA_ending_x_pixel_index = STAFF_WIDTH - BORDER_WIDTH;
 
@@ -166,17 +167,17 @@ var BufferController = function()
                 {
                     $BA_fire_signal = false;
 
-                    if (layer_enabled_config[COLOR_RED] && $BA_pix[$BA_pixel_index + RED_INDEX_OFFSET] != 0)
+                    if (layer_enabled_config[COLOR_RED] && $BA_pix[$BA_pixel_index + RED_INDEX_OFFSET] > 0)
                     {
                         $BA_fire_signal = true;
                         $BA_color_signal = COLOR_RED;
                     }
-                    else if(layer_enabled_config[COLOR_GREEN] && $BA_pix[$BA_pixel_index + GREEN_INDEX_OFFSET] != 0)
+                    else if(layer_enabled_config[COLOR_GREEN] && $BA_pix[$BA_pixel_index + GREEN_INDEX_OFFSET] > 0)
                     {
                         $BA_fire_signal = true;
                         $BA_color_signal = COLOR_GREEN;
                     }
-                    else if(layer_enabled_config[COLOR_BLUE] && $BA_pix[$BA_pixel_index + BLUE_INDEX_OFFSET] != 0)
+                    else if(layer_enabled_config[COLOR_BLUE] && $BA_pix[$BA_pixel_index + BLUE_INDEX_OFFSET] > 0)
                     {
                         $BA_fire_signal = true;
                         $BA_color_signal = COLOR_BLUE;
@@ -190,18 +191,19 @@ var BufferController = function()
                         $BA_ending_sample_index = Math.min($BA_max_sample_index, $BA_starting_sample_index + samples_per_pixel);
 
                         for ($BA_sample_index = $BA_starting_sample_index;
-                             $BA_sample_index < $BA_ending_sample_index && $BA_sample_index < sum_signal.length;
+                             $BA_sample_index < $BA_ending_sample_index;
                              $BA_sample_index++)
                         {
                             if (!sum_signal[$BA_sample_index])
                             {
                                 sum_signal[$BA_sample_index] = ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET]/255) *
-                                    signals_waves[$BA_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $BA_y_pixel_index][$BA_sample_index];
+                                     signals_waves[$BA_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
+
                             }
                             else
                             {
                                 sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET]/255) *
-                                    signals_waves[$BA_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH) - $BA_y_pixel_index][$BA_sample_index];
+                                    signals_waves[$BA_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
                             }
                         }
                     }
@@ -211,7 +213,6 @@ var BufferController = function()
 
         audio_buffer_source.buffer.getChannelData(0).set(sum_signal);
         audio_buffer_source.buffer.getChannelData(1).set(sum_signal);
-
         audio_buffer_source.noteOn(0);
 
         asyncBuffered = true;
@@ -269,10 +270,20 @@ function setJSNodeBufferSize(size)
     connectNodes();
 }
 
-function setColorSignal(color, signal)
+/**
+ * Calculates what sound should be playing
+ * @param el Button that called the function
+ */
+function playSound()
 {
-    layer_signal_config[color] = eval(signal);
-    js_buffer.BufferAsync();
+    if (audio_is_playing)
+    {
+        soundOff();
+    }
+    else
+    {
+        soundOn();
+    }
 }
 
 /**
@@ -317,19 +328,14 @@ function soundOff()
 }
 
 /**
- * Calculates what sound should be playing
- * @param el Button that called the function
+ * Sets the signal for the given color/layer.
+ * @param color
+ * @param signal
  */
-function playSound(el)
+function setColorSignal(color, signal)
 {
-    if (audio_is_playing)
-    {
-        soundOff();
-    }
-    else
-    {
-        soundOn();
-    }
+    layer_signal_config[color] = eval(signal);
+    js_buffer.BufferAsync();
 }
 
 /**
@@ -514,7 +520,10 @@ function clearBlue()
     }
 }
 
-// TODO move stuff below this comment to sound.data.js once I understand the JS include system
+/**
+ * Data-ish functions
+ */
+
 function getStorableData()
 {
     return $('canvas.staff')[0].toDataURL('image/bmp');
@@ -536,11 +545,11 @@ function loadFromDataURL(dataURL)
 
 function saveState()
 {
-    saved_state = staff_canvas_context.getImageData(0, 0, STAFF_WIDTH, STAFF_WIDTH);
+    saved_states.push(staff_canvas_context.getImageData(0, 0, STAFF_WIDTH, STAFF_WIDTH));
 }
 
 function loadState()
 {
-    staff_canvas_context.putImageData(saved_state, 0, 0);
+    staff_canvas_context.putImageData(saved_states.pop(), 0, 0);
     js_buffer.BufferAsync();
 }

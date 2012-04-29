@@ -10,33 +10,46 @@ function switchToolStyle()
         $('div.staff-container').css({'cursor':"url(/assets/eraser.cur) 10 10, default"});
 
         pen_directive.strokeStyle = COLOR_NONE;
-        pen_directive.strokeWidth = PEN_STROKE_WIDTH.toString();
+        pen_directive.strokeWidth = eraser_stroke_width.toString();
+
+        // Erase all layers protection - it's annoying but maybe there's a better way to to it. Disabled for now.
+        /*
+        var temp_erase_all_layers_title = $('#erase_all_layers').attr('title')
+        $('#erase_all_layers').removeAttr('disabled').attr('title', $('#erase_all_layers').attr('alt_title'))
+        $('#erase_all_layers').removeAttr('disabled').attr('alt_title', temp_erase_all_layers_title)
+        */
     }
     else
     {
         tool_style = PEN;
         $('div.staff-container').css({'cursor':"url(/assets/pen.cur) 0 23, default"});
 
-        pen_directive.strokeWidth = ERASER_STROKE_WIDTH.toString();
+        pen_directive.strokeStyle = COLOR_VALUE_MAPPING[$("input[name='layer_select']:checked").val()];
+        pen_directive.strokeWidth = pen_stroke_width.toString();
+
+        /*
+        var temp_erase_all_layers_title = $('#erase_all_layers').attr('title')
+        $('#erase_all_layers').attr('disabled', 'disabled').attr('title', $('#erase_all_layers').attr('alt_title'))
+        $('#erase_all_layers').attr('disabled', 'disabled').attr('alt_title', temp_erase_all_layers_title)
+        */
     }
 }
 
 /**
  * Renders the scrub line
  * @param time The time elapsed since last draw.
-
  */
 function drawScrubLine(time)
 {
-    // Erase the line
-
+    // Erase the line from the previous frame
     $("canvas.bar").clearCanvas(
         {
             x: STAFF_WIDTH / 2,
             y: STAFF_HEIGHT / 2,
             width: STAFF_WIDTH - 2 * BORDER_WIDTH,
             height: STAFF_HEIGHT - 2 * BORDER_WIDTH
-        });
+        }
+    );
 
     // Move over and draw the line in new position
     var tick_x = Math.round(time * STAFF_WIDTH);
@@ -44,12 +57,16 @@ function drawScrubLine(time)
 	linear_directive["x1"] = tick_x;
 	linear_directive["x2"] = tick_x + 10;
 	
-	var linear = $("canvas").gradient(linear_directive);
-	scrub_line_directive["fillStyle"] = linear;
+	linear_gradient = $("canvas").gradient(linear_directive);
+	scrub_line_directive["fillStyle"] = linear_gradient;
     scrub_line_directive["x"] = tick_x;
-	
-
     $("canvas.bar").drawRect(scrub_line_directive);
+
+    //scrub_line_directive["x1"] = scrub_line_directive["x2"] = tick_x;
+    //$("canvas.bar").drawLine(scrub_line_directive);
+
+
+
 }
 
 /**
@@ -63,6 +80,7 @@ function step()
     {
         return;
     }
+
     // need to figure out how to line this up with the canvas drawings
     var time = audio_context.currentTime;
 
@@ -159,8 +177,8 @@ function movePen(e)
             {
                 x: Math.min(pen_directive["x1"], pen_directive["x2"]),
                 y: Math.min(pen_directive["y1"], pen_directive["y2"]),
-                width: ERASER_STROKE_WIDTH,
-                height: ERASER_STROKE_WIDTH
+                width: eraser_stroke_width,
+                height: eraser_stroke_width
             });
     }
 

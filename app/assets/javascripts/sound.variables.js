@@ -61,15 +61,10 @@ signals_waves[DSP.SAW] = new Array(STAFF_HEIGHT);
 signals_waves[DSP.SQUARE] = new Array(STAFF_HEIGHT);
 signals_waves[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
 
-/*                 C     C#    D    D#    E      F      F#    G     G#     A     A#     B */
-//var scale = [true, false, true, true, false, true, false, true, true, false, false, false];
-var scale =   [true, false, false, true, false, false, true, false, false, true, false, false];
-var pdelt;
-
 /**
  * Layer configuration
  */
-var layer_enabled_config = new Array();
+var layer_enabled_config = {};
 layer_enabled_config[COLOR_RED] = true;
 layer_enabled_config[COLOR_GREEN] = true;
 layer_enabled_config[COLOR_BLUE] = true;
@@ -101,7 +96,7 @@ var audio_is_playing = false;
 
 var tool_style = PEN;
 var pen_stroke_width = 2;
-var ERASER_STROKE_WIDTH = 20;
+var eraser_stroke_width = 20;
 
 var bar_canvas_context;
 var staff_canvas_context;
@@ -114,19 +109,28 @@ var border_directive = {
 }
 
 var linear_directive = {
-  x1: 0, y1: 0,
-  x2: 10, y2: 0,
+  x1: 0, y1: 1,
+  x2: 10, y2: 1,
   c1: "#fff",
   c2: "#000",
   c3: "#fff"
 }
 
 var scrub_line_directive = {
-    strokeStyle : COLOR_BLACK,
-    strokeWidth : "4",
-    y1 : 0,
-    y2: STAFF_HEIGHT
+    strokeStyle : COLOR_WHITE,
+    strokeWidth : "0",
+
+    // drawLine fields (disabled)
+    //y1 : 1,
+    //y2: STAFF_HEIGHT,
+
+    // drawRect fields
+    y: STAFF_HEIGHT / 2 + 1,
+    height: STAFF_HEIGHT - 2,
+    width: 10
 }
+
+var linear_gradient = null;
 
 var pen_directive = {
     strokeStyle : COLOR_RED,
@@ -140,6 +144,6 @@ var pen_directive = {
 
 // Begin swag variables
 
-var saved_state = null;
+var saved_states = [];
 
 // Never end swag

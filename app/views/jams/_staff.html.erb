@@ -9,7 +9,7 @@
 <div class="doc-block"></div>
 
 
-<div id="buttons" class="noselect">
+<div id="controls" class="noselect hidden">
 
 <!-- Table for button_grouping-level positioning -->
 <div class="table">
@@ -67,13 +67,11 @@
   </div>
 
   <hr/>
-
-
+    <!-- Glitch Mode -->
     <label><input type="checkbox" id="glitch_mode_enabled" onchange="toggleGlitchMode();" /> Glitch Mode</label>
 
     <div class="subgroup">
-    Glitch rate:
-
+      Glitch rate:
 
       <select id="js_node_buffer_size">
         <option>256</option>
@@ -84,10 +82,7 @@
         <option>8192</option>
         <option>16384</option>
       </select>
-
   </div>
-
-
 </div>
 
 
@@ -108,7 +103,7 @@
         <div class="td">
           Size:
           <div class="range_wrapper">
-            <input type="range" min="1" max="15" step="1" value ="5" id="pen_stroke_width" onchange="changePenStrokeWidth($(this).val());"/>
+            <input type="range" min="1" max="15" step="1" value ="2" id="pen_stroke_width" onchange="changePenStrokeWidth($(this).val());"/>
           </div>
         </div>
       </div>
@@ -118,7 +113,11 @@
           <label><input type="radio" name="tool_style" value="eraser" /> Eraser</label>
         </div>
         <div class="td">
-          <button type="button" onClick="resetStaff()">Erase all layers</button>
+          Erase all layers:
+          <!--<button id="erase_all_layers" type="button" disabled="disabled" onClick="resetStaff()" title="Select the eraser tool to enable erasing all layers." alt_title="Be careful. This will erase everything!">-->
+          <button id="erase_all_layers" type="button" onClick="resetStaff()" title="Be careful. This will erase everything!">
+            X
+          </button>
         </div>
       </div>
 
@@ -171,7 +170,6 @@
 
       <!-- GREEN -->
       <div id="green_layer_control_row" class="tr">
-
 
         <div class="td">
           <label>
@@ -233,11 +231,16 @@
 
 
     </div>
-
     <!-- End Layer/Color selection table -->
 
   </div>
 </div>
+<div id="scale_controls" class="td">
+  <div class="button_grouping">
+    <button>Scale</button>
+  </div>
+</div>
+
 </div>
 
 </div>

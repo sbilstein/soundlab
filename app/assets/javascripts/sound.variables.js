@@ -24,6 +24,12 @@ signals_waves[DSP.SAW] = new Array(STAFF_HEIGHT);
 signals_waves[DSP.SQUARE] = new Array(STAFF_HEIGHT);
 signals_waves[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
 
+var glitch_mode_on = false;
+
+// Options/variables to enable switching back and forth between realtime buffering and asynchronous buffering - not exposed to user for now
+// since experience is inconsistent.
+var realtime_buffering_enabled = false;
+var asyncBuffered = false;
 
 var audio_context = null;
 var audio_buffer_source = null;

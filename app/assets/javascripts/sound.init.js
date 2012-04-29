@@ -154,37 +154,6 @@ function initSignals()
 
         scale_index = (scale_index+1)%12;
 
-/*
-        if (i < 67)
-        {
-        for (var j = 0; j < signals_waves[DSP.SINE][i].length; j++)
-        {
-            if (!signals_waves[DSP.SINE][i][j])
-            {
-                console.log('sine was undefined for pixel',i,'at sample',j)
-                console.log(signals_waves[DSP.SINE][i][j])
-            }
-
-            if (!signals_waves[DSP.SAW][i][j])
-            {
-                console.log('saw was undefined for pixel',i,'at sample',j)
-                console.log(signals_waves[DSP.SAW][i][j])
-            }
-            if (!signals_waves[DSP.SQUARE][i][j])
-            {
-                console.log('square was undefined for pixel',i,'at sample',j)
-                console.log(signals_waves[DSP.SQUARE][i][j])
-            }
-            if (!signals_waves[DSP.TRIANGLE][i][j])
-            {
-                console.log('triangle was undefined for pixel',i,'at sample',j)
-                console.log(signals_waves[DSP.TRIANGLE][i][j])
-            }
-
-        }
-        }
-        */
-
     }
 
     signals = signals_waves[DSP.SINE];

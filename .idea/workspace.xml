@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/jcanvas.min.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/jcanvas.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.draw.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.draw.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
     </list>
     <ignored path="soundlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,10 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="sound.core.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="sound.core.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="198" column="118" selection-start="8552" selection-end="8552" vertical-scroll-proportion="0.39933443">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -41,7 +41,16 @@
       <file leaf-file-name="sound.variables.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+            <state line="11" column="71" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sound.variables.constants.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="53" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -50,7 +59,16 @@
       <file leaf-file-name="sound.init.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="185" column="10" selection-start="5373" selection-end="5373" vertical-scroll-proportion="0.0">
+            <state line="155" column="103" selection-start="4370" selection-end="4370" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_staff.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="84" selection-start="1452" selection-end="1452" vertical-scroll-proportion="0.19410746">
               <folding />
             </state>
           </provider>
@@ -69,14 +87,14 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
-        <option value="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/jcanvas.min.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.draw.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
+        <option value="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
       </list>
     </option>
   </component>
@@ -489,12 +507,12 @@
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34" sideWeight="0.4712451" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34" sideWeight="0.46901172" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21775544" sideWeight="0.66" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34" sideWeight="0.52484643" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34" sideWeight="0.5270798" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19263157" sideWeight="0.32328308" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -575,20 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="108" selection-start="536" selection-end="536" vertical-scroll-proportion="0.4278607">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="117" selection-start="649" selection-end="649" vertical-scroll-proportion="0.025906736">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state line="112" column="0" selection-start="1481" selection-end="1481" vertical-scroll-proportion="0.024875622">
@@ -603,23 +607,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.js">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="10" selection-start="5373" selection-end="5373" vertical-scroll-proportion="0.0">
+        <state line="24" column="53" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="118" selection-start="8552" selection-end="8552" vertical-scroll-proportion="0.39933443">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="71" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="155" column="103" selection-start="4370" selection-end="4370" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="84" selection-start="1452" selection-end="1452" vertical-scroll-proportion="0.19410746">
           <folding />
         </state>
       </provider>

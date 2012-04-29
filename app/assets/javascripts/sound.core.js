@@ -1,6 +1,3 @@
-var asyncCalled = false;
-var asyncBuffered = false;
-
 var BufferController = function()
 {
     // $JSBG_* = javascript buffer globals (holdover from before using closure, will rename eventually)
@@ -40,7 +37,7 @@ var BufferController = function()
         $JSBG_buffer_time = audio_context.currentTime % 1.0;
         $JSBG_inputBuffer = evt.inputBuffer.getChannelData(0);
 
-        if (asyncBuffered)
+        if ((asyncBuffered || !realtime_buffering_enabled) && !glitch_mode_on)
         {
             evt.outputBuffer.getChannelData(0).set($JSBG_inputBuffer);
             evt.outputBuffer.getChannelData(1).set($JSBG_inputBuffer);
@@ -56,8 +53,6 @@ var BufferController = function()
 
         $JSBG_base_signal_index = parseInt(NUM_SAMPLES * $JSBG_buffer_time);
 
-        $JSBG_starting_sample_index_multiplier = parseInt($JSBG_outputBuffer.length/$JSBG_x_pixel_range);
-
         // Loop through each pixel
         for ($JSBG_x_pixel_index = $JSBG_starting_x_pixel_index; $JSBG_x_pixel_index < $JSBG_ending_x_pixel_index; $JSBG_x_pixel_index++)
         {
@@ -72,21 +67,21 @@ var BufferController = function()
             {
                 $JSBG_pixel_index = $JSBG_y_pixel_index * 4;
 
-                if ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET] != 0)
+                if ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET] > 0)
                 {
                     $JSBG_fire_signal = false;
 
-                    if (layer_enabled_config[COLOR_RED] && $JSBG_pix[$JSBG_pixel_index + RED_INDEX_OFFSET] != 0)
+                    if (layer_enabled_config[COLOR_RED] && $JSBG_pix[$JSBG_pixel_index + RED_INDEX_OFFSET] > 0)
                     {
                         $JSBG_fire_signal = true;
                         $JSBG_color_signal = COLOR_RED;
                     }
-                    else if(layer_enabled_config[COLOR_GREEN] && $JSBG_pix[$JSBG_pixel_index + GREEN_INDEX_OFFSET] != 0)
+                    else if(layer_enabled_config[COLOR_GREEN] && $JSBG_pix[$JSBG_pixel_index + GREEN_INDEX_OFFSET] > 0)
                     {
                         $JSBG_fire_signal = true;
                         $JSBG_color_signal = COLOR_GREEN;
                     }
-                    else if(layer_enabled_config[COLOR_BLUE] && $JSBG_pix[$JSBG_pixel_index + BLUE_INDEX_OFFSET] != 0)
+                    else if(layer_enabled_config[COLOR_BLUE] && $JSBG_pix[$JSBG_pixel_index + BLUE_INDEX_OFFSET] > 0)
                     {
                         $JSBG_fire_signal = true;
                         $JSBG_color_signal = COLOR_BLUE;
@@ -96,11 +91,8 @@ var BufferController = function()
 
                     if ($JSBG_fire_signal)
                     {
-                        $JSBG_starting_sample_index = Math.min($JSBG_maxOutputBufferIndex, ($JSBG_x_pixel_index - $JSBG_starting_x_pixel_index) * $JSBG_starting_sample_index_multiplier);
-
+                        $JSBG_starting_sample_index = Math.min($JSBG_maxOutputBufferIndex, ($JSBG_x_pixel_index - $JSBG_starting_x_pixel_index) * samples_per_pixel);
                         $JSBG_ending_sample_index = Math.min($JSBG_maxOutputBufferIndex, $JSBG_starting_sample_index + samples_per_pixel);
-
-
 
                         // Iterate over the samples in the time span of this pixel.
                         for ($JSBG_sample_index = $JSBG_starting_sample_index;

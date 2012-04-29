@@ -8,7 +8,7 @@
 	<td>
 		<img class="list-staff" src="<%= jam.song %>"/>
 	</td>
-    <td><%= link_to 'Show', jam %>  &uarr; &darr;</td>
+    <td><%= link_to 'Show', jam %><span class="up-vote-count"><%= jam.up_votes %> &uarr;</span><span class="down-vote-count"><%= jam.down_votes %> &darr;</span></td>
 <!--    <td><%= link_to 'Edit', edit_jam_path(jam) %></td>
     <td><%= link_to 'Destroy', jam, confirm: 'Are you sure?', method: :delete %></td>
  -->

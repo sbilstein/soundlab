@@ -145,7 +145,20 @@ h1
 	text-transform : uppercase;
 	font-weight: bold;
 }
+.down-vote-count, .up-vote-count {
+	letter-spacing: -2px;
+	margin: 5px;
+}
 
+.up-vote-count 
+{
+	color: green;
+}
+
+.down-vote-count 
+{ 
+	color: red;
+}
 header
 {
   margin-top: 0px;

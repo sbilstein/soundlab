@@ -4,11 +4,7 @@
     <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.robo.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.robo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
     </list>
     <ignored path="soundlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,19 +26,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="sound.core.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="sound.core.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="384" column="0" selection-start="12911" selection-end="12911" vertical-scroll-proportion="52.92">
+            <state line="523" column="89" selection-start="16089" selection-end="16089" vertical-scroll-proportion="0.2762063">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jams.css.scss" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="jams.css.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="104" selection-start="247" selection-end="247" vertical-scroll-proportion="-2.5207987">
+            <state line="27" column="69" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -60,7 +56,7 @@
       <file leaf-file-name="sound.variables.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="104" selection-start="1892" selection-end="1892" vertical-scroll-proportion="0.0">
+            <state line="118" column="23" selection-start="2634" selection-end="2634" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -87,7 +83,7 @@
       <file leaf-file-name="_staff.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="140" selection-start="1945" selection-end="1945" vertical-scroll-proportion="-15.0">
+            <state line="72" column="140" selection-start="1945" selection-end="1945" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -108,13 +104,13 @@
       <list>
         <option value="$PROJECT_DIR$/app/assets/javascripts/jcanvas.min.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.draw.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
         <option value="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.robo.js" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
       </list>
     </option>
   </component>
@@ -155,16 +151,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="soundlab" />
               <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -305,6 +291,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -522,22 +518,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="56" y="0" width="1841" height="1080" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34" sideWeight="0.46677834" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21775544" sideWeight="0.66" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22333892" sideWeight="0.66" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34" sideWeight="0.5293132" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34" sideWeight="0.53378004" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19263157" sideWeight="0.32328308" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34" sideWeight="0.46231157" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.4973369" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -601,70 +597,52 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/jcanvas.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="110" selection-start="195" selection-end="195" vertical-scroll-proportion="0.12711865">
-          <folding />
-        </state>
+        <state line="5" column="110" selection-start="195" selection-end="195" vertical-scroll-proportion="0.12711865" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/legacy.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="24" selection-start="4496" selection-end="4496" vertical-scroll-proportion="0.025906736">
-          <folding />
-        </state>
+        <state line="106" column="24" selection-start="4496" selection-end="4496" vertical-scroll-proportion="0.025906736" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.draw.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="193" column="85" selection-start="4685" selection-end="4685" vertical-scroll-proportion="0.7263682">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="70" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="104" selection-start="1892" selection-end="1892" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="139" column="58" selection-start="3884" selection-end="3884" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="140" selection-start="1945" selection-end="1945" vertical-scroll-proportion="-15.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.robo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="265" column="82" selection-start="8509" selection-end="8510" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="384" column="0" selection-start="12911" selection-end="12911" vertical-scroll-proportion="52.92">
-          <folding />
-        </state>
+        <state line="193" column="85" selection-start="4685" selection-end="4685" vertical-scroll-proportion="0.7263682" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="104" selection-start="247" selection-end="247" vertical-scroll-proportion="-2.5207987">
+        <state line="27" column="69" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.robo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="265" column="82" selection-start="8509" selection-end="8510" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="118" column="23" selection-start="2634" selection-end="2634" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="70" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="139" column="58" selection-start="3884" selection-end="3884" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="140" selection-start="1945" selection-end="1945" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="523" column="89" selection-start="16089" selection-end="16089" vertical-scroll-proportion="0.2762063">
           <folding />
         </state>
       </provider>

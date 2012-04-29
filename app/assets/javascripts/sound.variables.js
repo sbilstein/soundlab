@@ -113,3 +113,9 @@ var pen_directive = {
 /**
  * End Drawing variables
  */
+
+// Begin swag variables
+
+var saved_state = null;
+
+// Never end swag

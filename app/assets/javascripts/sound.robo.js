@@ -261,10 +261,7 @@ function roboMode()
 
 
             //fadeSound($('#robo_decay').val());
-
-            bufferSound();
-            soundOn();
-            animateLine();
+            js_buffer.BufferAsync();
         }
     }
 
@@ -283,4 +280,9 @@ function toggleRobo()
         clearInterval(robo_interval);
         robo_interval = false;
     }
+}
+
+function computePixelIndex(x, y, imgWidth)
+{
+    return (y*(imgWidth*4)) + (x*4);
 }

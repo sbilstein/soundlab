@@ -138,11 +138,11 @@ function initSignals()
          if(scale[scale_index])
          //if (true)
          {
-         freq = 440.0 * Math.pow(2, (i - 49) / 12);
+            freq = 440.0 * Math.pow(2, (i - 49) / 12);
          }
          else
          {
-         freq = 0;
+            freq = 0;
          }
          */
 

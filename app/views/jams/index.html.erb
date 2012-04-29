@@ -1,18 +1,14 @@
-<h1>Listing jams</h1>
+<h1>the jams</h1>
 
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Song</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @jams.each do |jam| %>
   <tr>
     <td><%= jam.title %></td>
-    <td><%= link_to 'Show', jam %></td>
+	<td>
+		<img class="list-staff" src="<%= jam.song %>"/>
+	</td>
+    <td><%= link_to 'Show', jam %>  &uarr; &darr;</td>
 <!--    <td><%= link_to 'Edit', edit_jam_path(jam) %></td>
     <td><%= link_to 'Destroy', jam, confirm: 'Are you sure?', method: :delete %></td>
  -->

@@ -25,18 +25,10 @@ signals_waves[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
 
 var audio_context = null;
 var audio_buffer_source = null;
-
 var gain_node = null;
-var dynamic_compressor_node = null;
-
-
-// Object that decides whether to buffer on the fly or use asynchronously populated buffer
-var js_buffer;
-var js_node;
-
 var audio_is_playing = false;
 
-var sum_signal = new Float32Array(NUM_SAMPLES);
+var sum_signal = new Array(NUM_SAMPLES);
 var samples_per_pixel = Math.floor(NUM_SAMPLES / STAFF_WIDTH);
 
 var dsp_wave = DSP.SINE;
@@ -52,6 +44,8 @@ layer_signal_config[COLOR_RED] = dsp_wave;
 layer_signal_config[COLOR_GREEN] = dsp_wave;
 layer_signal_config[COLOR_BLUE] = dsp_wave;
 
+var js_buffer;
+var js_node;
 
 /*                 C     C#    D    D#    E      F      F#    G     G#     A     A#     B */
 //var scale = [true, false, true, true, false, true, false, true, true, false, false, false];
@@ -67,7 +61,7 @@ var scale =     [true, false, false, true, false, false, true, false, false, tru
 
 
 var tool_style = PEN;
-var PEN_STROKE_WIDTH = 2;
+var PEN_STROKE_WIDTH = 3;
 var ERASER_STROKE_WIDTH = 20;
 
 var bar_canvas_context;
@@ -82,7 +76,7 @@ var border_directive = {
 
 var scrub_line_directive = {
     strokeStyle : COLOR_BLACK,
-    strokeWidth : "2",
+    strokeWidth : "4",
     y1 : 0,
     y2: STAFF_HEIGHT
 }

@@ -5,3 +5,20 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+jams =  Jam.create([
+      {
+       title: 'test1',
+       up_votes: 7,
+       down_votes: 3  
+      },
+      {
+       title: 'test2',
+       up_votes: 3, 
+       down_votes: 9  
+       },
+       { title: 'test3',
+         up_votes: 5,
+         down_votes: 5  
+       }
+  ])

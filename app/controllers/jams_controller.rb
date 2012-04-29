@@ -2,8 +2,10 @@ class JamsController < ApplicationController
   # GET /jams
   # GET /jams.json
   def index
-    @jams = Jam.all
-
+    
+    #@jams = Jam.find(:all)
+    #pagination 
+    @jams = Jam.paginate(page: params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @jams }

@@ -1,11 +1,12 @@
 <h1>the jams</h1>
+<%= will_paginate %>
 
 <table>
 
 <% @jams.each do |jam| %>
   <tr>
 	<td>
-		<%= link_to jam.title, jam %><br>
+		<h3 class="jam-title"><%= link_to jam.title, jam %></h3>
 		<span class="up-vote-count"><%= jam.up_votes %> &uarr;</span>
 		<span class="down-vote-count"><%= jam.down_votes %> &darr;</span>		
 	</td>
@@ -19,6 +20,8 @@
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate %>
 
 <br />
 

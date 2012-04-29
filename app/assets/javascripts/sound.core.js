@@ -190,7 +190,7 @@ var BufferController = function()
                         $BA_ending_sample_index = Math.min($BA_max_sample_index, $BA_starting_sample_index + samples_per_pixel);
 
                         for ($BA_sample_index = $BA_starting_sample_index;
-                             $BA_sample_index < $BA_ending_sample_index && $BA_sample_index < NUM_SAMPLES;
+                             $BA_sample_index < $BA_ending_sample_index && $BA_sample_index < sum_signal.length;
                              $BA_sample_index++)
                         {
                             if (!sum_signal[$BA_sample_index])
@@ -232,10 +232,33 @@ function connectNodes()
 {
     disconnectNodes();
 
-    audio_buffer_source.connect(js_node);
-    js_node.connect(gain_node);
+    if (glitch_mode_on)
+    {
+        audio_buffer_source.connect(js_node);
+        js_node.connect(gain_node);
+    }
+    else
+    {
+        audio_buffer_source.connect(gain_node);
+    }
+
     gain_node.connect(dynamic_compressor_node);
     dynamic_compressor_node.connect(audio_context.destination);
+}
+
+function toggleGlitchMode()
+{
+    if ($('#glitch_mode_enabled').is(':checked'))
+    {
+        glitch_mode_on = true;
+    }
+    else
+    {
+        glitch_mode_on = false;
+        js_buffer.BufferAsync();
+    }
+
+    connectNodes();
 }
 
 function setJSNodeBufferSize(size)
@@ -249,6 +272,7 @@ function setJSNodeBufferSize(size)
 function setColorSignal(color, signal)
 {
     layer_signal_config[color] = eval(signal);
+    js_buffer.BufferAsync();
 }
 
 /**
@@ -343,7 +367,7 @@ function toggleDecay()
 {
     if ($('#decay_enabled').is(":checked"))
     {
-        decayInterval = setInterval(function() { fadeSound($("#robo_decay").val()); }, 1000);
+        decayInterval = setInterval(function() { fadeSound($("#robo_decay").val()); js_buffer.BufferAsync(); }, 1000);
     }
     else
     {
@@ -358,11 +382,6 @@ function setDSPWave(wave)
     signals = signals_waves[dsp_wave];
 }
 
-function computePixelIndex(x, y, imgWidth)
-{
-    return (y*(imgWidth*4)) + (x*4);
-}
-
 /**
  * Enable or disable color layers.
  * @param layer_color Color style of layer
@@ -370,6 +389,7 @@ function computePixelIndex(x, y, imgWidth)
 function toggleLayer(layer_color)
 {
     layer_enabled_config[layer_color] = !layer_enabled_config[layer_color];
+    js_buffer.BufferAsync();
 }
 
 /**
@@ -403,6 +423,8 @@ function clearCanvas()
 
     imgd.data = data;
     staff_canvas_context.putImageData(imgd, BORDER_WIDTH, BORDER_WIDTH);
+
+    js_buffer.BufferAsync();
 }
 
 function clearRed()

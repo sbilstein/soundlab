@@ -155,17 +155,16 @@ function initSignals()
 		// freq = 440.0 * Math.pow(2, (((i_mod * pdelt) + 40) - 69.0) / 12.0);
             
          // if(scale[scale_index])
-         //if (true)
-         // {
-	
-		 
-		 
-         // freq = 440.0 * Math.pow(2, (i_mod - 49) / 12);
-         //     }
-         //     else
-         //     {
-         //     freq = 0;
-         //     }
+   /*
+     	if (true)
+		{
+            freq = 440.0 * Math.pow(2, (i - 49) / 12);
+        }
+        else
+        {
+           freq = 0;
+        }
+         */
 
         //signals[i] = makeSignal(freq);
         signals_waves[DSP.SINE][i] = makeSignal(freq, DSP.SINE);

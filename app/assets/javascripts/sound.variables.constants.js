@@ -1,10 +1,10 @@
 // CONSTANTS
 
 // Signal processing constants
-//const SAMPLE_RATE = 44100;
-//const NUM_SAMPLES = 44100;
-const SAMPLE_RATE = 22050;
-const NUM_SAMPLES = 22050;
+const SAMPLE_RATE = 44100;
+const NUM_SAMPLES = 44100;
+//const SAMPLE_RATE = 22050;
+//const NUM_SAMPLES = 22050;
 const NUM_CHANNELS = 2;
 
 const DEFAULT_BITRATE = 2048;

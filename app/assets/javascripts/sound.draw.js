@@ -41,13 +41,15 @@ function drawScrubLine(time)
     // Move over and draw the line in new position
     var tick_x = Math.round(time * STAFF_WIDTH);
 
-    scrub_line_directive["strokeStyle"] = COLOR_BLACK;
-    scrub_line_directive["x1"] = tick_x;
-    scrub_line_directive["x2"] = tick_x;
-    scrub_line_directive["y1"] = BORDER_WIDTH + 1;
-    scrub_line_directive["y2"] = STAFF_HEIGHT - BORDER_WIDTH;
+	linear_directive["x1"] = tick_x;
+	linear_directive["x2"] = tick_x + 10;
+	
+	var linear = $("canvas").gradient(linear_directive);
+	scrub_line_directive["fillStyle"] = linear;
+    scrub_line_directive["x"] = tick_x;
+	
 
-    $("canvas.bar").drawLine(scrub_line_directive);
+    $("canvas.bar").drawRect(scrub_line_directive);
 }
 
 /**

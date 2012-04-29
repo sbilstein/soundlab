@@ -74,12 +74,24 @@ var border_directive = {
     strokeWidth : BORDER_WIDTH.toString()
 }
 
-var scrub_line_directive = {
-    strokeStyle : COLOR_BLACK,
-    strokeWidth : "4",
-    y1 : 0,
-    y2: STAFF_HEIGHT
+var linear_directive = {
+  x1: 0, y1: 0,
+  x2: 10, y2: 0,
+  c1: "#fff",
+  c2: "#000",
+  c3: "#fff"
 }
+
+var scrub_line_directive = {
+    x : 0,
+	y :  BORDER_WIDTH,
+    width: 5,
+	height: STAFF_HEIGHT - BORDER_WIDTH,
+	fromCenter: false
+}
+
+
+
 
 var pen_directive = {
     strokeStyle : COLOR_RED,

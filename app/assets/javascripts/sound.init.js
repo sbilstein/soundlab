@@ -26,6 +26,17 @@ $(document).ready(function()
     initAudio();
     resetStaff();
 
+	//Draw graph lines
+	for(var i = 0; i < STAFF_HEIGHT; i+=signal_granularity) 
+	{
+		// #("canvas.bar").drawLine({
+		// 	x0 = 0,
+		// 	y0 = i;
+		// 	x1= STAFF_WIDTH;
+		// 	y1 = il
+		// });
+	}
+
     // UI binding
     $("canvas.bar").mousedown(startPen);
 
@@ -124,26 +135,35 @@ function initAudio()
 function initSignals()
 {
     var scale_index = 0;
+    keys  =[ 220, 233, 247, 262, 277, 293, 311, 330, 349, 370, 392, 415, 440, 466, 494, 523, 554, 587, 622, 659,
+	 		698, 740, 784, 830, 880, 932, 987, 1046];   
+	var gran = STAFF_HEIGHT / keys.length;
+
+
     // 400*2^((p-64)/12) = f
     // 108 hi key on 88key piano, 21 low key
     // pdelt = (108.0-21.0)/STAFFHEIGHT;
     pdelt = (108.0 - 40.0) / STAFF_HEIGHT;
     //pdelt = (96.0 - 40.0) / STAFF_HEIGHT;
-    for (var i = 0; i < STAFF_HEIGHT; i++)
-    {
-        // i + 5
-        freq = 440.0 * Math.pow(2, (((i * pdelt) + 40) - 69.0) / 12.0);
-        //freq = 440.0 * Math.pow(2, (i - 49) / 12);
-        /*
-         if(scale[scale_index])
-         //if (true)
-         {
+	
+    for (var i = 0; i < STAFF_HEIGHT; i++){
+		i_mod = Math.round(i / gran);
+		freq = keys[i_mod];  
+		console.log(freq)
+
+		// i_mod = Math.round( i / signal_granularity ) * signal_granularity;
+		// freq = 440.0 * Math.pow(2, (((i_mod * pdelt) + 40) - 69.0) / 12.0);
+            
+         // if(scale[scale_index])
+   /*
+     	if (true)
+		{
             freq = 440.0 * Math.pow(2, (i - 49) / 12);
-         }
-         else
-         {
-            freq = 0;
-         }
+        }
+        else
+        {
+           freq = 0;
+        }
          */
 
         //signals[i] = makeSignal(freq);

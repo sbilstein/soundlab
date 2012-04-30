@@ -178,20 +178,27 @@ var BufferController = function()
                 if ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] > 0)
                 {
                     $BA_fire_signal = false;
+                    var $BA_fire_red_signal = false;
+                    var $BA_fire_green_signal = false;
+                    var $BA_fire_blue_signal = false;
+
 
                     if (layer_enabled_config[COLOR_RED] && $BA_pix[$BA_pixel_index + RED_INDEX_OFFSET] > 0.0)
                     {
                         $BA_fire_signal = true;
+                        $BA_fire_red_signal = true;
                         $BA_color_signal = COLOR_RED;
                     }
                     else if(layer_enabled_config[COLOR_GREEN] && $BA_pix[$BA_pixel_index + GREEN_INDEX_OFFSET] > 0.0)
                     {
                         $BA_fire_signal = true;
+                        $BA_fire_green_signal = true;
                         $BA_color_signal = COLOR_GREEN;
                     }
                     else if(layer_enabled_config[COLOR_BLUE] && $BA_pix[$BA_pixel_index + BLUE_INDEX_OFFSET] > 0.0)
                     {
                         $BA_fire_signal = true;
+                        $BA_fire_blue_signal = true;
                         $BA_color_signal = COLOR_BLUE;
                     }
 
@@ -208,13 +215,25 @@ var BufferController = function()
                         {
                             if (!sum_signal[$BA_sample_index])
                             {
-                                sum_signal[$BA_sample_index] = ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0) *
-                                     signals_waves[$BA_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
+                                sum_signal[$BA_sample_index] = 0.0;
                             }
-                            else
+
+                            if ($BA_fire_red_signal)
                             {
-                                sum_signal[$BA_sample_index] += sum_signal[$BA_sample_index] + ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0) *
-                                    signals_waves[$BA_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
+                                sum_signal[$BA_sample_index] += sum_signal[$BA_sample_index] + ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
+                                    signals_waves[layer_signal_config[COLOR_RED]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
+                            }
+
+                            if ($BA_fire_green_signal)
+                            {
+                                sum_signal[$BA_sample_index] += sum_signal[$BA_sample_index] + ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
+                                    signals_waves[layer_signal_config[COLOR_GREEN]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
+                            }
+
+                            if ($BA_fire_blue_signal)
+                            {
+                                sum_signal[$BA_sample_index] += sum_signal[$BA_sample_index] + ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
+                                    signals_waves[layer_signal_config[COLOR_BLUE]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
                             }
 
                             if(sum_signal[$BA_sample_index] > MAX_AMPLITUDE)

@@ -46,6 +46,11 @@ span.bold
   -khtml-user-select: text;
 }
 
+.editable {
+	-moz-user-select: text;
+	-khtml-user-select: text;
+}
+
 div.center-col
 {
   margin: auto;

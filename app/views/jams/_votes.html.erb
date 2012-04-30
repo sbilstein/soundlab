@@ -1,2 +1,13 @@
 <span class="up-vote-count"><%=jam.up_votes%> &uarr;</span>
 <span class="down-vote-count"><%=jam.down_votes%> &darr;</span>
+
+
+<%= form_for jam do |f| %>
+<div class="field editable">
+	<input type="radio" name="vote" value="up">up</input>
+	<input type="radio" name="vote" value="down">down</input>
+</div>
+  <div class="actions">
+    <%= f.submit'Save Jam'%>
+  </div>
+<% end %>

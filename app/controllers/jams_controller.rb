@@ -2,8 +2,6 @@ class JamsController < ApplicationController
   # GET /jams
   # GET /jams.json
   def index
-    
-    #@jams = Jam.find(:all)
     #pagination 
     @jams = Jam.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
@@ -61,10 +59,16 @@ class JamsController < ApplicationController
   # PUT /jams/1.json
   def update
     @jam = Jam.find(params[:id])
-
+    if params[:vote] == 'up'
+        @jam.up_votes = @jam.up_votes + 1
+        @jam.save
+    elsif params[:vote] == 'down'
+        @jam.down_votes = @jam.down_votes + 1
+        @jam.save
+    end
     respond_to do |format|
       if @jam.update_attributes(params[:jam])
-        format.html { redirect_to @jam, notice: 'Jam was successfully updated.' }
+        format.html { redirect_to @jam, notice: params }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -84,6 +88,6 @@ class JamsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
 
 end

@@ -47,9 +47,11 @@ class JamsController < ApplicationController
     respond_to do |format|
       if @jam.save
         format.html { redirect_to @jam, notice: 'Jam was successfully created.' }
+        format.js 
         format.json { render json: @jam, status: :created, location: @jam }
       else
         format.html { render action: "new" }
+        format.js 
         format.json { render json: @jam.errors, status: :unprocessable_entity }
       end
     end

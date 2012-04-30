@@ -81,6 +81,14 @@ $(document).ready(function()
         setColorSignal(COLOR_BLUE, $(this).val());
     });
 
+    // Scale controls
+    $('.scale_key_control').each(function()
+    {
+        $(this).append($('#scale_key_control_definitive').clone());
+    });
+
+    $('input[name="scale_selection"]').change(populateScaleControl)
+
     // Save/Load
     if ($('#stored_data').length)
     {

@@ -7,41 +7,114 @@ var keys = [27.5, 29.1352, 30.8677, 32.7032, 34.6478, 36.7081, 38.8909, 41.2034,
     1396.91, 1479.98, 1567.98, 1661.22, 1760, 1864.66, 1975.53, 2093, 2217.46, 2349.32, 2489.02, 2637.02, 2793.83, 2959.96,
     3135.96, 3322.44, 3520, 3729.31, 3951.07, 4186.01];
 
+const KEY_INDEX_MAPPING = {
+    "A":  0,
+    "Bf": 1,
+    "B":  2,
+    "C":  3,
+    "Cs": 4,
+    "D":  5,
+    "Ef": 6,
+    "E":  7,
+    "F":  8,
+    "Fs": 9,
+    "G":  10,
+    "Af": 11
+}
 
-var key_start_index = 24;
-//var key_end_index = keys.length;
-var key_end_index = 59;
 
-/*                       A      A#     B      C      C#      D     D#     E      F      F#     G      G#         */
+
+var key_start_index = 0;
+var key_end_index = keys.length;
+
+//var key_start_index = 24;
+//var key_end_index = 59;
+
+/*                       A      A# (Bf)  B      C      C# (Cs)      D     D# (Ef)     E      F      F#     G      G#  (Af)       */
 var no_scale =          [false, false, false, false, false, false, false, false, false, false, false, false];
 
 var chromatic_scale =   [true,  true,  false, true,  false, false, true,  false, false, true,  false, false];
+var keys_chromatic_scale = ["A", "Bf", "B", "C", "Cs", "D", "Ef", "E", "F", "Fs", "G", "Af"];
 
 var major_scale =       [true,  false, true,  true,  false, true,  false, true,  true,  false, true,  false];
+var keys_major_scale = ["A", "B", "C", "D", "E", "F", "G"];
 
 var octave_scale =      [true, false, false, false, false, false, false, false, false, false, false, false];
+var keys_octave_scale = ["C"];
+
+var keys_chinese_scale = ["Bf", "Cs", "Ef", "Fs", "Af"];
+
+var keys_pentatonic_scale = ["C", "D", "E", "G", "A"];
 
 //var scale =             [true,  false, false, true,  false, false, true,  false, false, true,  false, false];
 
 /*                       A      A#     B      C      C#      D     D#     E      F      F#     G      G#         */
 
+const SCALE_KEYS_MAPPING = {
+    "scale_chromatic": keys_chromatic_scale,
+    "scale_major": keys_major_scale,
+    "scale_octave": keys_octave_scale,
+    "scale_chinese": keys_chinese_scale,
+    "scale_pentatonic": keys_pentatonic_scale
+}
+
+var pending_scale;
+var cached_signals = {};
+
+function populateScaleControl()
+{
+    $('input.key_toggle').removeAttr('checked');
+
+   var scale_keys = SCALE_KEYS_MAPPING[$('input[name="scale_selection"]:checked').val()];
+    if (scale_keys)
+    {
+        for (var i = 0; i < scale_keys.length; i++)
+        {
+            $('input.key_toggle[key="'+scale_keys[i]+'"]').attr('checked', 'checked')
+        }
+    }
+}
+
 function makeScale()
 {
+    pending_scale = [false, false, false, false, false, false, false, false, false, false, false, false];
+
+    $('.key_toggle:checked').each(function(){
+        pending_scale[KEY_INDEX_MAPPING[$(this).attr('key')]] = true;
+    })
+
     // disable button and indicate we are loading
     $('#make_scale').attr('disabled','disabled');
-    var loading_notifier = $('<img src="/assets/load.gif />"');
-    $('#scale_loading_notifier').appendChild(loading_notifier);
+    var loading_notifier = $('<img src="/assets/load.gif" />');
+    $('#scale_loading_notifier').append(loading_notifier);
 
-    var worker = new Worker('/assets/sound.signals.worker.js');
+    var pending_scale_key = pending_scale.join(',');
+    if (!cached_signals[pending_scale_key])
+    {
+        var worker = new Worker('/assets/sound.signals.worker.js');
 
-    worker.onmessage = function (event) {
-        signals_waves = event.data;
+        worker.onmessage = function (event) {
+            signals_waves = event.data;
+
+            cached_signals[pending_scale.join(',')] = signals_waves;
+
+            $('#make_scale').removeAttr('disabled');
+            $('#scale_loading_notifier').children().remove('img');
+
+            js_buffer.BufferAsync();
+        };
+
+        worker.postMessage({'generate_method':$('input[name="scale_generate_method"]:checked').val(), 'scale':pending_scale});
+    }
+    else
+    {
+        signals_waves = cached_signals[pending_scale_key];
 
         $('#make_scale').removeAttr('disabled');
-        $('#scale_loading_notifier').removeChild(loading_notifier)
-    };
+        $('#scale_loading_notifier').children().remove('img');
 
-    worker.postMessage(true);
+        js_buffer.BufferAsync();
+    }
 }
 
 
@@ -56,7 +129,7 @@ function initSignals(generation_method, scale)
     generated_signals[DSP.SQUARE] = new Array(STAFF_HEIGHT);
     generated_signals[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
 
-    var scale_index = key_start_index;
+    var scale_index = key_start_index % 12;
     //var scale = octave_scale;
 
     var scale_frequencies = keys.slice(key_start_index, key_end_index);
@@ -94,7 +167,8 @@ function initSignals(generation_method, scale)
         }
         else if (generation_method == "alien")
         {
-            freq = 440.0 * Math.pow(2, (((i_mod * pdelt) + 40) - 69.0) / 12.0);
+            //freq = 440.0 * Math.pow(2, (((i_mod * pdelt) + 40) - 69.0) / 12.0);
+            freq = 440.0 * Math.pow(2, (((i * pdelt) + 40) - 69.0) / 12.0);
         }
 
         if (freq != prev_freq)

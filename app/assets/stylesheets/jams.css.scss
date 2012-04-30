@@ -236,5 +236,42 @@ nav {
 {
 	height: 75px;
 	width: 200px;
+}
 
+.black_key
+{
+  background:black;
+  color:white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.white_key
+{
+  border:thin solid black;
+  border-top:none;
+  font-weight: bold;
+  text-align: center;
+}
+
+.key_toggle
+{
+  display:inline-block;
+  margin: 0.4em 0;
+}
+
+#scale_keys
+{
+  width:310px;
+}
+
+#scale_loading_notifier
+{
+  display: inline;
+}
+
+#scale_controls
+{
+  width:200px;
+  margin-left:0.5em;
 }

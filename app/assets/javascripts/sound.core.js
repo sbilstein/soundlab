@@ -40,7 +40,7 @@ var BufferController = function()
         // See (long) note in sound.variables.js for explanation of these variables and what they do..
         if ((asyncBuffered || !realtime_buffering_enabled) && !glitch_mode_on)
         {
-            //$JSBG_inputBuffer = new Float32Array(evt.inputBuffer.getChannelData(0));
+            $JSBG_inputBuffer = new Float32Array(evt.inputBuffer.getChannelData(0));
             evt.outputBuffer.getChannelData(0).set($JSBG_inputBuffer);
             evt.outputBuffer.getChannelData(1).set($JSBG_inputBuffer);
             return;
@@ -112,6 +112,15 @@ var BufferController = function()
                                 $JSBG_outputBuffer[$JSBG_sample_index] += ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET]/255) *
                                     signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
                             }
+
+                            if(sum_signal[$JSBG_sample_index] > MAX_AMPLITUDE)
+                            {
+                                sum_signal[$JSBG_sample_index] = MAX_AMPLITUDE;
+                            }
+                            else if(sum_signal[$JSBG_sample_index] < -1*MAX_AMPLITUDE)
+                            {
+                                sum_signal[$JSBG_sample_index] = -1*MAX_AMPLITUDE;
+                            }
                         }
                     }
                 }
@@ -147,7 +156,6 @@ var BufferController = function()
     /* Asynchronously build sum_signals while the user is not drawing */
     this.BufferAsync = function()
     {
-        //sum_signal = new Float32Array(NUM_SAMPLES);
         for (var i = 0; i < sum_signal.length; i++)
         {
             sum_signal[i] = 0.0;
@@ -213,9 +221,9 @@ var BufferController = function()
                             {
                                 sum_signal[$BA_sample_index] = MAX_AMPLITUDE;
                             }
-                            else if(sum_signal[$BA_sample_index] < -MAX_AMPLITUDE)
+                            else if(sum_signal[$BA_sample_index] < -1*MAX_AMPLITUDE)
                             {
-                                sum_signal[$BA_sample_index] = -MAX_AMPLITUDE;
+                                sum_signal[$BA_sample_index] = -1*MAX_AMPLITUDE;
                             }
                         }
                     }
@@ -224,7 +232,7 @@ var BufferController = function()
         }
 
         audio_buffer_source.buffer.getChannelData(0).set(sum_signal);
-        audio_buffer_source.buffer.getChannelData(1).set(new Float32Array(sum_signal));
+        audio_buffer_source.buffer.getChannelData(1).set(sum_signal);
         audio_buffer_source.noteOn(0);
 
         connectNodes();
@@ -393,11 +401,11 @@ function toggleDecay()
 {
     if ($('#decay_enabled').is(":checked"))
     {
-        decay_interval = setInterval(function() { fadeSound($("#robo_decay").val()); js_buffer.BufferAsync(); }, 250);
+        decay_interval = setInterval(function() { fadeSound($("#robo_decay").val()); js_buffer.BufferAsync(); }, 1000);
     }
     else
     {
-        clearInterval(decayInterval);
+        clearInterval(decay_interval);
         decay_interval = null;
     }
 }

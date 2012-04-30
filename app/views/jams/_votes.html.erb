@@ -1,17 +1,17 @@
 <span id="vote-up-<%=jam.id%>"><a class="voter up-vote-count" href="" onclick="
-	var $radios = $('#radio-up-<%=jam.id%>').attr('checked', true);
+	var $radios = $('#radio-up-<%=jam.id%>').attr('checked', true); $('#submit-<%=jam.id%>').submit();
 	return false;"><%=jam.up_votes%> &uarr;</a></span>
 <span id="vote-down-<%=jam.id%>">	<a class="voter down-vote-count" href="" onclick="
-		var $radios = $('#radio-down-<%=jam.id%>').attr('checked', true);
+		var $radios = $('#radio-down-<%=jam.id%>').attr('checked', true); $('#submit-<%=jam.id%>').submit();
 		return false;"><%=jam.down_votes%> &darr;</a></span>
 
 
-<%= form_for jam, :remote => true do |f| %>
+<%= form_for jam, :html =>{:class => "hidden" }, :remote => true do |f|%>
 <div class="field editable">
 	<input type="radio" id="radio-up-<%=jam.id%>" name="vote" value="up">up</input>
 	<input type="radio" id="radio-down-<%=jam.id%>" name="vote" value="down">down</input>
 </div>
   <div class="actions">
-    <%= f.submit'Save Jam'%>
+    <%= f.submit'Save Jam', :id => "submit-#{jam.id}" %>
   </div>
 <% end %>

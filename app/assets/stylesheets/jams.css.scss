@@ -46,6 +46,11 @@ span.bold
   -khtml-user-select: text;
 }
 
+.editable {
+	-moz-user-select: text;
+	-khtml-user-select: text;
+}
+
 div.center-col
 {
   margin: auto;
@@ -144,7 +149,20 @@ h1
 	text-transform : uppercase;
 	font-weight: bold;
 }
+.down-vote-count, .up-vote-count {
+	letter-spacing: -2px;
+	margin: 5px;
+}
 
+.up-vote-count 
+{
+	color: green;
+}
+
+.down-vote-count 
+{ 
+	color: red;
+}
 header
 {
   margin-top: 0px;
@@ -236,5 +254,16 @@ nav {
 {
 	height: 75px;
 	width: 200px;
+	border: dotted 1px green;
+}
+
+.jam-title {
+	font-family: arial, helvetica, sans-serif;
 
 }
+
+.voter {
+	text-decoration: none;
+}
+
+.voter:visited {}

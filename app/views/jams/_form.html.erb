@@ -1,4 +1,4 @@
-<%= form_for(@jam) do |f| %>
+<%= form_for @jam, :remote => true do |f| %>
   <% if @jam.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -23,6 +23,7 @@
     <%= f.text_field :song %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Save Jam' %>
+  <div class="submittable"></div>
   </div>
 <% end %>

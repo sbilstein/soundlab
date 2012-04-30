@@ -1,20 +1,24 @@
 <h1>the jams</h1>
-
 <table>
 
 <% @jams.each do |jam| %>
   <tr>
-    <td><%= jam.title %></td>
+	<td>
+		<h3 class="jam-title"><%= link_to jam.title, jam %></h3>
+		<%= render :partial => 'votes', :locals => {:jam => jam }%>
+	</td>
 	<td>
 		<img class="list-staff" src="<%= jam.song %>"/>
 	</td>
-    <td><%= link_to 'Show', jam %>  &uarr; &darr;</td>
+
 <!--    <td><%= link_to 'Edit', edit_jam_path(jam) %></td>
     <td><%= link_to 'Destroy', jam, confirm: 'Are you sure?', method: :delete %></td>
  -->
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate %>
 
 <br />
 

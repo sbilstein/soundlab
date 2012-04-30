@@ -5,7 +5,7 @@ class JamsController < ApplicationController
     
     #@jams = Jam.find(:all)
     #pagination 
-    @jams = Jam.paginate(page: params[:page])
+    @jams = Jam.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @jams }

@@ -24,7 +24,7 @@ $(document).ready(function()
     $("#controls").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
 
     // Initialization events
-    initSignals();
+    initScale();
     initAudio();
     resetStaff();
 
@@ -136,107 +136,8 @@ function initAudio()
     }
 }
 
-
-/**
- * Scale stuff
- */
-
-var keys  = [ 220, 233, 247, 262, 277, 293, 311, 330, 349, 370, 392, 415, 440, 466, 494, 523, 554, 587, 622, 659,
-    698, 740, 784, 830, 880, 932, 987, 1046];
-
-var key_start_index = 12;
-var key_end_index = keys.length;
-
-/*                       A      A#     B      C      C#      D     D#     E      F      F#     G      G#         */
-var no_scale =          [false, false, false, false, false, false, false, false, false, false, false, false];
-
-var chromatic_scale =   [true,  true,  false, true,  false, false, true,  false, false, true,  false, false];
-
-var major_scale =       [true,  false, true,  true,  false, true,  false, true,  true,  false, true,  false];
-
-var octave_scale =      [true, false, false, false, false, false, false, false, false, false, false, false];
-
-//var scale =             [true,  false, false, true,  false, false, true,  false, false, true,  false, false];
-
-/*                       A      A#     B      C      C#      D     D#     E      F      F#     G      G#         */
-
-var pdelt;
-
-/**
- * Calculates the values for all the waves.
- */
-function initSignals()
+function initScale()
 {
-    var scale_index = key_start_index;
-    var scale = octave_scale;
-
-    var scale_keys = keys.slice(key_start_index, key_end_index);
-
-	var granularity = STAFF_HEIGHT / scale_keys.length
-
-
-    // 400*2^((p-64)/12) = f
-    // 108 hi key on 88key piano, 21 low key
-    // pdelt = (108.0-21.0) / STAFFHEIGHT;
-    pdelt = (108.0 - 40.0) / STAFF_HEIGHT;
-    //pdelt = (96.0 - 40.0) / STAFF_HEIGHT;
-
-    var freq;
-    var i_mod;
-	
-    for (var i = 0; i < STAFF_HEIGHT; i++)
-    {
-		i_mod = Math.round(i / granularity);
-
-        if (scale[scale_index])
-        {
-		    freq = scale_keys[i_mod];
-        }
-        else
-        {
-            freq = 0;
-        }
-		
-		// i_mod = Math.round( i / signal_granularity ) * signal_granularity;
-		// freq = 440.0 * Math.pow(2, (((i_mod * pdelt) + 40) - 69.0) / 12.0);
-            
-         // if(scale[scale_index])
-        /*
-     	if (true)
-		{
-            freq = 440.0 * Math.pow(2, (i - 49) / 12);
-        }
-        else
-        {
-           freq = 0;
-        }
-         */
-
-        signals_waves[DSP.SINE][i] = makeSignal(freq, DSP.SINE);
-        signals_waves[DSP.SAW][i] = makeSignal(freq, DSP.SAW);
-        signals_waves[DSP.SQUARE][i] = makeSignal(freq, DSP.SQUARE);
-        signals_waves[DSP.TRIANGLE][i] = makeSignal(freq, DSP.TRIANGLE);
-
-        scale_index = (scale_index + 1) % 12;
-    }
-
+    signals_waves = initSignals("musical", chromatic_scale);
     signals = signals_waves[DSP.SINE];
-}
-
-/**
- * Generates array which corresponds to values of wave.
- * @param frequency The frequency
- * @returns Array representing the signal. Ranges -1.0 to 1.0
- */
-function makeSignal(frequency, wave)
-{
-    if (!wave)
-    {
-        wave = dsp_wave;
-    }
-
-    var osc = new Oscillator(wave, frequency, 1, NUM_SAMPLES, SAMPLE_RATE);
-
-    osc.generate();
-    return osc.signal;
 }

@@ -5,9 +5,12 @@ const SAMPLE_RATE = 44100;
 const NUM_SAMPLES = 44100;
 //const SAMPLE_RATE = 22050;
 //const NUM_SAMPLES = 22050;
+
 const NUM_CHANNELS = 2;
 
 const DEFAULT_BITRATE = 2048;
+
+const MAX_AMPLITUDE = 0.9;
 
 // Canvas pixel array accessor constants
 const RED_INDEX_OFFSET = 0;
@@ -16,8 +19,10 @@ const BLUE_INDEX_OFFSET = 2;
 const ALPHA_INDEX_OFFSET = 3;
 
 // Drawing constants
-const STAFF_WIDTH = $("canvas.staff").width();
-const STAFF_HEIGHT = $("canvas.staff").height();
+//const STAFF_WIDTH = $("canvas.staff").width();
+//const STAFF_HEIGHT = $("canvas.staff").height();
+const STAFF_WIDTH = 1000;
+const STAFF_HEIGHT = 375;
 
 const CANVAS_WIDTH_OFFSET = 25;
 const CANVAS_HEIGHT_OFFSET = 50;

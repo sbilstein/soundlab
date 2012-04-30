@@ -51,11 +51,12 @@ var dsp_wave = DSP.SINE; // initial default wave.
 var samples_per_pixel = Math.floor(NUM_SAMPLES / STAFF_WIDTH);
 
 var signals;
-var signals_waves = {};
+
 var signal_granularity = 25;
 
 var sum_signal = new Float32Array(NUM_SAMPLES);
 
+var signals_waves = {};
 signals_waves[DSP.SINE] = new Array(STAFF_HEIGHT);
 signals_waves[DSP.SAW] = new Array(STAFF_HEIGHT);
 signals_waves[DSP.SQUARE] = new Array(STAFF_HEIGHT);
@@ -64,7 +65,7 @@ signals_waves[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
 /**
  * Layer configuration
  */
-var layer_enabled_config = {};
+var layer_enabled_config = new Array();
 layer_enabled_config[COLOR_RED] = true;
 layer_enabled_config[COLOR_GREEN] = true;
 layer_enabled_config[COLOR_BLUE] = true;

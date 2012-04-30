@@ -146,8 +146,8 @@ function startPen(e)
 
     window.getSelection().removeAllRanges()
 
-    pen_directive["x1"] = e.pageX - CANVAS_WIDTH_OFFSET;
-    pen_directive["y1"] = e.pageY - CANVAS_HEIGHT_OFFSET;
+    pen_directive["x1"] = e.pageX - CANVAS_WIDTH_OFFSET + 1;
+    pen_directive["y1"] = e.pageY - CANVAS_HEIGHT_OFFSET + 1;
 
     $("canvas.bar").mousemove(movePen);
     $("canvas.bar").mouseup(endPen);
@@ -164,8 +164,8 @@ function movePen(e)
 {
     window.getSelection().removeAllRanges()
 
-    pen_directive["x2"] = e.pageX - CANVAS_WIDTH_OFFSET;
-    pen_directive["y2"] = e.pageY - CANVAS_HEIGHT_OFFSET;
+    pen_directive["x2"] = e.pageX - CANVAS_WIDTH_OFFSET + 1;
+    pen_directive["y2"] = e.pageY - CANVAS_HEIGHT_OFFSET + 1;
 
     if (tool_style == PEN)
     {
@@ -183,8 +183,8 @@ function movePen(e)
     }
 
 
-    pen_directive["x1"] = e.pageX - CANVAS_WIDTH_OFFSET;
-    pen_directive["y1"] = e.pageY - CANVAS_HEIGHT_OFFSET;
+    pen_directive["x1"] = e.pageX - CANVAS_WIDTH_OFFSET + 1;
+    pen_directive["y1"] = e.pageY - CANVAS_HEIGHT_OFFSET + 1;
 }
 
 /**
@@ -194,8 +194,8 @@ function movePen(e)
  */
 function endPen(e)
 {
-    pen_directive["x2"] = e.pageX - CANVAS_WIDTH_OFFSET;
-    pen_directive["y2"] = e.pageY - CANVAS_HEIGHT_OFFSET;
+    pen_directive["x2"] = e.pageX - CANVAS_WIDTH_OFFSET + 1;
+    pen_directive["y2"] = e.pageY - CANVAS_HEIGHT_OFFSET + 1;
     $("canvas.staff").drawLine(pen_directive);
 
     //unbind drawing related events.

@@ -69,6 +69,7 @@ class JamsController < ApplicationController
     respond_to do |format|
       if @jam.update_attributes(params[:jam])
         format.html { redirect_to @jam, notice: params }
+        format.js
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

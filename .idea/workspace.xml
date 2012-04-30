@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
-    </list>
+    <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="" />
     <ignored path="soundlab.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,7 +52,7 @@
       <file leaf-file-name="sound.core.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="222" column="154" selection-start="10185" selection-end="10185" vertical-scroll-proportion="0.3888889">
+            <state line="200" column="122" selection-start="9092" selection-end="9092" vertical-scroll-proportion="-0.4883041">
               <folding />
             </state>
           </provider>
@@ -850,7 +848,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="222" column="154" selection-start="10185" selection-end="10185" vertical-scroll-proportion="0.3888889">
+        <state line="200" column="122" selection-start="9092" selection-end="9092" vertical-scroll-proportion="-0.4883041">
           <folding />
         </state>
       </provider>

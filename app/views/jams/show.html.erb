@@ -6,6 +6,7 @@
     <div class="button_grouping">
         <h1><%= @jam.title %></h1>
 		<p id="notice"><%= notice %></p>
+		<%= render :partial => 'votes', :locals => {:jam => @jam }%>
 		<%= link_to 'See all Jams', jams_path %> -
     </div>
 

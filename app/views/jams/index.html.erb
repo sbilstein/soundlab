@@ -1,14 +1,11 @@
 <h1>the jams</h1>
-<%= will_paginate %>
-
 <table>
 
 <% @jams.each do |jam| %>
   <tr>
 	<td>
 		<h3 class="jam-title"><%= link_to jam.title, jam %></h3>
-		<span class="up-vote-count"><%= jam.up_votes %> &uarr;</span>
-		<span class="down-vote-count"><%= jam.down_votes %> &darr;</span>		
+		<%= render :partial => 'votes', :locals => {:jam => jam }%>
 	</td>
 	<td>
 		<img class="list-staff" src="<%= jam.song %>"/>

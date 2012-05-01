@@ -1,0 +1,17 @@
+<span id="vote-up-<%=jam.id%>" class="up-vote-count"><%=jam.up_votes%><a class="voter" href="" onclick="
+	var $radios = $('#radio-up-<%=jam.id%>').attr('checked', true); $('#submit-<%=jam.id%>').submit();
+	return false;"><%= image_tag "images/uparrow.png" %></a></span>
+<span id="vote-down-<%=jam.id%>" class="down-vote-count"><%=jam.down_votes%> <a class="voter " href="" onclick="
+		var $radios = $('#radio-down-<%=jam.id%>').attr('checked', true); $('#submit-<%=jam.id%>').submit();
+		return false;"> <%= image_tag "images/downarrow.png" %></a></span>
+
+
+<%= form_for jam, :html =>{:class => "hidden" }, :remote => true do |f|%>
+<div class="field editable">
+	<input type="radio" id="radio-up-<%=jam.id%>" name="vote" value="up">up</input>
+	<input type="radio" id="radio-down-<%=jam.id%>" name="vote" value="down">down</input>
+</div>
+  <div class="actions">
+    <%= f.submit'Save Jam', :id => "submit-#{jam.id}" %>
+  </div>
+<% end %>

@@ -1,6 +1,5 @@
 /**
  * Toggles between pen and eraser
- * @param el The button calling for the switch
  */
 function switchToolStyle()
 {

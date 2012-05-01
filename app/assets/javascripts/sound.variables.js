@@ -16,6 +16,7 @@ var audio_buffer_source = null;
 
 var gain_node = null;
 var dynamic_compressor_node = null;
+var convolution_node = null;
 
 var js_buffer; // Object that decides whether to buffer on the fly or use asynchronously populated buffer
 var js_node;

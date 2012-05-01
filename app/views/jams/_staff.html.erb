@@ -16,6 +16,7 @@
 
 <div class="tr">
 
+<div class="td top_align">
 <div class="button_grouping">
   <button type="button" onClick="playSound(this)">play</button>
 
@@ -26,7 +27,7 @@
 
       <div class="td">
         <div class="range_wrapper">
-          <input type="range" min="0.0" max="1.0" step="0.01" value ="0.1" id="slider" onchange="changeVolume(event)"/>
+          <input type="range" min="0.0" max="1.0" step="0.01" value="0.1" id="slider" onchange="changeVolume(event)"/>
         </div>
       </div>
 
@@ -40,13 +41,13 @@
 
       <div class="td">
         <div class="range_wrapper">
-          <input type="range" min="0" max="255" step="1" value="60" id="robo_decay" />
+          <input type="range" min="0" max="255" step="1" value="60" id="robo_decay"/>
         </div>
 
       </div>
 
       <div class="td">
-        <label><input type="checkbox" id="decay_enabled" onchange="toggleDecay();" /> Enabled</label>
+        <label><input type="checkbox" id="decay_enabled" onchange="toggleDecay();"/> Enabled</label>
       </div>
     </div>
 
@@ -55,38 +56,40 @@
 
 
 <div class="button_grouping">
-  <label><input type="checkbox" id="robo" onclick="toggleRobo()" /> Robo Mode</label>
+  <label><input type="checkbox" id="robo" onclick="toggleRobo()"/> Robo Mode</label>
 
   <div class="subgroup">
     <fieldset>
       <!--<legend> Robo mode mode</legend>-->
-      <label> <input type=radio name=robo_mode value="chaos">  Chaos </label>
+      <label> <input type=radio name=robo_mode value="chaos"> Chaos </label>
       <label> <input type=radio name=robo_mode value="random" checked=checked> Random </label>
       <!--<label> <input type=radio name=robo_mode value="curve"> Curve </label>-->
     </fieldset>
   </div>
 
   <hr/>
-    <!-- Glitch Mode -->
-    <label><input type="checkbox" id="glitch_mode_enabled" onchange="toggleGlitchMode();" /> Glitch Mode</label>
+  <!-- Glitch Mode -->
+  <label><input type="checkbox" id="glitch_mode_enabled" onchange="toggleGlitchMode();"/> Glitch Mode</label>
 
-    <div class="subgroup">
-      Glitch rate:
+  <div class="subgroup">
+    Glitch rate:
 
-      <select id="js_node_buffer_size">
-        <option>256</option>
-        <option>512</option>
-        <option>1024</option>
-        <option selected=selected>2048</option>
-        <option>4096</option>
-        <option>8192</option>
-        <option>16384</option>
-      </select>
+    <select id="js_node_buffer_size">
+      <option>256</option>
+      <option>512</option>
+      <option>1024</option>
+      <option selected=selected>2048</option>
+      <option>4096</option>
+      <option>8192</option>
+      <option>16384</option>
+    </select>
   </div>
 </div>
 
+</div>
 
-<div class="td">
+
+<div id="tool_controls" class="td top_align">
 
   <div class="button_grouping">
 
@@ -98,19 +101,19 @@
       </div>
       <div class="tr">
         <div class="td">
-          <label><input type="radio" name="tool_style" value="pen"  checked="checked"/> Pen</label>
+          <label><input type="radio" name="tool_style" value="pen" checked="checked"/> Pen</label>
         </div>
         <div class="td">
           Size:
           <div class="range_wrapper">
-            <input type="range" min="1" max="15" step="1" value ="2" id="pen_stroke_width" onchange="changePenStrokeWidth($(this).val());"/>
+            <input type="range" min="1" max="15" step="1" value="2" id="pen_stroke_width" onchange="changePenStrokeWidth($(this).val());"/>
           </div>
         </div>
       </div>
 
       <div class="tr">
         <div class="td">
-          <label><input type="radio" name="tool_style" value="eraser" /> Eraser</label>
+          <label><input type="radio" name="tool_style" value="eraser"/> Eraser</label>
         </div>
         <div class="td">
           Erase all layers:
@@ -144,6 +147,7 @@
         <div class="td">
           <label>
             <input type="radio" name="layer_select" value="COLOR_RED" checked="checked">
+
             <div class="layer_control_color_label">
               Red
             </div>
@@ -156,9 +160,15 @@
         <div class="td">
           <select id="dspwave_red" class="wave_select">
             <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
-            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
-            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
-            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
+            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;
+              S&nbsp;&nbsp; A&nbsp;&nbsp; W
+            </option>
+            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp;
+              A&nbsp;&nbsp; R&nbsp;&nbsp; E
+            </option>
+            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp;
+              L&nbsp; E
+            </option>
           </select>
         </div>
 
@@ -174,6 +184,7 @@
         <div class="td">
           <label>
             <input type="radio" name="layer_select" value="COLOR_GREEN">
+
             <div class="layer_control_color_label">
               Green
             </div>
@@ -187,9 +198,15 @@
 
           <select id="dspwave_green" class="wave_select">
             <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
-            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
-            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
-            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
+            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;
+              S&nbsp;&nbsp; A&nbsp;&nbsp; W
+            </option>
+            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp;
+              A&nbsp;&nbsp; R&nbsp;&nbsp; E
+            </option>
+            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp;
+              L&nbsp; E
+            </option>
           </select>
 
         </div>
@@ -205,6 +222,7 @@
         <div id="blue_layer_control_row" class="td">
           <label>
             <input type="radio" name="layer_select" value="COLOR_BLUE">
+
             <div class="layer_control_color_label">
               Blue
             </div>
@@ -218,9 +236,15 @@
         <div class="td">
           <select id="dspwave_blue" class="wave_select">
             <option value="DSP.SINE">&#8767;&#8767;&nbsp;&nbsp; S&nbsp;&nbsp; I&nbsp;&nbsp; N&nbsp;&nbsp; E</option>
-            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;  S&nbsp;&nbsp; A&nbsp;&nbsp; W </option>
-            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp; A&nbsp;&nbsp; R&nbsp;&nbsp; E  </option>
-            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp; L&nbsp; E</option>
+            <option value="DSP.SAW">∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp; ∕&nbsp;&nbsp; ⌉&nbsp;&nbsp;&nbsp;
+              S&nbsp;&nbsp; A&nbsp;&nbsp; W
+            </option>
+            <option value="DSP.SQUARE">&#8851;&#8852;&#8851;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp; Q&nbsp;&nbsp; U&nbsp;&nbsp;
+              A&nbsp;&nbsp; R&nbsp;&nbsp; E
+            </option>
+            <option value="DSP.TRIANGLE">&#8896;&nbsp; &#8896;&nbsp;&nbsp; T&nbsp; R&nbsp; I&nbsp; A&nbsp; N&nbsp; G&nbsp;
+              L&nbsp; E
+            </option>
           </select>
         </div>
 
@@ -235,44 +259,270 @@
 
   </div>
 </div>
-<div id="scale_controls" class="td">
+<div id="scale_controls" class="td  top_align">
   <div class="button_grouping">
-    <button id="make_scale" onclick="makeScale();">Scale</button> <div id="scale_loading_notifier"></div>
 
-    <div class="subgroup">
+
+  <div id="previous_scales" class="subgroup"></div>
+
+  <div class="subgroup">
+
+    <label>
+        <input type="radio" name="scale_generate_method" checked="checked" value="musical" /> Musical
+    </label>
+
+
+
+    <div id="scale_keys" class="subgroup">
       <div class="table">
         <!-- black keys -->
         <div class="tr">
           <div class="td"></div>
-          <div class="td">C#/D</div>
+
+          <label>
+            <div class="td black_key">
+              C#
+              <input type="checkbox" class="key_toggle" key="Cs"/>
+            </div>
+          </label>
+
+          <div class="td"></div>
+
+          <label>
+            <div class="td black_key">
+              E&#9837;
+              <input type="checkbox" class="key_toggle" key="Ef"/>
+            </div>
+          </label>
+
+          <div class="td"></div>
+
           <div class="td"></div>
           <div class="td"></div>
+
+          <label>
+            <div class="td black_key">
+              F#
+              <input type="checkbox" class="key_toggle" key="Fs"/>
+            </div>
+          </label>
+
           <div class="td"></div>
+
+          <label>
+            <div class="td black_key">
+              A&#9837;
+              <input type="checkbox" class="key_toggle" key="Af"/>
+            </div>
+          </label>
+
           <div class="td"></div>
-          <div class="td"></div>
-          <div class="td"></div>
-          <div class="td"></div>
-          <div class="td"></div>
-          <div class="td"></div>
+
+          <label>
+            <div class="td black_key">
+              B&#9837;
+              <input type="checkbox" class="key_toggle" key="Bf"/>
+            </div>
+          </label>
         </div>
 
         <!-- white keys -->
         <div class="tr">
-          <div class="td">C</div>
+          <label>
+            <div class="td white_key">
+              C
+              <input type="checkbox" class="key_toggle" key="C"/>
+            </div>
+          </label>
+
           <div class="td"></div>
-          <div class="td">D</div>
+
+          <label>
+            <div class="td white_key">
+              D
+              <input type="checkbox" class="key_toggle" key="D"/>
+            </div>
+          </label>
+
           <div class="td"></div>
-          <div class="td">E</div>
-          <div class="td">F</div>
+
+          <label>
+            <div class="td white_key">
+              E
+              <input type="checkbox" class="key_toggle" key="E"/>
+            </div>
+          </label>
+
           <div class="td"></div>
-          <div class="td">G</div>
+
+          <label>
+            <div class="td white_key">
+              F
+              <input type="checkbox" class="key_toggle" key="F"/>
+            </div>
+          </label>
+
           <div class="td"></div>
-          <div class="td">A</div>
-          <div class="td">B</div>
+
+          <label>
+            <div class="td white_key">
+              G
+              <input type="checkbox" class="key_toggle" key="G"/>
+            </div>
+          </label>
+
+          <div class="td"></div>
+
+          <label>
+            <div class="td white_key">
+              A
+              <input type="checkbox" class="key_toggle" key="A"/>
+            </div>
+          </label>
+
+          <div class="td"></div>
+
+          <label>
+            <div class="td white_key">
+              B
+              <input type="checkbox" class="key_toggle" key="B"/>
+            </div>
+          </label>
         </div>
       </div>
     </div>
+
+    <div class="subgroup" style="float:right">
+      Octaves
+
+      <div class="table">
+
+        <div class="tr">
+          <div class="td">
+            Start:
+          </div>
+          <div class="td">
+            <input type="range" min="1" max="86" step="1" value="0" id="key_bottom" onchange="key_start_index = parseInt($(this).val()); $('#key_top').val(Math.max(parseInt($('#key_top').val()), key_start_index + 1));"/>
+          </div>
+        </div>
+
+        <div class="tr">
+          <div class="td">
+            End:
+          </div>
+          <div class="td">
+            <input type="range" min="0" max="87" step="1" value="87" id="key_top" onchange="key_end_index = parseInt($(this).val()); $('#key_bottom').val(Math.min($('#key_bottom').val(), $(this).val() - 1));"/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="premade_scale_selector" class="table subgroup">
+      <div class="th">
+        <div class="td">
+          Scale
+          </div>
+        <div class="td">
+          Key
+        </div>
+        </div>
+      <div class="tr">
+        <div class="td">
+          <label>
+            <input type="radio" name="scale_selection" value="scale_major"/> Major
+          </label>
+        </div>
+
+        <div id="scale_key_control_definitive" class="td">
+            <select>
+              <option>C</option>
+              <option>C#</option>
+              <option>D</option>
+              <option>E&#9837;</option>
+              <option>E</option>
+              <option>F</option>
+              <option>F#</option>
+              <option>G</option>
+              <option>A&#9837;</option>
+              <option>A</option>
+              <option>B&#9837;</option>
+              <option>B</option>
+            </select>
+        </div>
+
+      </div>
+
+      <div class="tr">
+        <div class="td">
+          <label>
+            <input type="radio" name="scale_selection" value="scale_minor"/> Minor
+          </label>
+        </div>
+
+        <div class="td scale_key_control"></div>
+
+      </div>
+
+      <div class="tr">
+        <div class="td">
+          <label>
+            <input type="radio" name="scale_selection" value="scale_chromatic"/> Chromatic
+          </label>
+        </div>
+
+        <div class="td scale_key_control"></div>
+
+      </div>
+
+      <div class="tr">
+        <div class="td">
+          <label>
+            <input type="radio" name="scale_selection" value="scale_octave"/> Octave
+          </label>
+        </div>
+
+        <div class="td scale_key_control"></div>
+
+      </div>
+
+      <div class="tr">
+        <div class="td">
+          <label>
+            <input type="radio" name="scale_selection" value="scale_pentatonic"/> Pentatonic
+          </label>
+        </div>
+
+        <div class="td scale_key_control"></div>
+      </div>
+
+      <div class="tr">
+        <div class="td">
+          <label>
+            <input type="radio" name="scale_selection" value="scale_chinese"/> Chinese
+          </label>
+        </div>
+
+
+      </div>
+    </div>
+    </div>
+
+    <div class="subgroup">
+
+      <label>
+        <input type="radio" name="scale_generate_method" value="alien" /> Alien
+      </label>
+
+    </div>
+
+
+  <div>
+    <button id="make_scale" onclick="makeScale();">Update Scale</button>
+    <div id="scale_loading_notifier"></div>
   </div>
+
+</div>
 </div>
 
 </div>

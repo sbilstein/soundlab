@@ -7,27 +7,3 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Jam.delete_all
-
-Jam.create(
-      {
-       title: 'test1',
-       up_votes: 7,
-       down_votes: 3, 
-       song:0  
-      })
-    
-Jam.create(
-      {
-       title: 'test2',
-       up_votes: 3, 
-       down_votes: 9,  
-              song:0
-       })
-Jam.create(
-      {
-         title: 'test3',
-         up_votes: 5,
-         down_votes: 5,
-                song:0
-       })
-  

@@ -41,7 +41,8 @@ class JamsController < ApplicationController
   # POST /jams.json
   def create
     @jam = Jam.new(params[:jam])
-
+    @jam.up_votes = 0
+    @jam.down_votes = 0
     respond_to do |format|
       if @jam.save
         format.html { redirect_to @jam, notice: 'Jam was successfully created.' }

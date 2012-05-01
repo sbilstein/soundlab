@@ -146,7 +146,7 @@ var BufferController = function()
     var $BA_signal_wave;
     var $BA_pixel_index;
 
-    //var $BA_fire_signal;
+
     var $BA_fire_red_signal;
     var $BA_fire_green_signal;
     var $BA_fire_blue_signal;
@@ -235,17 +235,6 @@ var BufferController = function()
                                 sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
                                     signals_waves[layer_signal_config[COLOR_BLUE]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
                             }
-
-                            /*
-                            if (sum_signal[$BA_sample_index] > MAX_AMPLITUDE)
-                            {
-                                sum_signal[$BA_sample_index] = MAX_AMPLITUDE;
-                            }
-                            else if (sum_signal[$BA_sample_index] < -MAX_AMPLITUDE)
-                            {
-                                sum_signal[$BA_sample_index] = -MAX_AMPLITUDE;
-                            }
-                            */
                         }
                     }
                 }

@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/dsp.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/dsp.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
     </list>
     <ignored path="soundlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,13 +25,13 @@
     <favorites_list name="soundlab" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.38320708">
+    <splitter split-orientation="horizontal" split-proportion="0.29987374">
       <split-first>
         <leaf>
           <file leaf-file-name="sound.variables.constants.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="29" column="78" selection-start="678" selection-end="678" vertical-scroll-proportion="0.6415929">
+                <state line="25" column="33" selection-start="574" selection-end="574" vertical-scroll-proportion="0.577812">
                   <folding />
                 </state>
               </provider>
@@ -64,10 +58,10 @@
           <file leaf-file-name="sound.core.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="298" column="48" selection-start="12561" selection-end="12561" vertical-scroll-proportion="0.0">
+                <state line="287" column="48" selection-start="12033" selection-end="12033" vertical-scroll-proportion="0.0">
                   <folding>
-                    <marker date="1335840568000" expanded="true" signature="11913:11971" placeholder="{...}" />
-                    <marker date="1335840568000" expanded="true" signature="12469:12578" placeholder="//..." />
+                    <marker date="1335842207000" expanded="true" signature="11385:11443" placeholder="{...}" />
+                    <marker date="1335842207000" expanded="true" signature="11941:12050" placeholder="//..." />
                   </folding>
                 </state>
               </provider>
@@ -125,7 +119,7 @@
           <file leaf-file-name="sound.core.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="216" column="75" selection-start="9708" selection-end="9708" vertical-scroll-proportion="0.8763889">
+                <state line="131" column="49" selection-start="6217" selection-end="6217" vertical-scroll-proportion="0.25138888">
                   <folding />
                 </state>
               </provider>
@@ -170,9 +164,9 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
       </list>
     </option>
   </component>
@@ -676,13 +670,18 @@
       <created>1335754680163</created>
       <updated>1335754680163</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Major sound fix, was doubling signals (+= to self). Main problem now: in musical mode there is constant clipping because the same signal is being added to itself many times if pixel width &gt; 1.">
+      <created>1335840954599</created>
+      <updated>1335840954599</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="15" y="0" width="1905" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.4973369" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36631578" sideWeight="0.4913456" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -697,7 +696,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.4973369" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -740,7 +738,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scales coming along, max amplitude = sound quality ++" />
+    <option name="LAST_COMMIT_MESSAGE" value="Major sound fix, was doubling signals (+= to self). Main problem now: in musical mode there is constant clipping because the same signal is being added to itself many times if pixel width &gt; 1." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -757,6 +755,7 @@
     <MESSAGE value="Delete footer" />
     <MESSAGE value="Lots of fixes and cleanup, laying groundwork for scales." />
     <MESSAGE value="Scales coming along, max amplitude = sound quality ++" />
+    <MESSAGE value="Major sound fix, was doubling signals (+= to self). Main problem now: in musical mode there is constant clipping because the same signal is being added to itself many times if pixel width &gt; 1." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -848,14 +847,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="78" selection-start="678" selection-end="678" vertical-scroll-proportion="0.6415929">
+        <state line="25" column="33" selection-start="574" selection-end="574" vertical-scroll-proportion="0.577812">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="216" column="75" selection-start="9708" selection-end="9708" vertical-scroll-proportion="0.8763889">
+        <state line="131" column="49" selection-start="6217" selection-end="6217" vertical-scroll-proportion="0.25138888">
           <folding />
         </state>
       </provider>

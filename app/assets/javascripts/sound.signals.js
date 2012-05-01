@@ -79,9 +79,14 @@ function makeScale()
 {
     pending_scale = [false, false, false, false, false, false, false, false, false, false, false, false];
 
+    var friendly_key = "";
+
     $('.key_toggle:checked').each(function(){
         pending_scale[KEY_INDEX_MAPPING[$(this).attr('key')]] = true;
+        friendly_key += $(this).attr('key');
     })
+
+    var generate_method = $('input[name="scale_generate_method"]:checked').val()
 
     // disable button and indicate we are loading
     $('#make_scale').attr('disabled','disabled');
@@ -89,6 +94,7 @@ function makeScale()
     $('#scale_loading_notifier').append(loading_notifier);
 
     var pending_scale_key = pending_scale.join(',');
+
     if (!cached_signals[pending_scale_key])
     {
         var worker = new Worker('/assets/sound.signals.worker.js');
@@ -101,10 +107,19 @@ function makeScale()
             $('#make_scale').removeAttr('disabled');
             $('#scale_loading_notifier').children().remove('img');
 
+            var previous_scale_button = $("<button>");
+            previous_scale_button.text(friendly_key).attr('scale_key', pending_scale.join(',')).click(function()
+            {
+                signals_waves = cached_signals[$(this).attr('scale_key')];
+                js_buffer.BufferAsync();
+            });
+
+            $("#previous_scales").append(previous_scale_button);
+
             js_buffer.BufferAsync();
         };
 
-        worker.postMessage({'generate_method':$('input[name="scale_generate_method"]:checked').val(), 'scale':pending_scale});
+        worker.postMessage({'generate_method':generate_method, 'scale':pending_scale});
     }
     else
     {
@@ -129,23 +144,35 @@ function initSignals(generation_method, scale)
     generated_signals[DSP.SQUARE] = new Array(STAFF_HEIGHT);
     generated_signals[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
 
-    var scale_index = key_start_index % 12;
-    //var scale = octave_scale;
+    var scale_index;
+    var scale_frequencies;
+    var signal_frequencies;
+    var granularity;
 
-    var scale_frequencies = keys.slice(key_start_index, key_end_index);
-    var signal_frequencies = [];
-
-    for (var i = 0; i < scale_frequencies.length; i++)
+    if (generation_method == "musical")
     {
-        if (scale[scale_index])
+        scale_index = key_start_index % 12;
+
+        scale_frequencies = keys.slice(key_start_index, key_end_index);
+        signal_frequencies = [];
+
+        for (var i = 0; i < scale_frequencies.length; i++)
         {
-            signal_frequencies.push(scale_frequencies[i]);
+            if (scale[scale_index])
+            {
+                signal_frequencies.push(scale_frequencies[i]);
+            }
+
+            scale_index = (scale_index + 1) % 12;
         }
 
-        scale_index = (scale_index + 1) % 12;
+        granularity = STAFF_HEIGHT / signal_frequencies.length;
     }
 
-    var granularity = STAFF_HEIGHT / signal_frequencies.length;
+    var base_overtone_power = -1 * (Math.floor(granularity/2) - !(Math.floor(granularity) % 2));
+
+    var gen_freq = freq * Math.pow(2, overtone_power);
+    //base_overtone_power *= 2;
 
     // 400*2^((p-64)/12) = f
     // 108 hi key on 88key piano, 21 low key
@@ -154,16 +181,33 @@ function initSignals(generation_method, scale)
     var pdelt = (108.0 - 40.0) / STAFF_HEIGHT;
 
     var freq = null;
-    var i_mod;
+    var base_freq;
+    var overtone_power = base_overtone_power;
+    var bucket_index;
+    var bucket_index_previous;
+
+    var overtone_amplitude = null;
 
     for (var i = 0; i < STAFF_HEIGHT; i++)
     {
-        var prev_freq = freq;
+        var freq_previous = freq;
 
         if (generation_method == "musical")
         {
-            i_mod = Math.floor(i / granularity);
-            freq = signal_frequencies[i_mod];
+            bucket_index = Math.floor(i / granularity);
+
+            if (bucket_index != bucket_index_previous)
+            {
+                overtone_power = base_overtone_power;
+            }
+
+            //freq = signal_frequencies[bucket_index];
+            base_freq = signal_frequencies[bucket_index];
+
+            freq = base_freq * Math.pow(2, overtone_power);
+
+            bucket_index_previous = bucket_index;
+            overtone_power += 1;
         }
         else if (generation_method == "alien")
         {
@@ -171,12 +215,12 @@ function initSignals(generation_method, scale)
             freq = 440.0 * Math.pow(2, (((i * pdelt) + 40) - 69.0) / 12.0);
         }
 
-        if (freq != prev_freq)
+        if (freq != freq_previous)
         {
-            generated_signals[DSP.SINE][i] = makeSignal(freq, DSP.SINE);
-            generated_signals[DSP.SAW][i] = makeSignal(freq, DSP.SAW);
-            generated_signals[DSP.SQUARE][i] = makeSignal(freq, DSP.SQUARE);
-            generated_signals[DSP.TRIANGLE][i] = makeSignal(freq, DSP.TRIANGLE);
+            generated_signals[DSP.SINE][i] = makeSignal(freq, DSP.SINE, overtone_amplitude);
+            generated_signals[DSP.SAW][i] = makeSignal(freq, DSP.SAW, overtone_amplitude);
+            generated_signals[DSP.SQUARE][i] = makeSignal(freq, DSP.SQUARE, overtone_amplitude);
+            generated_signals[DSP.TRIANGLE][i] = makeSignal(freq, DSP.TRIANGLE, overtone_amplitude);
         }
         else
         {
@@ -195,14 +239,19 @@ function initSignals(generation_method, scale)
  * @param frequency The frequency
  * @returns Array representing the signal. Ranges -1.0 to 1.0
  */
-function makeSignal(frequency, wave)
+function makeSignal(frequency, wave, amplitude)
 {
     if (!wave)
     {
         wave = dsp_wave;
     }
 
-    var osc = new Oscillator(wave, frequency, MAX_AMPLITUDE, NUM_SAMPLES, SAMPLE_RATE);
+    if (!amplitude)
+    {
+        amplitude = MAX_AMPLITUDE;
+    }
+
+    var osc = new Oscillator(wave, frequency, amplitude, NUM_SAMPLES, SAMPLE_RATE);
 
     osc.generate();
     return osc.signal;

@@ -220,19 +220,19 @@ var BufferController = function()
 
                             if ($BA_fire_red_signal)
                             {
-                                sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
+                                sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0) *
                                     signals_waves[layer_signal_config[COLOR_RED]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
                             }
 
                             if ($BA_fire_green_signal)
                             {
-                                sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
+                                sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0) *
                                     signals_waves[layer_signal_config[COLOR_GREEN]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
                             }
 
                             if ($BA_fire_blue_signal)
                             {
-                                sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
+                                sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0) *
                                     signals_waves[layer_signal_config[COLOR_BLUE]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
                             }
                         }

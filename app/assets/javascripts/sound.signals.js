@@ -202,7 +202,7 @@ function makeSignal(frequency, wave)
         wave = dsp_wave;
     }
 
-    var osc = new Oscillator(wave, frequency, 1, NUM_SAMPLES, SAMPLE_RATE);
+    var osc = new Oscillator(wave, frequency, MAX_AMPLITUDE, NUM_SAMPLES, SAMPLE_RATE);
 
     osc.generate();
     return osc.signal;

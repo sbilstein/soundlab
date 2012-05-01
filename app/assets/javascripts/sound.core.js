@@ -135,7 +135,6 @@ var BufferController = function()
     // $BA_* = BufferAsync closure variables, preallocated for perf.
 
     // constant-ish
-    //this.$BA_max_sample_index = (STAFF_WIDTH - BORDER_WIDTH * 2) * samples_per_pixel;
     var $BA_max_sample_index = NUM_SAMPLES - 1;
     var $BA_starting_x_pixel_index = BORDER_WIDTH;
     var $BA_ending_x_pixel_index = STAFF_WIDTH - BORDER_WIDTH;
@@ -146,7 +145,12 @@ var BufferController = function()
     var $BA_color_signal;
     var $BA_signal_wave;
     var $BA_pixel_index;
-    var $BA_fire_signal;
+
+    //var $BA_fire_signal;
+    var $BA_fire_red_signal;
+    var $BA_fire_green_signal;
+    var $BA_fire_blue_signal;
+
     var $BA_starting_sample_index;
     var $BA_ending_sample_index;
     var $BA_x_pixel_index;
@@ -175,36 +179,32 @@ var BufferController = function()
             {
                 $BA_pixel_index = $BA_y_pixel_index * 4;
 
-                if ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] > 0)
+                if ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] > 0.0)
                 {
-                    $BA_fire_signal = false;
-                    var $BA_fire_red_signal = false;
-                    var $BA_fire_green_signal = false;
-                    var $BA_fire_blue_signal = false;
+                    $BA_fire_red_signal = false;
+                    $BA_fire_green_signal = false;
+                    $BA_fire_blue_signal = false;
 
 
                     if (layer_enabled_config[COLOR_RED] && $BA_pix[$BA_pixel_index + RED_INDEX_OFFSET] > 0.0)
                     {
-                        $BA_fire_signal = true;
                         $BA_fire_red_signal = true;
                         $BA_color_signal = COLOR_RED;
                     }
                     else if(layer_enabled_config[COLOR_GREEN] && $BA_pix[$BA_pixel_index + GREEN_INDEX_OFFSET] > 0.0)
                     {
-                        $BA_fire_signal = true;
                         $BA_fire_green_signal = true;
                         $BA_color_signal = COLOR_GREEN;
                     }
                     else if(layer_enabled_config[COLOR_BLUE] && $BA_pix[$BA_pixel_index + BLUE_INDEX_OFFSET] > 0.0)
                     {
-                        $BA_fire_signal = true;
                         $BA_fire_blue_signal = true;
                         $BA_color_signal = COLOR_BLUE;
                     }
 
                     $BA_signal_wave = layer_signal_config[$BA_color_signal];
 
-                    if ($BA_fire_signal)
+                    if ($BA_fire_red_signal || $BA_fire_green_signal || $BA_fire_blue_signal)
                     {
                         $BA_starting_sample_index = $BA_x_pixel_index * samples_per_pixel;
                         $BA_ending_sample_index = Math.min($BA_max_sample_index, $BA_starting_sample_index + samples_per_pixel);
@@ -220,30 +220,32 @@ var BufferController = function()
 
                             if ($BA_fire_red_signal)
                             {
-                                sum_signal[$BA_sample_index] += sum_signal[$BA_sample_index] + ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
+                                sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
                                     signals_waves[layer_signal_config[COLOR_RED]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
                             }
 
                             if ($BA_fire_green_signal)
                             {
-                                sum_signal[$BA_sample_index] += sum_signal[$BA_sample_index] + ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
+                                sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
                                     signals_waves[layer_signal_config[COLOR_GREEN]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
                             }
 
                             if ($BA_fire_blue_signal)
                             {
-                                sum_signal[$BA_sample_index] += sum_signal[$BA_sample_index] + ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
+                                sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0)/3.0 *
                                     signals_waves[layer_signal_config[COLOR_BLUE]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
                             }
 
-                            if(sum_signal[$BA_sample_index] > MAX_AMPLITUDE)
+                            /*
+                            if (sum_signal[$BA_sample_index] > MAX_AMPLITUDE)
                             {
                                 sum_signal[$BA_sample_index] = MAX_AMPLITUDE;
                             }
-                            else if(sum_signal[$BA_sample_index] < -1*MAX_AMPLITUDE)
+                            else if (sum_signal[$BA_sample_index] < -MAX_AMPLITUDE)
                             {
-                                sum_signal[$BA_sample_index] = -1*MAX_AMPLITUDE;
+                                sum_signal[$BA_sample_index] = -MAX_AMPLITUDE;
                             }
+                            */
                         }
                     }
                 }
@@ -259,11 +261,13 @@ var BufferController = function()
         asyncBuffered = true;
     }
 
-
+    /*
+    // saved for debugging
     function expressionLog(expression)
     {
         console.log(expression, eval(expression));
     }
+    */
 
     return this;
 }
@@ -288,9 +292,18 @@ function connectNodes()
     else
     {
         audio_buffer_source.connect(gain_node);
+        //audio_buffer_source.connect(convolution_node);
     }
 
     gain_node.connect(dynamic_compressor_node);
+    //dynamic_compressor_node.connect(audio_context.destination);
+    //gain_node.connect(convolution_node);
+
+    //convolution_node.connect(dynamic_compressor_node);
+    //gain_node.connect(convolution_node);
+    //convolution_node.connect(dynamic_compressor_node);
+    //gain_node.connect(audio_context.destination);
+
     dynamic_compressor_node.connect(audio_context.destination);
 }
 
@@ -502,11 +515,7 @@ function clearRed()
     imgd.data = data;
     staff_canvas_context.putImageData(imgd, BORDER_WIDTH, BORDER_WIDTH);
 
-    if (audio_is_playing)
-    {
-        soundOn();
-        animateLine();
-    }
+    js_buffer.BufferAsync();
 }
 
 function clearGreen()
@@ -531,11 +540,7 @@ function clearGreen()
     imgd.data = data;
     staff_canvas_context.putImageData(imgd, BORDER_WIDTH, BORDER_WIDTH);
 
-    if (audio_is_playing)
-    {
-        soundOn();
-        animateLine();
-    }
+    js_buffer.BufferAsync();
 }
 
 function clearBlue()
@@ -560,11 +565,7 @@ function clearBlue()
     imgd.data = data;
     staff_canvas_context.putImageData(imgd, BORDER_WIDTH, BORDER_WIDTH);
 
-    if (audio_is_playing)
-    {
-        soundOn();
-        animateLine();
-    }
+    js_buffer.BufferAsync();
 }
 
 /**
@@ -600,3 +601,4 @@ function loadState()
     staff_canvas_context.putImageData(saved_states.pop(), 0, 0);
     js_buffer.BufferAsync();
 }
+

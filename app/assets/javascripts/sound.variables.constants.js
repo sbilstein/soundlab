@@ -10,7 +10,7 @@ const NUM_CHANNELS = 2;
 
 const DEFAULT_BITRATE = 2048;
 
-const MAX_AMPLITUDE = 0.85;
+const MAX_AMPLITUDE = 0.5;
 
 // Canvas pixel array accessor constants
 const RED_INDEX_OFFSET = 0;

@@ -135,6 +135,15 @@ function initAudio()
 
         dynamic_compressor_node = audio_context.createDynamicsCompressor();
 
+        convolution_node = audio_context.createConvolver();
+        convolution_node.buffer = audio_context.createBuffer(NUM_CHANNELS, NUM_SAMPLES, SAMPLE_RATE);
+
+        var delta_function = new Float32Array(NUM_SAMPLES);
+        delta_function[0] = 1.0;
+
+        convolution_node.buffer.getChannelData(0).set(delta_function);
+        convolution_node.buffer.getChannelData(1).set(delta_function);
+
         connectNodes();
     }
     else
@@ -146,6 +155,6 @@ function initAudio()
 
 function initScale()
 {
-    signals_waves = initSignals("musical", chromatic_scale);
+    signals_waves = initSignals("musical", major_scale);
     signals = signals_waves[DSP.SINE];
 }

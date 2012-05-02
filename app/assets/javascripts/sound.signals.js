@@ -148,7 +148,7 @@ function makeScale()
 
         if (worker == null)
         {
-            worker = new Worker('/assets/javascripts/sound.signals.worker.js');
+            worker = new Worker('/assets/sound.signals.worker.js');
 
             worker.onmessage = function (event) {
                 signals_waves = event.data;

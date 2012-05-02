@@ -1,10 +1,10 @@
 // try/catch since importScripts is only defined when called as worker.
 try
 {
-    importScripts('/assets/javascripts/dsp.js');
-    importScripts('/assets/javascripts/sound.variables.constants.js');
-    importScripts('/assets/javascripts/sound.variables.js');
-    importScripts('/assets/javascripts/sound.signals.js');
+    importScripts('/assets/dsp.js');
+    importScripts('/assets/sound.variables.constants.js');
+    importScripts('/assets/sound.variables.js');
+    importScripts('/assets/sound.signals.js');
 }
 catch(e){}
 

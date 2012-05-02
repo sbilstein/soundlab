@@ -1,7 +1,7 @@
 <% if @jam.errors.any? %>
 $('.submittable').html('Error creating jam');
 <% else %>
-$('#jam-title').html("<% @jam.title %>")
-$('.submittable').html('Jam submitted successfully!');
-
+$('#new_jam').html('');
+$('#jam-title').html("<%= @jam.title %>")
+$('#submittable').html('this');
 <% end %>

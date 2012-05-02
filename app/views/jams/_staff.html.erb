@@ -539,9 +539,14 @@
 </div>
 
 
-<div>
+<div id="update_scale_container">
   <button id="make_scale" onclick="makeScale();">Update Scale</button>
   <div id="scale_loading_notifier"></div>
+
+  <label title="Warning: Unchecking could cause app or browser instability on less capable machines!">
+        <input id="pause_on_scale_update" type="checkbox" checked="checked"> Pause on Update
+  </label>
+  <br/>
 </div>
 
 </div>
@@ -558,7 +563,7 @@
 <div id="side_panel" class="button_grouping hidden">
   <span class="bold">Scale Recall</span>
   <div id="previous_scales">
-    <button onclick="recallDefaultScale();" scale_key="default">Default</button>
+    <button onclick="recallDefaultScale();" scale_key="default">Default [Alien]</button>
   </div>
 
   <hr/>

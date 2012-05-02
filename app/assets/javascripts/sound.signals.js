@@ -1,5 +1,13 @@
-// Frequencies of piano keys from 1 (A0 Double Pedal A)  through 88 (C8 Eighth octave)
-var keys = [27.5, 29.1352, 30.8677, 32.7032, 34.6478, 36.7081, 38.8909, 41.2034, 43.6535, 46.2493, 48.9994, 51.9131,
+/**
+ * Global signals constants (should probably put these in closure)
+ */
+
+/**
+ *Frequencies of piano keys from 1 (A0 Double Pedal A)  through 88 (C8 Eighth octave).
+ * Delete this and die a slow painful death.
+ * Knowledge swag: https://en.wikipedia.org/wiki/Piano_key_frequencies#Virtual_keyboard
+ */
+var key_frequencies = [27.5, 29.1352, 30.8677, 32.7032, 34.6478, 36.7081, 38.8909, 41.2034, 43.6535, 46.2493, 48.9994, 51.9131,
     55, 58.2705, 61.7354, 65.4064, 69.2957, 73.4162, 77.7817, 82.4069, 87.3071, 92.4986, 97.9989, 103.826, 110, 116.541,
     123.471, 130.813, 138.591, 146.832, 155.563, 164.814, 174.614, 184.997, 195.998, 207.652, 220, 233.082, 246.942, 261.626,
     277.183, 293.665, 311.127, 329.628, 349.228, 369.994, 391.995, 415.305, 440, 466.164, 493.883, 523.251, 554.365, 587.33,
@@ -7,6 +15,10 @@ var keys = [27.5, 29.1352, 30.8677, 32.7032, 34.6478, 36.7081, 38.8909, 41.2034,
     1396.91, 1479.98, 1567.98, 1661.22, 1760, 1864.66, 1975.53, 2093, 2217.46, 2349.32, 2489.02, 2637.02, 2793.83, 2959.96,
     3135.96, 3322.44, 3520, 3729.31, 3951.07, 4186.01];
 
+/**
+ * Keys and their indices. A is 0 because it's the first in our key frequency list.
+ * Sharp/flat names are randomly chosen for aesthetics, deal with it.
+ */
 var KEY_TO_INDEX_MAPPING = {
     "A":  0,
     "Bf": 1,
@@ -22,6 +34,7 @@ var KEY_TO_INDEX_MAPPING = {
     "Af": 11
 };
 
+// Reverse lookup of key indices, lol duplication.
 var INDEX_TO_KEY_MAPPING = [
     "A",
     "Bf",
@@ -37,6 +50,58 @@ var INDEX_TO_KEY_MAPPING = [
     "Af"
 ];
 
+/**
+ * All scales in C because it's the easiest to remember. Want a different key? Too bad, don't put it here. Figure
+ * it out in C and transpose in the UI.
+  */
+var keys_chromatic_scale =  ["A", "Bf", "B", "C", "Cs", "D", "Ef", "E", "F", "Fs", "G", "Af"];
+var keys_major_scale =      ["A", "B", "C", "D", "E", "F", "G"];
+var keys_octave_scale =     ["C"];
+var keys_chinese_scale =    ["Bf", "Cs", "Ef", "Fs", "Af"];
+var keys_pentatonic_scale = ["C", "D", "E", "G", "A"];
+var keys_minor_scale =      ["C", "D", "Ef", "F", "G", "Af", "Bf"];
+
+var SCALE_KEYS_MAPPING = {
+    "scale_chromatic": keys_chromatic_scale,
+    "scale_major": keys_major_scale,
+    "scale_minor": keys_minor_scale,
+    "scale_octave": keys_octave_scale,
+    "scale_chinese": keys_chinese_scale,
+    "scale_pentatonic": keys_pentatonic_scale
+}
+
+// Scale with no notes. Think it's useless? Think again - used as blank canvas for building scales.
+/*              A      A# (Bf)  B      C      C# (Cs)  D      D# (Ef)  E      F      F#     G      G#  (Af) */
+var no_scale = [false, false,   false, false, false,   false, false,   false, false, false, false, false    ];
+
+/**
+ * Global signals variables (should probably put these in closure)
+ */
+
+// WebWorker dude. Respect his rights or he'll Occupy your CPU.
+var worker = null;
+
+// A friendly key to help the user remember their dumb scale. Also the only key since there was no point in making
+// another key that does all the same things. Lol legacy naming.
+var friendly_key;
+
+// Beginning and ending keys for your musical scale needs. Default is A0 Double Pedal A - C8 Eighth Octave because
+// that's a piano.
+var key_start_index = 0;
+var key_end_index = key_frequencies.length;
+
+var pending_scale;
+var cached_signals = {};
+
+/**
+ * Signals Functions
+ */
+
+/**
+ * Old-school scale generation. Not used, will probably get deleted.
+ * @param scale_keys
+ * @return {Array}
+ */
 function generateScaleFromKeys(scale_keys)
 {
     var this_scale = new Array(no_scale);
@@ -49,52 +114,11 @@ function generateScaleFromKeys(scale_keys)
     return this_scale;
 }
 
-var worker = null;
-
-var friendly_key;
-
-var key_start_index = 0;
-var key_end_index = keys.length;
-
-//var key_start_index = 24;
-//var key_end_index = 59;
-
-/*                       A      A# (Bf)  B      C      C# (Cs)      D     D# (Ef)     E      F      F#     G      G#  (Af)       */
-var no_scale =          [false, false, false, false, false, false, false, false, false, false, false, false];
-
-var chromatic_scale =   [true,  true,  false, true,  false, false, true,  false, false, true,  false, false];
-var keys_chromatic_scale = ["A", "Bf", "B", "C", "Cs", "D", "Ef", "E", "F", "Fs", "G", "Af"];
-
-var major_scale =       [true,  false, true,  true,  false, true,  false, true,  true,  false, true,  false];
-var keys_major_scale = ["A", "B", "C", "D", "E", "F", "G"];
-
-var octave_scale =      [true, false, false, false, false, false, false, false, false, false, false, false];
-var keys_octave_scale = ["C"];
-
-var keys_chinese_scale = ["Bf", "Cs", "Ef", "Fs", "Af"];
-
-var keys_pentatonic_scale = ["C", "D", "E", "G", "A"];
-var pentatonic_scale = generateScaleFromKeys(keys_pentatonic_scale);
-
-var keys_minor_scale = ["C", "D", "Ef", "F", "G", "Af", "Bf"];
-var minor_scale = generateScaleFromKeys(keys_minor_scale);
-
-//var scale =             [true,  false, false, true,  false, false, true,  false, false, true,  false, false];
-
-/*                       A      A#     B      C      C#      D     D#     E      F      F#     G      G#         */
-
-var SCALE_KEYS_MAPPING = {
-    "scale_chromatic": keys_chromatic_scale,
-    "scale_major": keys_major_scale,
-    "scale_minor": keys_minor_scale,
-    "scale_octave": keys_octave_scale,
-    "scale_chinese": keys_chinese_scale,
-    "scale_pentatonic": keys_pentatonic_scale
-}
-
-var pending_scale;
-var cached_signals = {};
-
+/**
+ * Fill outs the UI keyboard to reflect the selected scale. Transpose is the key. A=-3, Bf=-2, B=-1, C=0, ... since
+ * all scales are transposed from C.
+ * @param transpose Keys up/down from C.
+ */
 function populateScaleControl(transpose)
 {
     if (!transpose)
@@ -116,6 +140,9 @@ function populateScaleControl(transpose)
     }
 }
 
+/**
+ * Reads scale data from the UI, gives it to the web worker and tells worker to swap out signals and cache it.
+ */
 function makeScale()
 {
     var generate_method = $('input[name="scale_generate_method"]:checked').val();
@@ -232,7 +259,7 @@ function initSignals(generation_method, parameters)
 
         scale_index = key_start_index % 12;
 
-        scale_frequencies = keys.slice(key_start_index, key_end_index);
+        scale_frequencies = key_frequencies.slice(key_start_index, key_end_index);
         signal_frequencies = [];
 
         for (var i = 0; i < scale_frequencies.length; i++)
@@ -253,8 +280,7 @@ function initSignals(generation_method, parameters)
     {
         // 400*2^((p-64)/12) = f
         // 108 hi key on 88key piano, 21 low key
-        // pdelt = (108.0-21.0) / STAFFHEIGHT;
-        //pdelt = (96.0 - 40.0) / STAFF_HEIGHT;
+
         pdelt = (parameters['top'] - parameters['bottom']) / STAFF_HEIGHT;
         base_frequency = parameters['base_freq'];
         pdelt_subtract = parameters['pdelt_subtract'];

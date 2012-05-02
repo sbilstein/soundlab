@@ -1,6 +1,6 @@
 Soundlab::Application.routes.draw do
   resources :jams
-  root :to => 'jams#show'
+  root :to => 'jams#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

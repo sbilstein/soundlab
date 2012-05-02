@@ -282,7 +282,7 @@
           <label>
             <div class="td black_key">
               C#
-              <input type="checkbox" class="key_toggle" key="Cs"/>
+              <input type="checkbox" class="key_toggle" key="Cs" tabindex="2"/>
             </div>
           </label>
 
@@ -291,7 +291,7 @@
           <label>
             <div class="td black_key">
               E&#9837;
-              <input type="checkbox" class="key_toggle" key="Ef"/>
+              <input type="checkbox" class="key_toggle" key="Ef" tabindex="4"/>
             </div>
           </label>
 
@@ -303,7 +303,7 @@
           <label>
             <div class="td black_key">
               F#
-              <input type="checkbox" class="key_toggle" key="Fs"/>
+              <input type="checkbox" class="key_toggle" key="Fs" tabindex="7"/>
             </div>
           </label>
 
@@ -312,7 +312,7 @@
           <label>
             <div class="td black_key">
               A&#9837;
-              <input type="checkbox" class="key_toggle" key="Af"/>
+              <input type="checkbox" class="key_toggle" key="Af" tabindex="9"/>
             </div>
           </label>
 
@@ -321,7 +321,7 @@
           <label>
             <div class="td black_key">
               B&#9837;
-              <input type="checkbox" class="key_toggle" key="Bf"/>
+              <input type="checkbox" class="key_toggle" key="Bf" tabindex="11"/>
             </div>
           </label>
         </div>
@@ -331,7 +331,7 @@
           <label>
             <div class="td white_key">
               C
-              <input type="checkbox" class="key_toggle" key="C"/>
+              <input type="checkbox" class="key_toggle" key="C" tabindex="1"/>
             </div>
           </label>
 
@@ -340,7 +340,7 @@
           <label>
             <div class="td white_key">
               D
-              <input type="checkbox" class="key_toggle" key="D"/>
+              <input type="checkbox" class="key_toggle" key="D" tabindex="3"/>
             </div>
           </label>
 
@@ -349,7 +349,7 @@
           <label>
             <div class="td white_key">
               E
-              <input type="checkbox" class="key_toggle" key="E"/>
+              <input type="checkbox" class="key_toggle" key="E" tabindex="5"/>
             </div>
           </label>
 
@@ -358,7 +358,7 @@
           <label>
             <div class="td white_key">
               F
-              <input type="checkbox" class="key_toggle" key="F"/>
+              <input type="checkbox" class="key_toggle" key="F" tabindex="6"/>
             </div>
           </label>
 
@@ -367,7 +367,7 @@
           <label>
             <div class="td white_key">
               G
-              <input type="checkbox" class="key_toggle" key="G"/>
+              <input type="checkbox" class="key_toggle" key="G" tabindex="8"/>
             </div>
           </label>
 
@@ -376,7 +376,7 @@
           <label>
             <div class="td white_key">
               A
-              <input type="checkbox" class="key_toggle" key="A"/>
+              <input type="checkbox" class="key_toggle" key="A" tabindex="10"/>
             </div>
           </label>
 
@@ -385,7 +385,7 @@
           <label>
             <div class="td white_key">
               B
-              <input type="checkbox" class="key_toggle" key="B"/>
+              <input type="checkbox" class="key_toggle" key="B" tabindex="12"/>
             </div>
           </label>
         </div>
@@ -393,7 +393,7 @@
     </div>
 
     <div class="subgroup" style="float:right">
-      Octaves
+      <span class="bold">Range</span>
 
       <div class="table">
 
@@ -402,7 +402,9 @@
             Start:
           </div>
           <div class="td">
-            <input type="range" min="1" max="86" step="1" value="0" id="key_bottom" onchange="key_start_index = parseInt($(this).val()); $('#key_top').val(Math.max(parseInt($('#key_top').val()), key_start_index + 1));"/>
+            <div class="range_wrapper">
+                <input type="range" min="1" max="86" step="1" value="0" id="key_bottom" onchange="key_start_index = parseInt($(this).val()); $('#key_top').val(Math.max(parseInt($('#key_top').val()), key_start_index + 1));"/>
+            </div>
           </div>
         </div>
 
@@ -411,7 +413,9 @@
             End:
           </div>
           <div class="td">
-            <input type="range" min="0" max="87" step="1" value="87" id="key_top" onchange="key_end_index = parseInt($(this).val()); $('#key_bottom').val(Math.min($('#key_bottom').val(), $(this).val() - 1));"/>
+            <div class="range_wrapper">
+                <input type="range" min="0" max="87" step="1" value="87" id="key_top" onchange="key_end_index = parseInt($(this).val()); $('#key_bottom').val(Math.min($('#key_bottom').val(), $(this).val() - 1));"/>
+            </div>
           </div>
         </div>
 
@@ -427,7 +431,7 @@
           Key
         </div>
         </div>
-      <div class="tr">
+      <div class="tr premade_scale">
         <div class="td">
           <label>
             <input type="radio" name="scale_selection" value="scale_major"/> Major
@@ -436,24 +440,24 @@
 
         <div id="scale_key_control_definitive" class="td">
             <select>
-              <option>C</option>
-              <option>C#</option>
-              <option>D</option>
-              <option>E&#9837;</option>
-              <option>E</option>
-              <option>F</option>
-              <option>F#</option>
-              <option>G</option>
-              <option>A&#9837;</option>
-              <option>A</option>
-              <option>B&#9837;</option>
-              <option>B</option>
+              <option value="0">C</option>
+              <option value="1">C#</option>
+              <option value="2">D</option>
+              <option value="3">E&#9837;</option>
+              <option value="4">E</option>
+              <option value="5">F</option>
+              <option value="6">F#</option>
+              <option value="7">G</option>
+              <option value="8">A&#9837;</option>
+              <option value="-3">A</option>
+              <option value="-2">B&#9837;</option>
+              <option value="-1">B</option>
             </select>
         </div>
 
       </div>
 
-      <div class="tr">
+      <div class="tr premade_scale">
         <div class="td">
           <label>
             <input type="radio" name="scale_selection" value="scale_minor"/> Minor
@@ -464,18 +468,16 @@
 
       </div>
 
-      <div class="tr">
+      <div class="tr premade_scale">
         <div class="td">
           <label>
             <input type="radio" name="scale_selection" value="scale_chromatic"/> Chromatic
           </label>
         </div>
 
-        <div class="td scale_key_control"></div>
-
       </div>
 
-      <div class="tr">
+      <div class="tr premade_scale">
         <div class="td">
           <label>
             <input type="radio" name="scale_selection" value="scale_octave"/> Octave
@@ -486,7 +488,7 @@
 
       </div>
 
-      <div class="tr">
+      <div class="tr  premade_scale">
         <div class="td">
           <label>
             <input type="radio" name="scale_selection" value="scale_pentatonic"/> Pentatonic
@@ -496,7 +498,7 @@
         <div class="td scale_key_control"></div>
       </div>
 
-      <div class="tr">
+      <div class="tr premade_scale">
         <div class="td">
           <label>
             <input type="radio" name="scale_selection" value="scale_chinese"/> Chinese

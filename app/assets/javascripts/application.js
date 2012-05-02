@@ -13,7 +13,4 @@
 //= require plugins
 //= require jquery
 //= require jquery_ujs
-//= require dsp
-//= require sound.variables.constants
-//= require sound.variables
 //= require_tree .

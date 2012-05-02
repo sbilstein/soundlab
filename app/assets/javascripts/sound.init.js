@@ -84,10 +84,21 @@ $(document).ready(function()
     // Scale controls
     $('.scale_key_control').each(function()
     {
-        $(this).append($('#scale_key_control_definitive').clone());
+        $(this).append($('#scale_key_control_definitive').children('select').first().clone());
+    });
+    $('#scale_key_control_definitive').addClass('scale_key_control');
+
+    $('input[name="scale_selection"]').change(function()
+    {
+        var transpose = parseInt($(this).parents('.premade_scale').children('.scale_key_control').children('select').val());
+        populateScaleControl(transpose);
     });
 
-    $('input[name="scale_selection"]').change(populateScaleControl)
+    $('.scale_key_control select').change(function()
+    {
+        var transpose = parseInt($(this).val());
+        populateScaleControl(transpose);
+    })
 
     // Save/Load
     if ($('#stored_data').length)
@@ -155,6 +166,8 @@ function initAudio()
 
 function initScale()
 {
-    signals_waves = initSignals("musical", major_scale);
+    $('input[name="scale_selection"][value="scale_pentatonic"]').attr("checked", "checked");
+    populateScaleControl();
+    signals_waves = initSignals("musical", pentatonic_scale);
     signals = signals_waves[DSP.SINE];
 }

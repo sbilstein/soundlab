@@ -7,7 +7,7 @@ var keys = [27.5, 29.1352, 30.8677, 32.7032, 34.6478, 36.7081, 38.8909, 41.2034,
     1396.91, 1479.98, 1567.98, 1661.22, 1760, 1864.66, 1975.53, 2093, 2217.46, 2349.32, 2489.02, 2637.02, 2793.83, 2959.96,
     3135.96, 3322.44, 3520, 3729.31, 3951.07, 4186.01];
 
-const KEY_INDEX_MAPPING = {
+const KEY_TO_INDEX_MAPPING = {
     "A":  0,
     "Bf": 1,
     "B":  2,
@@ -20,9 +20,38 @@ const KEY_INDEX_MAPPING = {
     "Fs": 9,
     "G":  10,
     "Af": 11
+};
+
+const INDEX_TO_KEY_MAPPING = [
+    "A",
+    "Bf",
+    "B",
+    "C",
+    "Cs",
+    "D",
+    "Ef",
+    "E",
+    "F",
+    "Fs",
+    "G",
+    "Af"
+];
+
+function generateScaleFromKeys(scale_keys)
+{
+    var this_scale = new Array(no_scale);
+
+    for (var key in scale_keys)
+    {
+        this_scale[key] = true;
+    }
+
+    return this_scale;
 }
 
+var worker = null;
 
+var friendly_key;
 
 var key_start_index = 0;
 var key_end_index = keys.length;
@@ -45,6 +74,7 @@ var keys_octave_scale = ["C"];
 var keys_chinese_scale = ["Bf", "Cs", "Ef", "Fs", "Af"];
 
 var keys_pentatonic_scale = ["C", "D", "E", "G", "A"];
+var pentatonic_scale = generateScaleFromKeys(keys_pentatonic_scale);
 
 //var scale =             [true,  false, false, true,  false, false, true,  false, false, true,  false, false];
 
@@ -61,15 +91,26 @@ const SCALE_KEYS_MAPPING = {
 var pending_scale;
 var cached_signals = {};
 
-function populateScaleControl()
+function populateScaleControl(transpose)
 {
+    if (!transpose)
+    {
+        transpose = 0;
+    }
+
+    console.log('transposing:', transpose);
+
     $('input.key_toggle').removeAttr('checked');
 
-   var scale_keys = SCALE_KEYS_MAPPING[$('input[name="scale_selection"]:checked').val()];
+    var scale_keys = SCALE_KEYS_MAPPING[$('input[name="scale_selection"]:checked').val()];
     if (scale_keys)
     {
         for (var i = 0; i < scale_keys.length; i++)
         {
+            console.log('index of original key:',KEY_TO_INDEX_MAPPING[scale_keys[i]]);
+            console.log(KEY_TO_INDEX_MAPPING[scale_keys[i]]+transpose);
+            scale_keys[i] = INDEX_TO_KEY_MAPPING[(KEY_TO_INDEX_MAPPING[scale_keys[i]] + transpose) % 12];
+            console.log(scale_keys[i]);
             $('input.key_toggle[key="'+scale_keys[i]+'"]').attr('checked', 'checked')
         }
     }
@@ -79,12 +120,19 @@ function makeScale()
 {
     pending_scale = [false, false, false, false, false, false, false, false, false, false, false, false];
 
-    var friendly_key = "";
+    friendly_key = [];
 
     $('.key_toggle:checked').each(function(){
-        pending_scale[KEY_INDEX_MAPPING[$(this).attr('key')]] = true;
-        friendly_key += $(this).attr('key');
+        pending_scale[KEY_TO_INDEX_MAPPING[$(this).attr('key')]] = true;
+        friendly_key.push($(this).attr('key'));
     })
+
+    friendly_key.sort(function(a, b)
+    {
+        return KEY_TO_INDEX_MAPPING[a] - KEY_TO_INDEX_MAPPING[b];
+    });
+
+    friendly_key = friendly_key.join('-');
 
     var generate_method = $('input[name="scale_generate_method"]:checked').val()
 
@@ -97,27 +145,31 @@ function makeScale()
 
     if (!cached_signals[pending_scale_key])
     {
-        var worker = new Worker('/assets/sound.signals.worker.js');
 
-        worker.onmessage = function (event) {
-            signals_waves = event.data;
+        if (worker == null)
+        {
+            worker = new Worker('/assets/javascripts/sound.signals.worker.js');
 
-            cached_signals[pending_scale.join(',')] = signals_waves;
+            worker.onmessage = function (event) {
+                signals_waves = event.data;
 
-            $('#make_scale').removeAttr('disabled');
-            $('#scale_loading_notifier').children().remove('img');
+                cached_signals[pending_scale.join(',')] = signals_waves;
 
-            var previous_scale_button = $("<button>");
-            previous_scale_button.text(friendly_key).attr('scale_key', pending_scale.join(',')).click(function()
-            {
-                signals_waves = cached_signals[$(this).attr('scale_key')];
+                $('#make_scale').removeAttr('disabled');
+                $('#scale_loading_notifier').children().remove('img');
+
+                var previous_scale_button = $("<button>");
+                previous_scale_button.text(friendly_key).attr('scale_key', pending_scale.join(',')).click(function()
+                {
+                    signals_waves = cached_signals[$(this).attr('scale_key')];
+                    js_buffer.BufferAsync();
+                });
+
+                $("#previous_scales").append(previous_scale_button);
+
                 js_buffer.BufferAsync();
-            });
-
-            $("#previous_scales").append(previous_scale_button);
-
-            js_buffer.BufferAsync();
-        };
+            };
+        }
 
         worker.postMessage({'generate_method':generate_method, 'scale':pending_scale});
     }

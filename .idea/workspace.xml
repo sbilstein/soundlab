@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
     </list>
     <ignored path="soundlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,10 +54,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="application.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="application.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/config/application.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="59" column="42" selection-start="2848" selection-end="2848" vertical-scroll-proportion="0.80733943">
+                <state line="47" column="84" selection-start="2279" selection-end="2279" vertical-scroll-proportion="0.47706422">
                   <folding />
                 </state>
               </provider>
@@ -130,19 +130,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="application.js" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="application.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="24" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0">
+                <state line="19" column="39" selection-start="897" selection-end="897" vertical-scroll-proportion="0.50353354">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="_votes.html.erb" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="_votes.html.erb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/jams/_votes.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
                   <folding />
                 </state>
               </provider>
@@ -177,11 +177,11 @@
         <option value="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/public/assets/javascripts/sound.signals.worker.js" />
         <option value="$PROJECT_DIR$/public/assets/javascripts/sound.signals.js" />
         <option value="$PROJECT_DIR$/config/application.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
       </list>
     </option>
   </component>
@@ -781,7 +781,11 @@
       <created>1335933245209</created>
       <updated>1335933245209</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Configuring javascript asset precompilation to be nice.">
+      <created>1335934172541</created>
+      <updated>1335934172541</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -924,13 +928,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="24" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/javascripts/sound.signals.worker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="32" selection-start="319" selection-end="319" vertical-scroll-proportion="0.0">
@@ -940,7 +937,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="69" selection-start="2390" selection-end="2390" vertical-scroll-proportion="0.0">
+        <state line="93" column="44" selection-start="2620" selection-end="2620" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -968,7 +965,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="42" selection-start="2848" selection-end="2848" vertical-scroll-proportion="0.80733943">
+        <state line="47" column="84" selection-start="2279" selection-end="2279" vertical-scroll-proportion="0.47706422">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="39" selection-start="897" selection-end="897" vertical-scroll-proportion="0.50353354">
           <folding />
         </state>
       </provider>

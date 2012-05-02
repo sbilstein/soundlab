@@ -56,5 +56,7 @@ module Soundlab
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.assets.paths << "#{Rails.root}/public/assets/javascripts"
+    config.assets.compile = true
+    config.assets.precompile += %w( *.js )
   end
 end

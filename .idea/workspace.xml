@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/sound.signals.worker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/sound.variables.constants.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/sound.variables.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/dsp.js" afterPath="$PROJECT_DIR$/public/assets/javascripts/dsp.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.signals.worker.js" afterPath="$PROJECT_DIR$/public/assets/javascripts/sound.signals.worker.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" afterPath="$PROJECT_DIR$/public/assets/javascripts/sound.variables.constants.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" afterPath="$PROJECT_DIR$/public/assets/javascripts/sound.variables.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/sound.signals.js" afterPath="$PROJECT_DIR$/public/assets/javascripts/sound.signals.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <ignored path="soundlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,7 +24,7 @@
     <favorites_list name="soundlab" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4253269">
+    <splitter split-orientation="horizontal" split-proportion="0.5024088">
       <split-first>
         <leaf>
           <file leaf-file-name="_staff.html.erb" pinned="false" current="false" current-in-tab="false">
@@ -50,10 +36,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="application.html.erb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="26" column="45" selection-start="1181" selection-end="1181" vertical-scroll-proportion="-6.875">
+                <state line="9" column="65" selection-start="493" selection-end="493" vertical-scroll-proportion="0.2591171">
                   <folding />
                 </state>
               </provider>
@@ -71,7 +57,7 @@
           <file leaf-file-name="application.rb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/config/application.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="43" column="48" selection-start="2075" selection-end="2075" vertical-scroll-proportion="0.0">
+                <state line="43" column="81" selection-start="2095" selection-end="2095" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -104,10 +90,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="sound.signals.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="sound.signals.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/assets/javascripts/sound.signals.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="150" column="55" selection-start="4801" selection-end="4801" vertical-scroll-proportion="0.34351146">
+                <state line="150" column="55" selection-start="4801" selection-end="4801" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -126,10 +112,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="sound.init.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="sound.init.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="93" column="44" selection-start="2620" selection-end="2620" vertical-scroll-proportion="0.5300353">
+                <state line="93" column="44" selection-start="2620" selection-end="2620" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -144,10 +130,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="application.js" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="application.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="24" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0">
+                <state line="19" column="39" selection-start="897" selection-end="897" vertical-scroll-proportion="0.50353354">
                   <folding />
                 </state>
               </provider>
@@ -191,11 +177,11 @@
         <option value="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/config/application.rb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/public/assets/javascripts/sound.signals.worker.js" />
         <option value="$PROJECT_DIR$/public/assets/javascripts/sound.signals.js" />
+        <option value="$PROJECT_DIR$/config/application.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
       </list>
     </option>
   </component>
@@ -787,13 +773,30 @@
       <created>1335914419246</created>
       <updated>1335914419246</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Moving WebWorker (sound.signals.worker.js) and dependencies to public so they don't get concatenated - WebWorker needs to import on a script-by-script basis for now.">
+      <created>1335930980187</created>
+      <updated>1335930980187</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Configuring javascript asset precompilation to be nice.">
+      <created>1335933245209</created>
+      <updated>1335933245209</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Configuring javascript asset precompilation to be nice.">
+      <created>1335934172541</created>
+      <updated>1335934172541</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Configuring javascript asset precompilation to be nice.">
+      <created>1335934619447</created>
+      <updated>1335934619447</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="15" y="0" width="1905" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.4973369" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3631579" sideWeight="0.48948786" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -808,7 +811,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.4973369" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -851,7 +853,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moving WebWorker (sound.signals.worker.js) and dependencies to public so they don't get concatenated - WebWorker needs to import on a script-by-script basis for now." />
+    <option name="LAST_COMMIT_MESSAGE" value="Configuring javascript asset precompilation to be nice." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -871,6 +873,7 @@
     <MESSAGE value="Major sound fix, was doubling signals (+= to self). Main problem now: in musical mode there is constant clipping because the same signal is being added to itself many times if pixel width &gt; 1." />
     <MESSAGE value="Pre-overtone experiment cleanup." />
     <MESSAGE value="Moving WebWorker (sound.signals.worker.js) and dependencies to public so they don't get concatenated - WebWorker needs to import on a script-by-script basis for now." />
+    <MESSAGE value="Configuring javascript asset precompilation to be nice." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -929,34 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/application.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="48" selection-start="2075" selection-end="2075" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="45" selection-start="1181" selection-end="1181" vertical-scroll-proportion="-6.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/jams/_votes.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="24" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/javascripts/sound.signals.worker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="32" selection-start="319" selection-end="319" vertical-scroll-proportion="0.0">
@@ -973,7 +948,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/javascripts/sound.signals.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="55" selection-start="4801" selection-end="4801" vertical-scroll-proportion="0.34351146">
+        <state line="150" column="55" selection-start="4801" selection-end="4801" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/jams/_votes.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="39" selection-start="897" selection-end="897" vertical-scroll-proportion="0.50353354">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/application.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="81" selection-start="2095" selection-end="2095" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="65" selection-start="493" selection-end="493" vertical-scroll-proportion="0.2591171">
           <folding />
         </state>
       </provider>

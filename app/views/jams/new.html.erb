@@ -1,14 +1,19 @@
-<div id="below_staff_area" class="hidden">
+
+<div id="below_staff_area" class="hidden" id="form_area">
     <div class="button_grouping">
         <h1 id="jam-title">New jam</h1>
+		<div id="submittable"></div>
+	  
         <%= render 'form' %>
+
+	  </div>
 
         <!-- TODO: Do we really need this back button? Commenting out for now. -->
         <!-- <%= link_to 'Back', jams_path %> -->
 		<%= link_to 'View all jams', jams_path %>
      </div>
 </div>
-
+</div></div>
 <%= render 'staff' %>
 
 

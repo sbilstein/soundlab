@@ -1,7 +1,12 @@
 Soundlab::Application.routes.draw do
-  resources :jams
-  root :to => 'jams#new'
   
+
+  resources :jams
+  match ':action' => 'static#:action'
+  root :to => 'jams#index'
+  #get 'static/about'
+  
+  #map.connect ':action', :controller => "static"  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

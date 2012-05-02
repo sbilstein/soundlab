@@ -10,6 +10,6 @@ catch(e){}
 
 onmessage = function(event)
 {
-    var generated_signals = initSignals(event.data['generate_method'], event.data['scale']);
+    var generated_signals = initSignals(event.data['generate_method'], event.data['parameters']);
     postMessage(generated_signals);
 }

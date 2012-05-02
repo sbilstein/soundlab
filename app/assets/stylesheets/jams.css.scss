@@ -103,7 +103,7 @@ canvas.bar
 {
   position: absolute;
   top:1em;
-  left:335px;
+  left:305px;
 }
 
 .button_grouping
@@ -276,6 +276,11 @@ nav {
   color:white;
   font-weight: bold;
   text-align: center;
+  top:0px;
+  display: none;
+  height:60px;
+  width:15px;
+  z-index:1;
 }
 
 .white_key
@@ -284,17 +289,89 @@ nav {
   border-top:none;
   font-weight: bold;
   text-align: center;
+  height:115px;
+  width:30px;
+  vertical-align: bottom;
+  top:0px;
+  z-index:0;
 }
+
+.white_key label
+{
+  display: block;
+  margin-top: 70px;
+}
+
+.black_key label
+{
+  display: block;
+  margin-top:20px;
+}
+
+#C_key
+{
+  left:0px;
+}
+
+#Cs_key
+{
+  left:30px;
+}
+
+#Ef_key
+{
+  left:71px;
+}
+
+#D_key
+{
+  left:41px;
+}
+#E_key
+{
+  left:82px;
+}
+
+#F_key
+{
+  left:123px;
+}
+
+#Fs_key
+{
+  left:151px;
+}
+
+#G_key
+{
+  left:164px;
+}
+
+#Af_key
+{
+  left:192px;
+}
+
+#A_key
+{
+  left:205px;
+}
+
+#Bf_key
+{
+  left:233px;
+}
+
+#B_key
+{
+  left:246px;
+}
+
 
 .key_toggle
 {
   display:inline-block;
   margin: 0.4em 0;
-}
-
-#scale_keys
-{
-  width:310px;
 }
 
 #scale_loading_notifier
@@ -313,13 +390,31 @@ nav {
   vertical-align: top;
 }
 
-#tool_controls
-{
-  width:400px;
-}
-
 #list_container 
 {
 	margin : 10px;
+}
+
+.vertical_slider
+{
+  -webkit-appearance: slider-vertical;
+  height:100px;
+  width:25px;
+}
+
+#scale_keys
+{
+  position:relative;
+  display:block;
+  height:115px;
+  width:280px;
+  border:none;
+  border-top:thin dotted gray;
+}
+
+#scale_keys .td
+{
+  display:block;
+  position: absolute;
 }
 

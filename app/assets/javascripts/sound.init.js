@@ -88,16 +88,26 @@ $(document).ready(function()
     });
     $('#scale_key_control_definitive').addClass('scale_key_control');
 
-    $('input[name="scale_selection"]').change(function()
+    var scale_selection_input_selector = 'input[name="scale_selection"]';
+
+    $(scale_selection_input_selector).change(function()
     {
-        var transpose = parseInt($(this).parents('.premade_scale').children('.scale_key_control').children('select').val());
-        populateScaleControl(transpose);
+        if ($('input[name="scale_generate_method"]:checked').val() == "musical" &&
+            $(this).is(":checked"))
+        {
+            var transpose = parseInt($(this).parents('.premade_scale').children('.scale_key_control').children('select').val());
+            populateScaleControl(transpose);
+        }
     });
 
     $('.scale_key_control select').change(function()
     {
-        var transpose = parseInt($(this).val());
-        populateScaleControl(transpose);
+        if ($('input[name="scale_generate_method"]:checked').val() == "musical" &&
+            $(this).parents('.premade_scale').find(scale_selection_input_selector).is(':checked'))
+        {
+            var transpose = parseInt($(this).val());
+            populateScaleControl(transpose);
+        }
     })
 
     // Save/Load
@@ -168,6 +178,6 @@ function initScale()
 {
     $('input[name="scale_selection"][value="scale_pentatonic"]').attr("checked", "checked");
     populateScaleControl();
-    signals_waves = initSignals("musical", pentatonic_scale);
+    signals_waves = initSignals("musical", {'scale':pentatonic_scale});
     signals = signals_waves[DSP.SINE];
 }

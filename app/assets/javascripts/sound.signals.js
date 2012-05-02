@@ -7,7 +7,7 @@ var keys = [27.5, 29.1352, 30.8677, 32.7032, 34.6478, 36.7081, 38.8909, 41.2034,
     1396.91, 1479.98, 1567.98, 1661.22, 1760, 1864.66, 1975.53, 2093, 2217.46, 2349.32, 2489.02, 2637.02, 2793.83, 2959.96,
     3135.96, 3322.44, 3520, 3729.31, 3951.07, 4186.01];
 
-const KEY_TO_INDEX_MAPPING = {
+var KEY_TO_INDEX_MAPPING = {
     "A":  0,
     "Bf": 1,
     "B":  2,
@@ -22,7 +22,7 @@ const KEY_TO_INDEX_MAPPING = {
     "Af": 11
 };
 
-const INDEX_TO_KEY_MAPPING = [
+var INDEX_TO_KEY_MAPPING = [
     "A",
     "Bf",
     "B",
@@ -76,13 +76,17 @@ var keys_chinese_scale = ["Bf", "Cs", "Ef", "Fs", "Af"];
 var keys_pentatonic_scale = ["C", "D", "E", "G", "A"];
 var pentatonic_scale = generateScaleFromKeys(keys_pentatonic_scale);
 
+var keys_minor_scale = ["C", "D", "Ef", "F", "G", "Af", "Bf"];
+var minor_scale = generateScaleFromKeys(keys_minor_scale);
+
 //var scale =             [true,  false, false, true,  false, false, true,  false, false, true,  false, false];
 
 /*                       A      A#     B      C      C#      D     D#     E      F      F#     G      G#         */
 
-const SCALE_KEYS_MAPPING = {
+var SCALE_KEYS_MAPPING = {
     "scale_chromatic": keys_chromatic_scale,
     "scale_major": keys_major_scale,
+    "scale_minor": keys_minor_scale,
     "scale_octave": keys_octave_scale,
     "scale_chinese": keys_chinese_scale,
     "scale_pentatonic": keys_pentatonic_scale
@@ -98,19 +102,15 @@ function populateScaleControl(transpose)
         transpose = 0;
     }
 
-    console.log('transposing:', transpose);
-
     $('input.key_toggle').removeAttr('checked');
 
-    var scale_keys = SCALE_KEYS_MAPPING[$('input[name="scale_selection"]:checked').val()];
+    var scale_keys = SCALE_KEYS_MAPPING[$('input[name="scale_selection"]:checked').val()].slice(0);
+
     if (scale_keys)
     {
         for (var i = 0; i < scale_keys.length; i++)
         {
-            console.log('index of original key:',KEY_TO_INDEX_MAPPING[scale_keys[i]]);
-            console.log(KEY_TO_INDEX_MAPPING[scale_keys[i]]+transpose);
             scale_keys[i] = INDEX_TO_KEY_MAPPING[(KEY_TO_INDEX_MAPPING[scale_keys[i]] + transpose) % 12];
-            console.log(scale_keys[i]);
             $('input.key_toggle[key="'+scale_keys[i]+'"]').attr('checked', 'checked')
         }
     }
@@ -118,34 +118,52 @@ function populateScaleControl(transpose)
 
 function makeScale()
 {
-    pending_scale = [false, false, false, false, false, false, false, false, false, false, false, false];
+    var generate_method = $('input[name="scale_generate_method"]:checked').val();
 
-    friendly_key = [];
+    var parameters = {};
 
-    $('.key_toggle:checked').each(function(){
-        pending_scale[KEY_TO_INDEX_MAPPING[$(this).attr('key')]] = true;
-        friendly_key.push($(this).attr('key'));
-    })
-
-    friendly_key.sort(function(a, b)
+    if (generate_method == "musical")
     {
-        return KEY_TO_INDEX_MAPPING[a] - KEY_TO_INDEX_MAPPING[b];
-    });
+        pending_scale = [false, false, false, false, false, false, false, false, false, false, false, false];
 
-    friendly_key = friendly_key.join('-');
+        friendly_key = [];
 
-    var generate_method = $('input[name="scale_generate_method"]:checked').val()
+        $('.key_toggle:checked').each(function(){
+            pending_scale[KEY_TO_INDEX_MAPPING[$(this).attr('key')]] = true;
+            friendly_key.push($(this).attr('key'));
+        });
+
+        friendly_key.sort(function(a, b)
+        {
+            return KEY_TO_INDEX_MAPPING[a] - KEY_TO_INDEX_MAPPING[b];
+        });
+
+        friendly_key = friendly_key.join('-');
+
+        parameters['scale'] = pending_scale;
+    }
+    else if (generate_method == "alien")
+    {
+        parameters['base_freq'] = parseFloat($('#alien_base_freq').val());
+        parameters['top'] = parseInt($('#alien_top').val());
+        parameters['bottom'] = parseInt($('#alien_bottom').val());
+        parameters['pdelt_subtract'] = parseInt($('#alien_pdelt_subtract').val());
+
+        friendly_key = ["Alien",
+            parseInt(parameters['base_freq']).toString(),
+            parameters['top'].toString(),
+            parameters['bottom'].toString(),
+            parameters['pdelt_subtract'].toString()].join('-');
+    }
 
     // disable button and indicate we are loading
     $('#make_scale').attr('disabled','disabled');
+
     var loading_notifier = $('<img src="/assets/load.gif" />');
     $('#scale_loading_notifier').append(loading_notifier);
 
-    var pending_scale_key = pending_scale.join(',');
-
-    if (!cached_signals[pending_scale_key])
+    if (!cached_signals[friendly_key])
     {
-
         if (worker == null)
         {
             worker = new Worker('/assets/sound.signals.worker.js');
@@ -153,13 +171,14 @@ function makeScale()
             worker.onmessage = function (event) {
                 signals_waves = event.data;
 
-                cached_signals[pending_scale.join(',')] = signals_waves;
+                cached_signals[friendly_key] = signals_waves;
 
                 $('#make_scale').removeAttr('disabled');
                 $('#scale_loading_notifier').children().remove('img');
 
                 var previous_scale_button = $("<button>");
-                previous_scale_button.text(friendly_key).attr('scale_key', pending_scale.join(',')).click(function()
+
+                previous_scale_button.text(friendly_key).attr('scale_key', friendly_key).click(function()
                 {
                     signals_waves = cached_signals[$(this).attr('scale_key')];
                     js_buffer.BufferAsync();
@@ -171,11 +190,11 @@ function makeScale()
             };
         }
 
-        worker.postMessage({'generate_method':generate_method, 'scale':pending_scale});
+        worker.postMessage({'generate_method':generate_method, 'parameters':parameters});
     }
     else
     {
-        signals_waves = cached_signals[pending_scale_key];
+        signals_waves = cached_signals[friendly_key];
 
         $('#make_scale').removeAttr('disabled');
         $('#scale_loading_notifier').children().remove('img');
@@ -184,11 +203,10 @@ function makeScale()
     }
 }
 
-
 /**
  * Calculates the values for all the waves.
  */
-function initSignals(generation_method, scale)
+function initSignals(generation_method, parameters)
 {
     var generated_signals = {};
     generated_signals[DSP.SINE] = new Array(STAFF_HEIGHT);
@@ -196,13 +214,22 @@ function initSignals(generation_method, scale)
     generated_signals[DSP.SQUARE] = new Array(STAFF_HEIGHT);
     generated_signals[DSP.TRIANGLE] = new Array(STAFF_HEIGHT);
 
+    // musical variables
     var scale_index;
     var scale_frequencies;
     var signal_frequencies;
     var granularity;
+    var base_overtone_power;
+
+    // alien variables
+    var pdelt;
+    var base_frequency;
+    var pdelt_subtract;
 
     if (generation_method == "musical")
     {
+        var scale = parameters['scale'];
+
         scale_index = key_start_index % 12;
 
         scale_frequencies = keys.slice(key_start_index, key_end_index);
@@ -219,18 +246,19 @@ function initSignals(generation_method, scale)
         }
 
         granularity = STAFF_HEIGHT / signal_frequencies.length;
+
+        base_overtone_power = -1 * (Math.floor(granularity/2) - !(Math.floor(granularity) % 2));
     }
-
-    var base_overtone_power = -1 * (Math.floor(granularity/2) - !(Math.floor(granularity) % 2));
-
-    var gen_freq = freq * Math.pow(2, overtone_power);
-    //base_overtone_power *= 2;
-
-    // 400*2^((p-64)/12) = f
-    // 108 hi key on 88key piano, 21 low key
-    // pdelt = (108.0-21.0) / STAFFHEIGHT;
-    //pdelt = (96.0 - 40.0) / STAFF_HEIGHT;
-    var pdelt = (108.0 - 40.0) / STAFF_HEIGHT;
+    else if (generation_method == "alien")
+    {
+        // 400*2^((p-64)/12) = f
+        // 108 hi key on 88key piano, 21 low key
+        // pdelt = (108.0-21.0) / STAFFHEIGHT;
+        //pdelt = (96.0 - 40.0) / STAFF_HEIGHT;
+        pdelt = (parameters['top'] - parameters['bottom']) / STAFF_HEIGHT;
+        base_frequency = parameters['base_freq'];
+        pdelt_subtract = parameters['pdelt_subtract'];
+    }
 
     var freq = null;
     var base_freq;
@@ -253,9 +281,7 @@ function initSignals(generation_method, scale)
                 overtone_power = base_overtone_power;
             }
 
-            //freq = signal_frequencies[bucket_index];
             base_freq = signal_frequencies[bucket_index];
-
             freq = base_freq * Math.pow(2, overtone_power);
 
             bucket_index_previous = bucket_index;
@@ -263,8 +289,7 @@ function initSignals(generation_method, scale)
         }
         else if (generation_method == "alien")
         {
-            //freq = 440.0 * Math.pow(2, (((i_mod * pdelt) + 40) - 69.0) / 12.0);
-            freq = 440.0 * Math.pow(2, (((i * pdelt) + 40) - 69.0) / 12.0);
+            freq = base_frequency * Math.pow(2, ((i * pdelt) - pdelt_subtract) / 12.0);
         }
 
         if (freq != freq_previous)

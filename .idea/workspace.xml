@@ -57,7 +57,7 @@
           <file leaf-file-name="application.rb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/config/application.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="58" column="62" selection-start="2835" selection-end="2835" vertical-scroll-proportion="0.7425897">
+                <state line="61" column="41" selection-start="2954" selection-end="2954" vertical-scroll-proportion="0.81279254">
                   <folding />
                 </state>
               </provider>
@@ -815,7 +815,11 @@
       <created>1335935638761</created>
       <updated>1335935638761</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Configuring javascript asset precompilation to be nice.">
+      <created>1335936074301</created>
+      <updated>1335936074301</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1002,7 +1006,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="62" selection-start="2835" selection-end="2835" vertical-scroll-proportion="0.7425897">
+        <state line="61" column="41" selection-start="2954" selection-end="2954" vertical-scroll-proportion="0.81279254">
           <folding />
         </state>
       </provider>

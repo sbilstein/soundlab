@@ -59,5 +59,6 @@ module Soundlab
     config.assets.paths << "#{Rails.root}/public/assets/images"
     config.assets.compile = true
     config.assets.precompile += %w( *.js )
+    config.assets.precompile += %w( *.png )
   end
 end

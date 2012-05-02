@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.draw.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.draw.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
     </list>
     <ignored path="soundlab.iws" />
@@ -107,10 +103,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="sound.core.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="sound.core.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="618" column="85" selection-start="19293" selection-end="19293" vertical-scroll-proportion="0.40924656">
+                <state line="610" column="44" selection-start="19003" selection-end="19003" vertical-scroll-proportion="0.20376712">
                   <folding />
                 </state>
               </provider>
@@ -156,10 +152,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="_staff.html.erb" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="_staff.html.erb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="564" column="11" selection-start="15129" selection-end="15129" vertical-scroll-proportion="0.3545611">
+                <state line="581" column="29" selection-start="15647" selection-end="15647" vertical-scroll-proportion="0.79345953">
                   <folding />
                 </state>
               </provider>
@@ -883,7 +879,11 @@
       <created>1335954698509</created>
       <updated>1335954698509</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="UI Layout tuneup, recall save, I came.">
+      <created>1335957877406</created>
+      <updated>1335957877406</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -1074,7 +1074,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="197" column="70" selection-start="5969" selection-end="5969" vertical-scroll-proportion="0.0">
+        <state line="213" column="28" selection-start="6376" selection-end="6376" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1086,16 +1086,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="564" column="11" selection-start="15129" selection-end="15129" vertical-scroll-proportion="0.3545611">
+        <state line="610" column="44" selection-start="19003" selection-end="19003" vertical-scroll-proportion="0.20376712">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
+    <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="618" column="85" selection-start="19293" selection-end="19293" vertical-scroll-proportion="0.40924656">
+        <state line="581" column="29" selection-start="15647" selection-end="15647" vertical-scroll-proportion="0.79345953">
           <folding />
         </state>
       </provider>

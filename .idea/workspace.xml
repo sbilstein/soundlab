@@ -57,7 +57,7 @@
           <file leaf-file-name="application.rb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/config/application.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="57" column="45" selection-start="2749" selection-end="2749" vertical-scroll-proportion="0.7522936">
+                <state line="59" column="42" selection-start="2848" selection-end="2848" vertical-scroll-proportion="0.80733943">
                   <folding />
                 </state>
               </provider>
@@ -777,7 +777,11 @@
       <created>1335930980187</created>
       <updated>1335930980187</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Configuring javascript asset precompilation to be nice.">
+      <created>1335933245209</created>
+      <updated>1335933245209</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -841,7 +845,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moving WebWorker (sound.signals.worker.js) and dependencies to public so they don't get concatenated - WebWorker needs to import on a script-by-script basis for now." />
+    <option name="LAST_COMMIT_MESSAGE" value="Configuring javascript asset precompilation to be nice." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -861,6 +865,7 @@
     <MESSAGE value="Major sound fix, was doubling signals (+= to self). Main problem now: in musical mode there is constant clipping because the same signal is being added to itself many times if pixel width &gt; 1." />
     <MESSAGE value="Pre-overtone experiment cleanup." />
     <MESSAGE value="Moving WebWorker (sound.signals.worker.js) and dependencies to public so they don't get concatenated - WebWorker needs to import on a script-by-script basis for now." />
+    <MESSAGE value="Configuring javascript asset precompilation to be nice." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -963,7 +968,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="45" selection-start="2749" selection-end="2749" vertical-scroll-proportion="0.7522936">
+        <state line="59" column="42" selection-start="2848" selection-end="2848" vertical-scroll-proportion="0.80733943">
           <folding />
         </state>
       </provider>

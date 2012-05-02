@@ -153,6 +153,13 @@ function populateScaleControl(transpose)
  */
 function makeScale()
 {
+    if ($("#pause_on_scale_update").is(":checked"))
+    {
+        soundOff();
+    }
+
+    $("#pause_on_scale_update").attr('disabled', 'disabled');
+
     var generate_method = $('input[name="scale_generate_method"]:checked').val();
 
     var parameters = {};
@@ -173,6 +180,9 @@ function makeScale()
             return KEY_TO_INDEX_MAPPING[a] - KEY_TO_INDEX_MAPPING[b];
         });
 
+        friendly_key.push(key_start_index);
+        friendly_key.push(key_end_index);
+
         friendly_key = friendly_key.join('-');
 
         parameters['scale'] = pending_scale;
@@ -189,6 +199,8 @@ function makeScale()
             parameters['top'].toString(),
             parameters['bottom'].toString(),
             parameters['pdelt_subtract'].toString()].join('-');
+
+        console.log(friendly_key);
     }
 
     // disable button and indicate we are loading
@@ -217,14 +229,24 @@ function makeScale()
                 $('#scale_loading_notifier').children().remove('img');
 
                 var previous_scale_button = $("<button>");
+                previous_scale_button.addClass('active_scale_button').addClass('scale_button');
 
                 previous_scale_button.text(friendly_key).attr('scale_key', friendly_key).click(function()
                 {
+                    $('.scale_button').removeClass('active_scale_button');
+                    $(this).addClass('active_scale_button');
                     signals_waves = cached_signals[$(this).attr('scale_key')];
                     js_buffer.BufferAsync();
                 });
 
+                $('.scale_button').removeClass('active_scale_button');
                 $("#previous_scales").append(previous_scale_button);
+
+                if ($("#pause_on_update").is(":checked"))
+                {
+                    playSound();
+                }
+                $("#pause_on_scale_update").removeAttr('disabled');
 
                 js_buffer.BufferAsync();
             };
@@ -238,6 +260,12 @@ function makeScale()
 
         $('#make_scale').removeAttr('disabled');
         $('#scale_loading_notifier').children().remove('img');
+
+        $('#make_scale').text('Scale updated');
+
+        setTimeout(function(){
+            $('#make_scale').text('Update Scale').removeAttr('disabled');
+        }, 1000);
 
         js_buffer.BufferAsync();
     }

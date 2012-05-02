@@ -456,14 +456,14 @@ nav {
   margin-bottom: 3px;
 }
 
-#previous_draws
+.recall_draw_container
 {
   margin-top: 10px;
   width:100%;
   text-align: center;
 }
 
-#previous_draws img
+.recall_draw_container img
 {
   border:thin green dotted;
   background: 'rgba(0, 0, 0, 0.85)';
@@ -472,7 +472,7 @@ nav {
   margin-right: 5px;
 }
 
-#previous_draws img:hover
+.recall_draw_container img:hover
 {
   border:thin green solid;
   background:white;

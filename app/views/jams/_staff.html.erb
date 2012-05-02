@@ -264,7 +264,62 @@
 
 
 <label>
-  <input type="radio" name="scale_generate_method" checked="checked" value="musical" />
+  <input type="radio" name="scale_generate_method" value="alien" checked="checked" />
+  <span class="bold">Alien</span>
+</label>
+
+<div class="table">
+  <div class="tr">
+    <div class="td">
+      Base Frequency:
+    </div>
+    <div class="td">
+      <div class="range_wrapper">
+        <input type="range" min="27.5" max="4186" step="0.1" value="440.0" id="alien_base_freq"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="tr">
+    <div class="td">
+      Parameter 1:
+    </div>
+    <div class="td">
+      <div class="range_wrapper">
+        <input type="range" min="21" max="108" step="1" value="108" id="alien_top"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="tr">
+    <div class="td">
+      Parameter 2:
+    </div>
+    <div class="td">
+      <div class="range_wrapper">
+        <input type="range" min="21" max="108" step="1" value="40" id="alien_bottom"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="tr">
+    <div class="td">
+      Parameter 3:
+    </div>
+    <div class="td">
+      <div class="range_wrapper">
+        <input type="range" min="21" max="108" step="1" value="40" id="alien_pdelt_subtract"/>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<hr/>
+
+
+<label>
+  <input type="radio" name="scale_generate_method" value="musical" />
   <span class="bold">Musical</span>
 </label>
 
@@ -483,59 +538,7 @@
   </div>
 </div>
 
-<hr/>
 
-  <label>
-    <input type="radio" name="scale_generate_method" value="alien" />
-    <span class="bold">Alien</span>
-  </label>
-
-  <div class="table">
-    <div class="tr">
-      <div class="td">
-        Base Frequency:
-      </div>
-      <div class="td">
-        <div class="range_wrapper">
-          <input type="range" min="27.5" max="4186" step="0.1" value="440.0" id="alien_base_freq"/>
-        </div>
-      </div>
-    </div>
-
-    <div class="tr">
-      <div class="td">
-        Parameter 1:
-      </div>
-      <div class="td">
-        <div class="range_wrapper">
-          <input type="range" min="21" max="108" step="1" value="108" id="alien_top"/>
-        </div>
-      </div>
-    </div>
-
-    <div class="tr">
-      <div class="td">
-        Parameter 2:
-      </div>
-      <div class="td">
-        <div class="range_wrapper">
-          <input type="range" min="21" max="108" step="1" value="40" id="alien_bottom"/>
-        </div>
-      </div>
-    </div>
-
-    <div class="tr">
-      <div class="td">
-        Parameter 3:
-      </div>
-      <div class="td">
-        <div class="range_wrapper">
-          <input type="range" min="21" max="108" step="1" value="40" id="alien_pdelt_subtract"/>
-        </div>
-      </div>
-    </div>
-
-</div>
 <div>
   <button id="make_scale" onclick="makeScale();">Update Scale</button>
   <div id="scale_loading_notifier"></div>
@@ -554,11 +557,28 @@
 
 <div id="side_panel" class="button_grouping hidden">
   <span class="bold">Scale Recall</span>
-  <div id="previous_scales"></div>
+  <div id="previous_scales">
+    <button onclick="recallDefaultScale();" scale_key="default">Default</button>
+  </div>
 
   <hr/>
 
-  <button style="float:right;" onclick="saveState();">Add current</button>
+  <button style="float:right;" onclick="saveState(false);">Add current</button>
   <span class="bold">Draw Recall</span>
-  <div id="previous_draws"></div>
+  <div id="previous_draws" class="recall_draw_container"></div>
+
+  <hr/>
+
+  <div style="float:right">
+    <label>
+      <input type="checkbox" id="autosave_enable" checked="checked" /> Enable
+    </label>
+    <select id="autosave_limit">
+      <option value=3>3</option>
+      <option value=10>10</option>
+      <option value=0>&#8734;</option>
+    </select>
+  </div>
+  <span class="bold">AutoRecall</span>
+  <div id="autosave_draws" class="recall_draw_container"></div>
 </div>

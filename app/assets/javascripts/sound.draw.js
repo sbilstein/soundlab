@@ -186,6 +186,11 @@ function endPen(e)
     $("canvas.bar").unbind('mouseup', endPen);
     $("canvas.bar").unbind('mouseleave', endPen);
 
+    if($('#autosave_enable').is(':checked'))
+    {
+        saveState(true);
+    }
+
     asyncBuffered = false;
     js_buffer.BufferAsync()
 }

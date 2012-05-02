@@ -580,7 +580,7 @@ function loadFromDataURL(dataURL)
 
 // Swagg functions
 
-function saveState()
+function saveState(isAutoSave)
 {
     saved_states['count'] += 1;
 
@@ -601,10 +601,30 @@ function saveState()
         $(this).parent().remove();
     });
 
-    var recall_container= $('<div></div>');
+    var recall_container= $('<div>');
     recall_container.append(recall_img).append(remove_img_button);
 
-    $('#previous_draws').append(recall_container);
+    if (!isAutoSave)
+    {
+        $('#previous_draws').append(recall_container);
+    }
+    else
+    {
+        recall_container.hide();
+        $("#autosave_draws").append(recall_container);
+
+        recall_container.show('slow', function()
+        {
+            if( $("#autosave_limit").val() != 0 &&
+                $("#autosave_draws").children().length > $("#autosave_limit").val())
+            {
+                $("#autosave_draws").children().first().hide('slow', function()
+                {
+                    $("#autosave_draws").children().first().remove();
+                });
+            }
+        });
+    }
 
     saved_states[saved_states['count']] = save_data;
 }

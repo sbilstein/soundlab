@@ -24,9 +24,21 @@ $(document).ready(function()
     //$("#below_staff_area").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
     $("#controls").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
 
+    /*
+        .ready(function()
+    {
+        // Initialization events
+        initScale();
+        initAudio();
+        resetStaff();
+        playSound();
+    });
+    */
+
     $("#side_panel").css({top:CANVAS_HEIGHT_OFFSET, left:CANVAS_WIDTH_OFFSET + $('canvas.staff').width() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
 
-    // Initialization events
+
+     // Initialization events
     initScale();
     initAudio();
     resetStaff();
@@ -126,7 +138,7 @@ $(document).ready(function()
     }
 
     // Start the scrub line
-    playSound(true);
+    playSound();
 });
 
 /**
@@ -183,6 +195,21 @@ function initScale()
 {
     $('input[name="scale_selection"][value="scale_pentatonic"]').attr("checked", "checked");
     populateScaleControl();
-    signals_waves = initSignals("musical", {'scale':generateScaleFromKeys(keys_pentatonic_scale)});
+    //signals_waves = initSignals("musical", {'scale':generateScaleFromKeys(keys_pentatonic_scale)});
+    signals_waves = initSignals("alien",
+        {
+            'base_freq':440.0,
+            'top':108,
+            'bottom':40,
+            'pdelt_subtract':40
+        }
+    );
     signals = signals_waves[DSP.SINE];
+    cached_signals['default'] = signals_waves;
+}
+
+function recallDefaultScale()
+{
+    signals_waves = cached_signals['default'];
+    js_buffer.BufferAsync();
 }

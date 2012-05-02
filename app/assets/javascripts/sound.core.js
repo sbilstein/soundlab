@@ -321,7 +321,7 @@ function setJSNodeBufferSize(size)
 
 /**
  * Calculates what sound should be playing
- * @param el Button that called the function
+
  */
 function playSound()
 {
@@ -582,12 +582,39 @@ function loadFromDataURL(dataURL)
 
 function saveState()
 {
-    saved_states.push(staff_canvas_context.getImageData(0, 0, STAFF_WIDTH, STAFF_WIDTH));
+    saved_states['count'] += 1;
+
+    var save_data = {
+        'image_data':staff_canvas_context.getImageData(0, 0, STAFF_WIDTH, STAFF_WIDTH),
+        'data_url': getStorableData()
+    }
+
+    var recall_img = $("<img src='" + save_data['data_url'] + "' />");
+    recall_img.width('165px').attr('load_id',saved_states['count']).click(function()
+    {
+        loadState(parseInt($(this).attr('load_id')));
+    });
+
+    var remove_img_button = $('<button>X</button>');
+    remove_img_button.click(function()
+    {
+        $(this).parent().remove();
+    });
+
+    var recall_container= $('<div></div>');
+    recall_container.append(recall_img).append(remove_img_button);
+
+    $('#previous_draws').append(recall_container);
+
+    saved_states[saved_states['count']] = save_data;
 }
 
-function loadState()
+function loadState(id)
 {
-    staff_canvas_context.putImageData(saved_states.pop(), 0, 0);
-    js_buffer.BufferAsync();
+    if (id)
+    {
+        staff_canvas_context.putImageData(saved_states[id]['image_data'], 0, 0);
+        js_buffer.BufferAsync();
+    }
 }
 

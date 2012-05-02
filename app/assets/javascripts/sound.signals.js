@@ -2,6 +2,9 @@
  * Global signals constants (should probably put these in closure)
  */
 
+// Not gonna change unless we move away from Western music scale because we don't want to hear nice things any more.
+const SEMITONE_COUNT = 12;
+
 /**
  *Frequencies of piano keys from 1 (A0 Double Pedal A)  through 88 (C8 Eighth octave).
  * Delete this and die a slow painful death.
@@ -55,11 +58,16 @@ var INDEX_TO_KEY_MAPPING = [
  * it out in C and transpose in the UI.
   */
 var keys_chromatic_scale =  ["A", "Bf", "B", "C", "Cs", "D", "Ef", "E", "F", "Fs", "G", "Af"];
-var keys_major_scale =      ["A", "B", "C", "D", "E", "F", "G"];
-var keys_octave_scale =     ["C"];
-var keys_chinese_scale =    ["Bf", "Cs", "Ef", "Fs", "Af"];
-var keys_pentatonic_scale = ["C", "D", "E", "G", "A"];
-var keys_minor_scale =      ["C", "D", "Ef", "F", "G", "Af", "Bf"];
+
+var keys_major_scale =      ["A",       "B", "C",       "D",       "E", "F",       "G"      ];
+
+var keys_octave_scale =     [                "C"                                            ];
+
+var keys_chinese_scale =    [     "Bf",           "Cs",      "Ef",           "Fs",      "Af"];
+
+var keys_pentatonic_scale = ["A",            "C",       "D",       "E",            "G"      ];
+
+var keys_minor_scale =      [     "Bf",      "C",       "D", "Ef",      "F",       "G", "Af"];
 
 var SCALE_KEYS_MAPPING = {
     "scale_chromatic": keys_chromatic_scale,
@@ -98,7 +106,7 @@ var cached_signals = {};
  */
 
 /**
- * Old-school scale generation. Not used, will probably get deleted.
+ * Old-school scale generation, only used on init when we're not reading from the UI.
  * @param scale_keys
  * @return {Array}
  */
@@ -134,7 +142,7 @@ function populateScaleControl(transpose)
     {
         for (var i = 0; i < scale_keys.length; i++)
         {
-            scale_keys[i] = INDEX_TO_KEY_MAPPING[(KEY_TO_INDEX_MAPPING[scale_keys[i]] + transpose) % 12];
+            scale_keys[i] = INDEX_TO_KEY_MAPPING[(KEY_TO_INDEX_MAPPING[scale_keys[i]] + transpose) % SEMITONE_COUNT];
             $('input.key_toggle[key="'+scale_keys[i]+'"]').attr('checked', 'checked')
         }
     }
@@ -184,7 +192,7 @@ function makeScale()
     }
 
     // disable button and indicate we are loading
-    $('#make_scale').attr('disabled','disabled');
+    $('#make_scale').attr('disabled','disabled').text('Updating, please wait...');
 
     var loading_notifier = $('<img src="/assets/load.gif" />');
     $('#scale_loading_notifier').append(loading_notifier);
@@ -200,7 +208,12 @@ function makeScale()
 
                 cached_signals[friendly_key] = signals_waves;
 
-                $('#make_scale').removeAttr('disabled');
+                $('#make_scale').text('Scale generation complete');
+
+                setTimeout(function(){
+                    $('#make_scale').text('Update Scale').removeAttr('disabled');
+                }, 1000);
+
                 $('#scale_loading_notifier').children().remove('img');
 
                 var previous_scale_button = $("<button>");
@@ -257,7 +270,7 @@ function initSignals(generation_method, parameters)
     {
         var scale = parameters['scale'];
 
-        scale_index = key_start_index % 12;
+        scale_index = key_start_index % SEMITONE_COUNT;
 
         scale_frequencies = key_frequencies.slice(key_start_index, key_end_index);
         signal_frequencies = [];
@@ -269,7 +282,7 @@ function initSignals(generation_method, parameters)
                 signal_frequencies.push(scale_frequencies[i]);
             }
 
-            scale_index = (scale_index + 1) % 12;
+            scale_index = (scale_index + 1) % SEMITONE_COUNT;
         }
 
         granularity = STAFF_HEIGHT / signal_frequencies.length;
@@ -315,7 +328,7 @@ function initSignals(generation_method, parameters)
         }
         else if (generation_method == "alien")
         {
-            freq = base_frequency * Math.pow(2, ((i * pdelt) - pdelt_subtract) / 12.0);
+            freq = base_frequency * Math.pow(2, ((i * pdelt) - pdelt_subtract) / parseFloat(SEMITONE_COUNT));
         }
 
         if (freq != freq_previous)

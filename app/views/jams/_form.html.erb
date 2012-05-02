@@ -13,8 +13,8 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
+  <div class="field inline">
+    <span class="bold"><%= f.label :title %></span>
     <%= f.text_field :title %>
   </div>
   <div class="field hidden">
@@ -22,6 +22,6 @@
     <%= f.label :song %><br />
     <%= f.text_field :song %>
   </div>
-  <div class="actions">
+  <div class="actions inline">
     <%= f.submit 'Save Jam' %>
 <% end %>

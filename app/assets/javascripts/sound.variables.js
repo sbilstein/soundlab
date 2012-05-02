@@ -35,7 +35,7 @@ var js_node;
  *         asynchronous. This is sound heard in Glitch Mode.
  *
  *      3. Asynchronous + Synchronous buffering. In this mode, the buffering strategy is swapped depending on whether
- *         the canvas is changing in order to provide superior performance whenver possible while also reacting to user
+ *         the canvas is changing in order to provide superior performance whenever possible while also reacting to user
  *         input in real-time. This is supported and can be enabled by switching realtime_buffering_enabled to true.
  *         However it is not exposed to the user and is shelved for now due to the inconsistency in sound between realtime
  *         buffering and asynchronous buffering. Come back and investigate eventually.
@@ -47,7 +47,7 @@ var asyncBuffered = false;
 /**
  * Signals and samples variables
  */
-var dsp_wave = DSP.SINE; // initial default wave.
+var dsp_wave = DSP.SINE; // initial default wave. TODO: Don't think we even use this anymore.
 
 var samples_per_pixel = Math.floor(NUM_SAMPLES / STAFF_WIDTH);
 
@@ -98,17 +98,12 @@ var audio_is_playing = false;
 
 var tool_style = PEN;
 var pen_stroke_width = 2;
-var eraser_stroke_width = 20;
+var eraser_stroke_width = 20; // never changes now.
 
 var bar_canvas_context;
 var staff_canvas_context;
 
 var is_drawing = false;
-
-var border_directive = {
-    strokeStyle : COLOR_BLACK,
-    strokeWidth : BORDER_WIDTH.toString()
-}
 
 var linear_directive = {
   x1: 0, y1: 1,
@@ -118,21 +113,23 @@ var linear_directive = {
   c3: "#fff"
 }
 
+var linear_gradient = null;
+
 var scrub_line_directive = {
-    strokeStyle : COLOR_WHITE,
-    strokeWidth : "0",
+    strokeStyle : COLOR_BLACK,
+    strokeWidth : "2",
 
-    // drawLine fields (disabled)
-    //y1 : 1,
-    //y2: STAFF_HEIGHT,
+    // drawLine fields
+    y1 : 1,
+    y2: STAFF_HEIGHT
 
-    // drawRect fields
+    // drawRect fields (disabled)
+    /*
     y: STAFF_HEIGHT / 2 + 1,
     height: STAFF_HEIGHT - 2,
     width: 10
+    */
 }
-
-var linear_gradient = null;
 
 var pen_directive = {
     strokeStyle : COLOR_RED,
@@ -146,6 +143,7 @@ var pen_directive = {
 
 // Begin swag variables
 
-var saved_states = [];
+var saved_states = {};
+saved_states['count'] = 0;
 
 // Never end swag

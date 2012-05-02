@@ -263,10 +263,6 @@
 <div class="button_grouping">
 
 
-<div id="previous_scales" class="subgroup"></div>
-
-<!--<div class="subgroup">-->
-
 <label>
   <input type="radio" name="scale_generate_method" checked="checked" value="musical" />
   <span class="bold">Musical</span>
@@ -408,6 +404,17 @@
       Key
     </div>
   </div>
+
+  <div class="tr  premade_scale">
+    <div class="td">
+      <label>
+        <input type="radio" name="scale_selection" value="scale_pentatonic"/> Pentatonic
+      </label>
+    </div>
+
+    <div class="td scale_key_control"></div>
+  </div>
+
   <div class="tr premade_scale">
     <div class="td">
       <label>
@@ -454,16 +461,6 @@
 
     <div class="td scale_key_control"></div>
 
-  </div>
-
-  <div class="tr  premade_scale">
-    <div class="td">
-      <label>
-        <input type="radio" name="scale_selection" value="scale_pentatonic"/> Pentatonic
-      </label>
-    </div>
-
-    <div class="td scale_key_control"></div>
   </div>
 
   <div class="tr premade_scale">
@@ -538,11 +535,6 @@
       </div>
     </div>
 
-
-
-
-
-
 </div>
 <div>
   <button id="make_scale" onclick="makeScale();">Update Scale</button>
@@ -557,4 +549,16 @@
 </div>
 
 
+</div>
+
+
+<div id="side_panel" class="button_grouping hidden">
+  <span class="bold">Scale Recall</span>
+  <div id="previous_scales"></div>
+
+  <hr/>
+
+  <button style="float:right;" onclick="saveState();">Add current</button>
+  <span class="bold">Draw Recall</span>
+  <div id="previous_draws"></div>
 </div>

@@ -10,13 +10,6 @@ function switchToolStyle()
 
         pen_directive.strokeStyle = COLOR_NONE;
         pen_directive.strokeWidth = eraser_stroke_width.toString();
-
-        // Erase all layers protection - it's annoying but maybe there's a better way to to it. Disabled for now.
-        /*
-        var temp_erase_all_layers_title = $('#erase_all_layers').attr('title')
-        $('#erase_all_layers').removeAttr('disabled').attr('title', $('#erase_all_layers').attr('alt_title'))
-        $('#erase_all_layers').removeAttr('disabled').attr('alt_title', temp_erase_all_layers_title)
-        */
     }
     else
     {
@@ -25,12 +18,6 @@ function switchToolStyle()
 
         pen_directive.strokeStyle = COLOR_VALUE_MAPPING[$("input[name='layer_select']:checked").val()];
         pen_directive.strokeWidth = pen_stroke_width.toString();
-
-        /*
-        var temp_erase_all_layers_title = $('#erase_all_layers').attr('title')
-        $('#erase_all_layers').attr('disabled', 'disabled').attr('title', $('#erase_all_layers').attr('alt_title'))
-        $('#erase_all_layers').attr('disabled', 'disabled').attr('alt_title', temp_erase_all_layers_title)
-        */
     }
 }
 
@@ -53,19 +40,16 @@ function drawScrubLine(time)
     // Move over and draw the line in new position
     var tick_x = Math.round(time * STAFF_WIDTH);
 
-	linear_directive["x1"] = tick_x;
-	linear_directive["x2"] = tick_x + 10;
+	//linear_directive["x1"] = tick_x;
+	//linear_directive["x2"] = tick_x + 10;
 	
-	linear_gradient = $("canvas").gradient(linear_directive);
-	scrub_line_directive["fillStyle"] = linear_gradient;
-    scrub_line_directive["x"] = tick_x;
-    $("canvas.bar").drawRect(scrub_line_directive);
+	//linear_gradient = $("canvas").gradient(linear_directive);
+	//scrub_line_directive["fillStyle"] = linear_gradient;
+    //scrub_line_directive["x"] = tick_x;
+    //$("canvas.bar").drawRect(scrub_line_directive);
 
-    //scrub_line_directive["x1"] = scrub_line_directive["x2"] = tick_x;
-    //$("canvas.bar").drawLine(scrub_line_directive);
-
-
-
+    scrub_line_directive["x1"] = scrub_line_directive["x2"] = tick_x;
+    $("canvas.bar").drawLine(scrub_line_directive);
 }
 
 /**

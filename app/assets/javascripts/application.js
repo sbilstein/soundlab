@@ -13,9 +13,9 @@
 //= require plugins
 //= require jquery
 //= require jquery_ujs
-//= require /public/assets/javascripts/dsp
-//= require /public/assets/javascripts/sound.variables.constants
-//= require /public/assets/javascripts/sound.variables
-//= require /public/assets/javascripts/sound.signals
-//= require /public/assets/javascripts/sound.signals.worker
+//= require /public/assets/javascripts/dsp.js
+//= require /public/assets/javascripts/sound.variables.constants.js
+//= require /public/assets/javascripts/sound.variables.js
+//= require /public/assets/javascripts/sound.signals.js
+//= require /public/assets/javascripts/sound.signals.worker.js
 //= require_tree .

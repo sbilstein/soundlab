@@ -165,6 +165,8 @@ var BufferController = function()
             sum_signal[i] = 0.0;
         }
 
+        var max_amplitude = 0;
+
         // Loop through each pixel
         for ($BA_x_pixel_index = $BA_starting_x_pixel_index; $BA_x_pixel_index < $BA_ending_x_pixel_index; $BA_x_pixel_index++)
         {
@@ -235,8 +237,45 @@ var BufferController = function()
                                 sum_signal[$BA_sample_index] += ($BA_pix[$BA_pixel_index + ALPHA_INDEX_OFFSET] / 255.0) *
                                     signals_waves[layer_signal_config[COLOR_BLUE]][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $BA_y_pixel_index][$BA_sample_index];
                             }
+
+                            if (precompression_enabled)
+                            {
+                                if (sum_signal[$BA_sample_index] > MAX_PRECOMPRESSED_AMPLITUDE)
+                                {
+                                    sum_signal[$BA_sample_index] = MAX_PRECOMPRESSED_AMPLITUDE;
+                                }
+                                else if (sum_signal[$BA_sample_index] < -MAX_PRECOMPRESSED_AMPLITUDE)
+                                {
+                                    sum_signal[$BA_sample_index] = -MAX_PRECOMPRESSED_AMPLITUDE;
+                                }
+
+                                if (Math.abs(sum_signal[$BA_sample_index]) > max_amplitude)
+                                {
+                                    max_amplitude = Math.abs(sum_signal[$BA_sample_index]);
+                                }
+                            }
                         }
                     }
+                }
+            }
+        }
+
+        //console.log(max_amplitude);
+
+        if (precompression_enabled && precompression_normalization_enabled && max_amplitude)
+        {
+            max_amplitude = parseFloat(max_amplitude);
+
+            for (var i = 0; i < sum_signal.length; i++)
+            {
+                if (!(i % 100))
+                {
+                    //console.log('pre',sum_signal[i]);
+                }
+                sum_signal[i] = MAX_AMPLITUDE * (sum_signal[i] / max_amplitude);
+                if (!(i % 100))
+                {
+                    //console.log('post',sum_signal[i]);
                 }
             }
         }
@@ -244,8 +283,6 @@ var BufferController = function()
         audio_buffer_source.buffer.getChannelData(0).set(sum_signal);
         audio_buffer_source.buffer.getChannelData(1).set(sum_signal);
         audio_buffer_source.noteOn(0);
-
-        connectNodes();
 
         asyncBuffered = true;
     }
@@ -281,18 +318,9 @@ function connectNodes()
     else
     {
         audio_buffer_source.connect(gain_node);
-        //audio_buffer_source.connect(convolution_node);
     }
 
     gain_node.connect(dynamic_compressor_node);
-    //dynamic_compressor_node.connect(audio_context.destination);
-    //gain_node.connect(convolution_node);
-
-    //convolution_node.connect(dynamic_compressor_node);
-    //gain_node.connect(convolution_node);
-    //convolution_node.connect(dynamic_compressor_node);
-    //gain_node.connect(audio_context.destination);
-
     dynamic_compressor_node.connect(audio_context.destination);
 }
 
@@ -300,15 +328,15 @@ function toggleGlitchMode()
 {
     if ($('#glitch_mode_enabled').is(':checked'))
     {
+        soundOff();
         glitch_mode_on = true;
+        soundOn();
     }
     else
     {
         glitch_mode_on = false;
         js_buffer.BufferAsync();
     }
-
-    connectNodes();
 }
 
 function setJSNodeBufferSize(size)
@@ -355,6 +383,7 @@ function soundOn()
     audio_buffer_source.noteOn(0);
 
     animateLine();
+    $('#play_pause_button').text($('#play_pause_button').attr('pause_text'));
 }
 
 /**
@@ -374,6 +403,7 @@ function soundOff()
 
     // call to animate toggle.
     animateLine();
+    $('#play_pause_button').text($('#play_pause_button').attr('play_text'));
 }
 
 /**
@@ -429,6 +459,18 @@ function toggleDecay()
         clearInterval(decay_interval);
         decay_interval = null;
     }
+}
+
+function togglePrecompression()
+{
+    precompression_enabled = !precompression_enabled;
+    js_buffer.BufferAsync();
+}
+
+function setPrecompressionAmplitude(element)
+{
+    MAX_PRECOMPRESSED_AMPLITUDE = 21.0 - parseFloat($(element).val());
+    js_buffer.BufferAsync();
 }
 
 function setDSPWave(wave)
@@ -595,7 +637,7 @@ function saveState(isAutoSave)
         loadState(parseInt($(this).attr('load_id')));
     });
 
-    var remove_img_button = $('<button>X</button>');
+    var remove_img_button = $('<button>X</button>').attr('title', 'Remove from list');
     remove_img_button.click(function()
     {
         $(this).parent().remove();
@@ -610,6 +652,18 @@ function saveState(isAutoSave)
     }
     else
     {
+        recall_img.width('142px');
+
+        var move_to_recall_button = $('<button title="Add to Draw Recall list">+</button>');
+        move_to_recall_button.click(function()
+        {
+            $('#previous_draws').append($(this).parent());
+            $(this).parent().children('img').width('165px');
+            $(this).remove();
+        });
+
+        recall_container.append(move_to_recall_button);
+
         recall_container.hide();
         $("#autosave_draws").append(recall_container);
 

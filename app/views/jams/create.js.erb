@@ -2,6 +2,6 @@
 $('.submittable').html('Error creating jam');
 <% else %>
 $('#new_jam').html('');
-$('#jam-title').html("<%= @jam.title %>")
+$('#jam_title').html("<%= @jam.title %>")
 $('#submittable').html('Jam submitted successfully!');
 <% end %>

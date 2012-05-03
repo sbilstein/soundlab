@@ -242,7 +242,7 @@ function makeScale()
                 $('.scale_button').removeClass('active_scale_button');
                 $("#previous_scales").append(previous_scale_button);
 
-                if ($("#pause_on_update").is(":checked"))
+                if ($("#pause_on_scale_update").is(":checked"))
                 {
                     playSound();
                 }

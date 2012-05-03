@@ -3,7 +3,10 @@
 <div id="below_staff_area">
 
     <div class="button_grouping">
-        <h1><%= @jam.title %></h1>
+      <button id="play_pause_button" type="button" onClick="playSound();" play_text="&#9654;" pause_text="&#10074;&#10074;">&#9654;</button>
+      <div id="title_wrapper">
+        <h1 id="jam_title"><%= @jam.title %></h1>
+      </div>
 		<p id="notice"><%= notice %></p>
 		<%= render :partial => 'votes', :locals => {:jam => @jam }%>
 		<%= link_to 'See all Jams', jams_path %> -

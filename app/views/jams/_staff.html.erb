@@ -18,7 +18,7 @@
 
 <div class="td top_align">
   <div class="button_grouping">
-    <button type="button" onClick="playSound(this)">play</button>
+    <!--<button id="play_pause_button" type="button" onClick="playSound();" play_text="&#9654;" pause_text="&#10074;&#10074;">&#9654;</button>-->
 
     <div class="table">
 
@@ -47,7 +47,23 @@
         </div>
 
         <div class="td">
-          <label><input type="checkbox" id="decay_enabled" onchange="toggleDecay();"/> Enabled</label>
+          <label><input type="checkbox" id="decay_enabled" onchange="toggleDecay();"/> Enable</label>
+        </div>
+      </div>
+
+      <div class="tr">
+        <div class="td">Normalize:</div>
+
+        <div class="td">
+          <div class="range_wrapper">
+            <input type="range" min="1.0" max="20.0" step="0.1" value="5.0" id="precompression_max" onchange="setPrecompressionAmplitude(this);" />
+          </div>
+        </div>
+
+        <div class="td">
+          <label title="Normalize the buffered signal. This may help to reduce clipping and distortion in some cases, but may cause performance issues on slower machines.">
+            <input type="checkbox" id="precompression_enabled" checked="checked" onchange="togglePrecompression();"/> Enable
+          </label>
         </div>
       </div>
 
@@ -61,8 +77,8 @@
     <div class="subgroup">
       <fieldset>
         <!--<legend> Robo mode mode</legend>-->
-        <label> <input type=radio name=robo_mode value="chaos"> Chaos </label>
-        <label> <input type=radio name=robo_mode value="random" checked=checked> Random </label>
+        <label> <input type=radio name=robo_mode value="chaos" checked=checked> Chaos </label>
+        <label> <input type=radio name=robo_mode value="random"> Random </label>
         <!--<label> <input type=radio name=robo_mode value="curve"> Curve </label>-->
       </fieldset>
     </div>
@@ -146,7 +162,7 @@
 
         <div class="td">
           <label>
-            <input type="radio" name="layer_select" value="COLOR_RED" checked="checked">
+            <input type="radio" name="layer_select" value="COLOR_RED">
 
             <div class="layer_control_color_label">
               Red
@@ -183,7 +199,7 @@
 
         <div class="td">
           <label>
-            <input type="radio" name="layer_select" value="COLOR_GREEN">
+            <input type="radio" name="layer_select" value="COLOR_GREEN" checked="checked">
 
             <div class="layer_control_color_label">
               Green
@@ -563,7 +579,7 @@
 <div id="side_panel" class="button_grouping hidden">
   <span class="bold">Scale Recall</span>
   <div id="previous_scales">
-    <button onclick="recallDefaultScale();" scale_key="default">Default [Alien]</button>
+    <button class="scale_button active_scale_button" onclick="$('.scale_button').removeClass('active_scale_button'); $(this).addClass('active_scale_button'); recallDefaultScale();" scale_key="default">Default [Alien]</button>
   </div>
 
   <hr/>

@@ -174,6 +174,7 @@ function roboMode()
         robo_directive['y1'] = parseInt(Math.random() * STAFF_HEIGHT - BORDER_WIDTH * 2) + BORDER_WIDTH;
         robo_directive['y2'] = parseInt(Math.random() * STAFF_HEIGHT - BORDER_WIDTH * 2) + BORDER_WIDTH;
         $("canvas.staff").drawLine(robo_directive);
+        js_buffer.BufferAsync();
     }
     else
     {
@@ -226,7 +227,8 @@ function roboMode()
                  */
             }
 
-            fadeSound($('#robo_decay').val());
+            //fadeSound($('#robo_decay').val());
+            js_buffer.BufferAsync();
         }
         else if (robo_mode == 'curve')
         {
@@ -264,6 +266,11 @@ function toggleRobo()
 {
     if (!robo_interval)
     {
+        if (!$('#decay_enabled').is(":checked"))
+        {
+            $("#decay_enabled").attr('checked', 'checked');
+            toggleDecay();
+        }
         robo_interval = setInterval(roboMode, 1000);
     }
     else

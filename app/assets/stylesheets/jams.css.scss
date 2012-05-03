@@ -273,12 +273,12 @@ nav {
 	border: dotted 1px green;
 }
 
-#jam-title
+#jam_title
 {
 	font-family: arial, helvetica, sans-serif;
     display:inline;
-  border-right:thin gray solid;
-  padding-right:0.3em;
+    border-right:thin gray solid;
+    padding-right:0.3em;
 }
 
 .voter {
@@ -476,4 +476,38 @@ nav {
 {
   border:thin green solid;
   background:white;
+}
+
+#update_scale_container
+{
+  margin-top: 20px;
+}
+
+.active_scale_button
+{
+  border: thin solid green;
+}
+
+#play_pause_button
+{
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: bold;
+  padding:5px;
+  padding-top:3px;
+  width:40px;
+  text-align: center;
+  margin-right: 7px;
+}
+
+#title_wrapper
+{
+  display:inline-block;
+  vertical-align: bottom;
+}
+
+.title_bar_inline
+{
+  vertical-align: middle;
+  display: inline-block;
 }

@@ -11,6 +11,10 @@ const NUM_CHANNELS = 2;
 const DEFAULT_BITRATE = 2048;
 
 const MAX_AMPLITUDE = 0.9;
+var MAX_PRECOMPRESSED_AMPLITUDE = 15.0;
+
+var precompression_enabled = true;
+var precompression_normalization_enabled = true;
 
 // Canvas pixel array accessor constants
 const RED_INDEX_OFFSET = 0;
@@ -25,7 +29,7 @@ const STAFF_WIDTH = 1000;
 const STAFF_HEIGHT = 375;
 
 const CANVAS_WIDTH_OFFSET = 16;
-const CANVAS_HEIGHT_OFFSET = 85;
+const CANVAS_HEIGHT_OFFSET = 90;
 
 const BELOW_STAFF_HEIGHT_OFFSET = 25;
 

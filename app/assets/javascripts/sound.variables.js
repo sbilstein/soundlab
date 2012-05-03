@@ -97,7 +97,7 @@ var audio_is_playing = false;
  */
 
 var tool_style = PEN;
-var pen_stroke_width = 2;
+var pen_stroke_width = 5;
 var eraser_stroke_width = 20; // never changes now.
 
 var bar_canvas_context;
@@ -132,7 +132,7 @@ var scrub_line_directive = {
 }
 
 var pen_directive = {
-    strokeStyle : COLOR_RED,
+    strokeStyle : COLOR_GREEN,
     strokeWidth : pen_stroke_width.toString(),
 	strokeCap : "round"
 }

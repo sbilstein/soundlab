@@ -1,15 +1,20 @@
 
 <div id="below_staff_area" id="form_area">
-    <div class="button_grouping">
-        <h1 id="jam-title">New jam</h1>
-		<div id="submittable" class="inline"></div>
-	  
-        <%= render 'form' %>
+  <div class="button_grouping">
+    <button id="play_pause_button" type="button" onClick="playSound();" play_text="&#9654;" pause_text="&#10074;&#10074;">&#9654;</button>
+    <div id="title_wrapper">
+      <h1 id="jam_title">New jam</h1>
+    </div>
+    <div class="title_bar_inline">
+    <div id="submittable" class="submittable inline"></div>
 
-	  </div>
+    <%= render 'form' %>
 
-		&nbsp;|&nbsp; <%= link_to 'View all jams', jams_path %>
-     </div>
+  </div>
+
+  &nbsp;&#8226;&nbsp; <%= link_to 'View all jams', jams_path %>
+</div>
+  </div>
 </div>
 </div></div>
 <%= render 'staff' %>

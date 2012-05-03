@@ -5,7 +5,7 @@
 <% @jams.each do |jam| %>
   <tr>
 	<td>
-		<h3 class="jam-title"><%= link_to jam.title, jam %></h3>
+		<h3 class="jam_title"><%= link_to jam.title, jam %></h3>
 		<%= render :partial => 'votes', :locals => {:jam => jam }%>
 	</td>
 	<td>

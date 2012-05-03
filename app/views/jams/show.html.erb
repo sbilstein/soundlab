@@ -7,9 +7,11 @@
       <div id="title_wrapper">
         <h1 id="jam_title"><%= @jam.title %></h1>
       </div>
+      <div class="title_bar_inline">
 		<p id="notice"><%= notice %></p>
 		<%= render :partial => 'votes', :locals => {:jam => @jam }%>
-		<%= link_to 'See all Jams', jams_path %> -
+		<%= link_to 'See all Jams', jams_path %>
+      </div>
     </div>
 
     <div id="stored_data" class="hidden" data="<%= @jam.song %>"></div>

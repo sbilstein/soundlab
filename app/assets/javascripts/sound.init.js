@@ -125,7 +125,10 @@ $(document).ready(function()
             var transpose = parseInt($(this).val());
             populateScaleControl(transpose);
         }
-    })
+    });
+
+    // Start the scrub line
+    playSound();
 
     // Save/Load
     if ($('#stored_data').length)
@@ -136,9 +139,6 @@ $(document).ready(function()
     {
         $('#new_jam').submit(function() { $('#jam_song').val(getStorableData()); return true; });
     }
-
-    // Start the scrub line
-    playSound();
 });
 
 /**

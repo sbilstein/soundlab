@@ -615,6 +615,7 @@ function loadFromDataURL(dataURL)
     img.onload = function()
     {
         $('canvas.staff')[0].getContext('2d').drawImage(img, 0, 0);
+        js_buffer.BufferAsync();
     }
 
     img.src = dataURL;

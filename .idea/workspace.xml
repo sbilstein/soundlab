@@ -4,15 +4,9 @@
     <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.robo.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.robo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/create.js.erb" afterPath="$PROJECT_DIR$/app/views/jams/create.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/index.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/new.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/_votes.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/_votes.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/show.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/show.html.erb" />
     </list>
     <ignored path="soundlab.iws" />
@@ -38,13 +32,13 @@
     <favorites_list name="soundlab" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.63508064">
+    <splitter split-orientation="horizontal" split-proportion="0.3978495">
       <split-first>
         <leaf>
           <file leaf-file-name="jams.css.scss" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="509" column="1" selection-start="5856" selection-end="5856" vertical-scroll-proportion="-16.64">
+                <state line="516" column="17" selection-start="5950" selection-end="5950" vertical-scroll-proportion="-20.24">
                   <folding />
                 </state>
               </provider>
@@ -71,16 +65,16 @@
           <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/jams/show.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="12" column="50" selection-start="453" selection-end="453" vertical-scroll-proportion="-7.5">
+                <state line="13" column="12" selection-start="490" selection-end="490" vertical-scroll-proportion="-8.125">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="sound.variables.constants.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="sound.variables.constants.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="41" column="61" selection-start="954" selection-end="954" vertical-scroll-proportion="0.3559322">
+                <state line="41" column="61" selection-start="954" selection-end="954" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -107,16 +101,16 @@
           <file leaf-file-name="sound.init.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="183" column="64" selection-start="5477" selection-end="5477" vertical-scroll-proportion="0.0">
+                <state line="183" column="0" selection-start="5478" selection-end="5478" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="sound.core.js" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="sound.core.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="353" column="9" selection-start="13995" selection-end="13995" vertical-scroll-proportion="0.0">
+                <state line="617" column="32" selection-start="19785" selection-end="19785" vertical-scroll-proportion="0.515625">
                   <folding />
                 </state>
               </provider>
@@ -126,10 +120,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="sound.init.js" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="sound.init.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="213" column="28" selection-start="6376" selection-end="6376" vertical-scroll-proportion="0.0">
+                <state line="143" column="69" selection-start="3916" selection-end="3916" vertical-scroll-proportion="0.53433836">
                   <folding />
                 </state>
               </provider>
@@ -147,7 +141,7 @@
           <file leaf-file-name="_votes.html.erb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/jams/_votes.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="8" column="31" selection-start="640" selection-end="640" vertical-scroll-proportion="-5.0">
+                <state line="19" column="0" selection-start="631" selection-end="631" vertical-scroll-proportion="-11.875">
                   <folding />
                 </state>
               </provider>
@@ -171,10 +165,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/jams/new.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="8" column="45" selection-start="373" selection-end="373" vertical-scroll-proportion="0.22556391">
+                <state line="8" column="45" selection-start="373" selection-end="373" vertical-scroll-proportion="-5.0">
                   <folding />
                 </state>
               </provider>
@@ -207,22 +201,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.signals.worker.js" />
         <option value="$PROJECT_DIR$/app/views/jams/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.draw.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.robo.js" />
         <option value="$PROJECT_DIR$/app/views/jams/create.js.erb" />
         <option value="$PROJECT_DIR$/app/views/jams/index.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
-        <option value="$PROJECT_DIR$/app/views/jams/show.html.erb" />
         <option value="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
         <option value="$PROJECT_DIR$/app/views/jams/new.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/jams/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
+        <option value="$PROJECT_DIR$/app/views/jams/_votes.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
       </list>
     </option>
   </component>
@@ -905,7 +899,11 @@
       <created>1335961762018</created>
       <updated>1335961762018</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Made play/pause button sexy. Fixed play/pause sync issues. Added normalization. Lots of small fixes + fit &amp; finish. Sig - IDEA is throwing errors on .html.erb files because you have the closing tags set up weird, can you fix?">
+      <created>1336010472859</created>
+      <updated>1336010472859</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -932,16 +930,16 @@
     <frame x="10" y="0" width="1905" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947367" sideWeight="0.4954178" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.4954178" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991913" sideWeight="0.7021053" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3631579" sideWeight="0.48948786" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.49811321" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30842105" sideWeight="0.48247978" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30842105" sideWeight="0.47816712" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19784367" sideWeight="0.6705263" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19784367" sideWeight="0.6915789" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947367" sideWeight="0.5008086" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30842105" sideWeight="0.5180593" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22947368" sideWeight="0.57897574" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -989,7 +987,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made play/pause button sexy. Fixed play/pause sync issues. Added normalization. Lots of small fixes + fit &amp; finish." />
+    <option name="LAST_COMMIT_MESSAGE" value="Made play/pause button sexy. Fixed play/pause sync issues. Added normalization. Lots of small fixes + fit &amp; finish. Sig - IDEA is throwing errors on .html.erb files because you have the closing tags set up weird, can you fix?" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1017,18 +1015,12 @@
     <MESSAGE value="Pause on update. Performance issues seem almost completely resolved due to various tweaks. This is certifiably the coolest app on the face of the planet." />
     <MESSAGE value="Active scale indication. C Minor + Square Wave + Decay + Biggish Pen Size = Endlessly fascinating and heavenly sounding." />
     <MESSAGE value="Made play/pause button sexy. Fixed play/pause sync issues. Added normalization. Lots of small fixes + fit &amp; finish." />
+    <MESSAGE value="Made play/pause button sexy. Fixed play/pause sync issues. Added normalization. Lots of small fixes + fit &amp; finish. Sig - IDEA is throwing errors on .html.erb files because you have the closing tags set up weird, can you fix?" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/jams/create.js.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="4" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/dsp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -1064,37 +1056,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="353" column="9" selection-start="13995" selection-end="13995" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="63" column="170" selection-start="1983" selection-end="1983" vertical-scroll-proportion="-6.4693875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/jams/_votes.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="31" selection-start="640" selection-end="640" vertical-scroll-proportion="-5.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="509" column="1" selection-start="5856" selection-end="5856" vertical-scroll-proportion="-16.64">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/jams/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="50" selection-start="453" selection-end="453" vertical-scroll-proportion="-7.5">
           <folding />
         </state>
       </provider>
@@ -1122,14 +1086,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/jams/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="45" selection-start="373" selection-end="373" vertical-scroll-proportion="0.22556391">
+        <state line="8" column="45" selection-start="373" selection-end="373" vertical-scroll-proportion="-5.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="61" selection-start="954" selection-end="954" vertical-scroll-proportion="0.3559322">
+        <state line="41" column="61" selection-start="954" selection-end="954" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/jams/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="12" selection-start="490" selection-end="490" vertical-scroll-proportion="-8.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="516" column="17" selection-start="5950" selection-end="5950" vertical-scroll-proportion="-20.24">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/jams/_votes.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="631" selection-end="631" vertical-scroll-proportion="-11.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="617" column="32" selection-start="19785" selection-end="19785" vertical-scroll-proportion="0.515625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="143" column="69" selection-start="3916" selection-end="3916" vertical-scroll-proportion="0.53433836">
           <folding />
         </state>
       </provider>

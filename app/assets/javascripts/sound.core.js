@@ -453,7 +453,11 @@ function toggleDecay()
 {
     if ($('#decay_enabled').is(":checked"))
     {
-        decay_interval = setInterval(function() { fadeSound($("#robo_decay").val()); js_buffer.BufferAsync(); }, 1000);
+        decay_interval = setInterval(function()
+        {
+            fadeSound($("#robo_decay").val());
+            js_buffer.BufferAsync();
+        }, 1000);
     }
     else
     {

@@ -439,3 +439,15 @@ function cloneFloat32Array(array_to_clone)
 
     return clone;
 }
+
+function setKeyStartIndex(element)
+{
+    key_start_index = parseInt($(element).val());
+    $('#key_top').val(Math.max(parseInt($('#key_top').val()), key_start_index + 1));
+}
+
+function setKeyEndIndex(element)
+{
+    key_end_index = parseInt($(element).val());
+    $('#key_bottom').val(Math.min($('#key_bottom').val(), $(this).val() - 1));
+}

@@ -1,125 +1,124 @@
 var BufferController = function()
 {
-    // $JSBG_* = javascript buffer globals (holdover from before using closure, will rename eventually)
+    // $GB_* = GetBuffer globals
 
-    var $JSBG_pixel_index;
+    var $GB_pixel_index;
 
-    var $JSBG_ending_sample_index;
-    var $JSBG_y_pixel_index;
-    var $JSBG_sample_index;
-    var $JSBG_imgd;
-    var $JSBG_pix;
+    var $GB_ending_sample_index;
+    var $GB_y_pixel_index;
+    var $GB_sample_index;
+    var $GB_imgd;
+    var $GB_pix;
 
-    var $JSBG_starting_sample_index;
-    var $JSBG_starting_sample_index_multiplier;
+    var $GB_starting_sample_index;
+    var $GB_starting_sample_index_multiplier;
 
-    var $JSBG_inputBuffer;
-    var $JSBG_outputBuffer;
-    var $JSBG_maxOutputBufferIndex;
+    var $GB_inputBuffer;
+    var $GB_outputBuffer;
+    var $GB_maxOutputBufferIndex;
 
-    var $JSBG_buffer_time;
+    var $GB_buffer_time;
 
-    var $JSBG_starting_x_pixel_index;
-    var $JSBG_ending_x_pixel_index;
-    var $JSBG_x_pixel_range;
-    var $JSBG_x_pixel_index;
+    var $GB_starting_x_pixel_index;
+    var $GB_ending_x_pixel_index;
+    var $GB_x_pixel_range;
+    var $GB_x_pixel_index;
 
-    var $JSBG_color_signal;
-    var $JSBG_signal_wave;
+    var $GB_color_signal;
+    var $GB_signal_wave;
 
-    var $JSBG_base_signal_index;
-    var $JSBG_fire_signal;
+    var $GB_base_signal_index;
+    var $GB_fire_signal;
 
 
     /* Function to buffer while the user is drawing */
     this.GetBuffer = function(evt)
     {
-        $JSBG_buffer_time = audio_context.currentTime % 1.0;
-        $JSBG_inputBuffer = evt.inputBuffer.getChannelData(0);
+        $GB_buffer_time = audio_context.currentTime % 1.0;
+        $GB_inputBuffer = evt.inputBuffer.getChannelData(0);
 
         // See (long) note in sound.variables.js for explanation of these variables and what they do..
         if ((asyncBuffered || !realtime_buffering_enabled) && !glitch_mode_on)
         {
-            $JSBG_inputBuffer = new Float32Array(evt.inputBuffer.getChannelData(0));
-            evt.outputBuffer.getChannelData(0).set($JSBG_inputBuffer);
-            evt.outputBuffer.getChannelData(1).set($JSBG_inputBuffer);
+            $GB_inputBuffer = new Float32Array(evt.inputBuffer.getChannelData(0));
+            evt.outputBuffer.getChannelData(0).set($GB_inputBuffer);
+            evt.outputBuffer.getChannelData(1).set($GB_inputBuffer);
             return;
         }
 
-        //$JSBG_outputBuffer = new Float32Array(evt.inputBuffer.getChannelData(0).length);
-        $JSBG_outputBuffer = new Float32Array($JSBG_inputBuffer.length);
-        $JSBG_maxOutputBufferIndex = $JSBG_outputBuffer.length - 1;
+        $GB_outputBuffer = new Float32Array($GB_inputBuffer.length);
+        $GB_maxOutputBufferIndex = $GB_outputBuffer.length - 1;
 
-        $JSBG_starting_x_pixel_index = parseInt($JSBG_buffer_time * STAFF_WIDTH);
-        $JSBG_ending_x_pixel_index = ($JSBG_buffer_time + evt.inputBuffer.duration) * STAFF_WIDTH;
-        $JSBG_x_pixel_range = (($JSBG_buffer_time + evt.inputBuffer.duration) * STAFF_WIDTH) - $JSBG_starting_x_pixel_index;
+        $GB_starting_x_pixel_index = parseInt($GB_buffer_time * STAFF_WIDTH);
+        $GB_ending_x_pixel_index = ($GB_buffer_time + evt.inputBuffer.duration) * STAFF_WIDTH;
+        $GB_x_pixel_range = (($GB_buffer_time + evt.inputBuffer.duration) * STAFF_WIDTH) - $GB_starting_x_pixel_index;
 
-        $JSBG_base_signal_index = parseInt(NUM_SAMPLES * $JSBG_buffer_time);
+        $GB_base_signal_index = parseInt(NUM_SAMPLES * $GB_buffer_time);
 
         // Loop through each pixel
-        for ($JSBG_x_pixel_index = $JSBG_starting_x_pixel_index; $JSBG_x_pixel_index < $JSBG_ending_x_pixel_index; $JSBG_x_pixel_index++)
+        for ($GB_x_pixel_index = $GB_starting_x_pixel_index; $GB_x_pixel_index < $GB_ending_x_pixel_index; $GB_x_pixel_index++)
         {
             // each pixel is (NUM_SAMPLES/STAFF_WIDTH)
-            $JSBG_imgd = staff_canvas_context.getImageData($JSBG_x_pixel_index, 0, 1, STAFF_HEIGHT);
-            $JSBG_pix = $JSBG_imgd.data;
+            $GB_imgd = staff_canvas_context.getImageData($GB_x_pixel_index, 0, 1, STAFF_HEIGHT);
+            $GB_pix = $GB_imgd.data;
 
             // For every pixel that is on in this sample's time span, get and add the value of the signal with the
             // frequency corresponding to the y pixel index at the time corresponding to j, multiplied by the value of
             // the pixel's alpha index (for volume/gain).
-            for ($JSBG_y_pixel_index = BORDER_WIDTH; $JSBG_y_pixel_index < STAFF_HEIGHT - BORDER_WIDTH; $JSBG_y_pixel_index++)
+            for ($GB_y_pixel_index = BORDER_WIDTH; $GB_y_pixel_index < STAFF_HEIGHT - BORDER_WIDTH; $GB_y_pixel_index++)
             {
-                $JSBG_pixel_index = $JSBG_y_pixel_index * 4;
+                $GB_pixel_index = $GB_y_pixel_index * 4;
 
-                if ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET] > 0)
+                if ($GB_pix[$GB_pixel_index + ALPHA_INDEX_OFFSET] > 0)
                 {
-                    $JSBG_fire_signal = false;
+                    $GB_fire_signal = false;
 
-                    if (layer_enabled_config[COLOR_RED] && $JSBG_pix[$JSBG_pixel_index + RED_INDEX_OFFSET] > 0)
+                    if (layer_enabled_config[COLOR_RED] && $GB_pix[$GB_pixel_index + RED_INDEX_OFFSET] > 0)
                     {
-                        $JSBG_fire_signal = true;
-                        $JSBG_color_signal = COLOR_RED;
+                        $GB_fire_signal = true;
+                        $GB_color_signal = COLOR_RED;
                     }
-                    else if(layer_enabled_config[COLOR_GREEN] && $JSBG_pix[$JSBG_pixel_index + GREEN_INDEX_OFFSET] > 0)
+                    else if(layer_enabled_config[COLOR_GREEN] && $GB_pix[$GB_pixel_index + GREEN_INDEX_OFFSET] > 0)
                     {
-                        $JSBG_fire_signal = true;
-                        $JSBG_color_signal = COLOR_GREEN;
+                        $GB_fire_signal = true;
+                        $GB_color_signal = COLOR_GREEN;
                     }
-                    else if(layer_enabled_config[COLOR_BLUE] && $JSBG_pix[$JSBG_pixel_index + BLUE_INDEX_OFFSET] > 0)
+                    else if(layer_enabled_config[COLOR_BLUE] && $GB_pix[$GB_pixel_index + BLUE_INDEX_OFFSET] > 0)
                     {
-                        $JSBG_fire_signal = true;
-                        $JSBG_color_signal = COLOR_BLUE;
+                        $GB_fire_signal = true;
+                        $GB_color_signal = COLOR_BLUE;
                     }
 
-                    $JSBG_signal_wave = layer_signal_config[$JSBG_color_signal];
+                    $GB_signal_wave = layer_signal_config[$GB_color_signal];
 
-                    if ($JSBG_fire_signal)
+                    if ($GB_fire_signal)
                     {
-                        $JSBG_starting_sample_index = Math.min($JSBG_maxOutputBufferIndex, ($JSBG_x_pixel_index - $JSBG_starting_x_pixel_index) * samples_per_pixel);
-                        $JSBG_ending_sample_index = Math.min($JSBG_maxOutputBufferIndex, $JSBG_starting_sample_index + samples_per_pixel);
+                        $GB_starting_sample_index = Math.min($GB_maxOutputBufferIndex, ($GB_x_pixel_index - $GB_starting_x_pixel_index) * samples_per_pixel);
+                        $GB_ending_sample_index = Math.min($GB_maxOutputBufferIndex, $GB_starting_sample_index + samples_per_pixel);
 
                         // Iterate over the samples in the time span of this pixel.
-                        for ($JSBG_sample_index = $JSBG_starting_sample_index;
-                             $JSBG_sample_index < $JSBG_ending_sample_index && $JSBG_base_signal_index + $JSBG_sample_index < NUM_SAMPLES;
-                             $JSBG_sample_index++)
+                        for ($GB_sample_index = $GB_starting_sample_index;
+                             $GB_sample_index < $GB_ending_sample_index && $GB_base_signal_index + $GB_sample_index < NUM_SAMPLES;
+                             $GB_sample_index++)
                         {
-                            if (!$JSBG_outputBuffer[$JSBG_sample_index])
+                            if (!$GB_outputBuffer[$GB_sample_index])
                             {
-                                $JSBG_outputBuffer[$JSBG_sample_index] = ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET]/255) *
-                                    signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
+                                $GB_outputBuffer[$GB_sample_index] = ($GB_pix[$GB_pixel_index + ALPHA_INDEX_OFFSET]/255) *
+                                    signals_waves[$GB_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $GB_y_pixel_index][$GB_base_signal_index + $GB_sample_index];
                             }
                             else
                             {
-                                $JSBG_outputBuffer[$JSBG_sample_index] += ($JSBG_pix[$JSBG_pixel_index + ALPHA_INDEX_OFFSET]/255) *
-                                    signals_waves[$JSBG_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $JSBG_y_pixel_index][$JSBG_base_signal_index + $JSBG_sample_index];
+                                $GB_outputBuffer[$GB_sample_index] += ($GB_pix[$GB_pixel_index + ALPHA_INDEX_OFFSET]/255) *
+                                    signals_waves[$GB_signal_wave][(STAFF_HEIGHT - BORDER_WIDTH - 1) - $GB_y_pixel_index][$GB_base_signal_index + $GB_sample_index];
                             }
 
-                            if(sum_signal[$JSBG_sample_index] > MAX_AMPLITUDE)
+                            if(sum_signal[$GB_sample_index] > MAX_AMPLITUDE)
                             {
-                                sum_signal[$JSBG_sample_index] = MAX_AMPLITUDE;
+                                sum_signal[$GB_sample_index] = MAX_AMPLITUDE;
                             }
-                            else if(sum_signal[$JSBG_sample_index] < -1*MAX_AMPLITUDE)
+                            else if(sum_signal[$GB_sample_index] < -1*MAX_AMPLITUDE)
                             {
-                                sum_signal[$JSBG_sample_index] = -1*MAX_AMPLITUDE;
+                                sum_signal[$GB_sample_index] = -1*MAX_AMPLITUDE;
                             }
                         }
                     }
@@ -127,8 +126,8 @@ var BufferController = function()
             }
         }
 
-        evt.outputBuffer.getChannelData(0).set($JSBG_outputBuffer);
-        evt.outputBuffer.getChannelData(1).set($JSBG_outputBuffer);
+        evt.outputBuffer.getChannelData(0).set($GB_outputBuffer);
+        evt.outputBuffer.getChannelData(1).set($GB_outputBuffer);
     }
 
 
@@ -157,6 +156,8 @@ var BufferController = function()
     var $BA_y_pixel_index;
     var $BA_sample_index;
 
+    var $BA_max_amplitude;
+
     /* Asynchronously build sum_signals while the user is not drawing */
     this.BufferAsync = function()
     {
@@ -165,7 +166,7 @@ var BufferController = function()
             sum_signal[i] = 0.0;
         }
 
-        var max_amplitude = 0;
+        $BA_max_amplitude = 0;
 
         // Loop through each pixel
         for ($BA_x_pixel_index = $BA_starting_x_pixel_index; $BA_x_pixel_index < $BA_ending_x_pixel_index; $BA_x_pixel_index++)
@@ -249,9 +250,9 @@ var BufferController = function()
                                     sum_signal[$BA_sample_index] = -MAX_PRECOMPRESSED_AMPLITUDE;
                                 }
 
-                                if (Math.abs(sum_signal[$BA_sample_index]) > max_amplitude)
+                                if (Math.abs(sum_signal[$BA_sample_index]) > $BA_max_amplitude)
                                 {
-                                    max_amplitude = Math.abs(sum_signal[$BA_sample_index]);
+                                    $BA_max_amplitude = Math.abs(sum_signal[$BA_sample_index]);
                                 }
                             }
                         }
@@ -260,11 +261,11 @@ var BufferController = function()
             }
         }
 
-        //console.log(max_amplitude);
+        //console.log($BA_max_amplitude);
 
-        if (precompression_enabled && precompression_normalization_enabled && max_amplitude)
+        if (precompression_enabled && precompression_normalization_enabled && $BA_max_amplitude)
         {
-            max_amplitude = parseFloat(max_amplitude);
+            $BA_max_amplitude = parseFloat($BA_max_amplitude);
 
             for (var i = 0; i < sum_signal.length; i++)
             {
@@ -272,7 +273,7 @@ var BufferController = function()
                 {
                     //console.log('pre',sum_signal[i]);
                 }
-                sum_signal[i] = MAX_AMPLITUDE * (sum_signal[i] / max_amplitude);
+                sum_signal[i] = MAX_AMPLITUDE * (sum_signal[i] / $BA_max_amplitude);
                 if (!(i % 100))
                 {
                     //console.log('post',sum_signal[i]);

@@ -109,7 +109,7 @@ $(document).ready(function()
 
     $(scale_selection_input_selector).change(function()
     {
-        if ($('input[name="scale_generate_method"]:checked').val() == "musical" &&
+        if ($('input[name="scale_generate_method"]:checked').val() == GENERATE_METHOD_MUSICAL &&
             $(this).is(":checked"))
         {
             var transpose = parseInt($(this).parents('.premade_scale').children('.scale_key_control').children('select').val());
@@ -119,7 +119,7 @@ $(document).ready(function()
 
     $('.scale_key_control select').change(function()
     {
-        if ($('input[name="scale_generate_method"]:checked').val() == "musical" &&
+        if ($('input[name="scale_generate_method"]:checked').val() == GENERATE_METHOD_MUSICAL &&
             $(this).parents('.premade_scale').find(scale_selection_input_selector).is(':checked'))
         {
             var transpose = parseInt($(this).val());
@@ -173,6 +173,7 @@ function initAudio()
 
         dynamic_compressor_node = audio_context.createDynamicsCompressor();
 
+        /*
         convolution_node = audio_context.createConvolver();
         convolution_node.buffer = audio_context.createBuffer(NUM_CHANNELS, NUM_SAMPLES, SAMPLE_RATE);
 
@@ -181,6 +182,7 @@ function initAudio()
 
         convolution_node.buffer.getChannelData(0).set(delta_function);
         convolution_node.buffer.getChannelData(1).set(delta_function);
+        */
 
         connectNodes();
     }
@@ -195,8 +197,9 @@ function initScale()
 {
     $('input[name="scale_selection"][value="scale_pentatonic"]').attr("checked", "checked");
     populateScaleControl();
-    //signals_waves = initSignals("musical", {'scale':generateScaleFromKeys(keys_pentatonic_scale)});
-    signals_waves = initSignals("alien",
+
+    //signals_waves = initSignals(GENERATE_METHOD_MUSICAL, {'scale':generateScaleFromKeys(keys_pentatonic_scale)});
+    signals_waves = initSignals(GENERATE_METHOD_ALIEN,
         {
             'base_freq':440.0,
             'top':108,
@@ -204,6 +207,7 @@ function initScale()
             'pdelt_subtract':40
         }
     );
+
     signals = signals_waves[DSP.SINE];
     cached_signals['default'] = signals_waves;
 }

@@ -2,6 +2,9 @@
  * Global signals constants (should probably put these in closure)
  */
 
+var GENERATE_METHOD_ALIEN = "alien";
+var GENERATE_METHOD_MUSICAL = "musical";
+
 // Not gonna change unless we move away from Western music scale because we don't want to hear nice things any more.
 const SEMITONE_COUNT = 12;
 
@@ -101,6 +104,9 @@ var key_end_index = key_frequencies.length;
 var pending_scale;
 var cached_signals = {};
 
+// Oscillator
+var osc;
+
 /**
  * Signals Functions
  */
@@ -112,7 +118,13 @@ var cached_signals = {};
  */
 function generateScaleFromKeys(scale_keys)
 {
-    var this_scale = new Array(no_scale);
+    var this_scale = new Array(SEMITONE_COUNT);
+
+    // Me? Trust array allocation? Hah!
+    for (var i = 0; i < SEMITONE_COUNT; i++)
+    {
+        this_scale[i] = false;
+    }
 
     for (var key in scale_keys)
     {
@@ -164,7 +176,7 @@ function makeScale()
 
     var parameters = {};
 
-    if (generate_method == "musical")
+    if (generate_method == GENERATE_METHOD_MUSICAL)
     {
         pending_scale = [false, false, false, false, false, false, false, false, false, false, false, false];
 
@@ -187,7 +199,7 @@ function makeScale()
 
         parameters['scale'] = pending_scale;
     }
-    else if (generate_method == "alien")
+    else if (generate_method == GENERATE_METHOD_ALIEN)
     {
         parameters['base_freq'] = parseFloat($('#alien_base_freq').val());
         parameters['top'] = parseInt($('#alien_top').val());
@@ -199,8 +211,6 @@ function makeScale()
             parameters['top'].toString(),
             parameters['bottom'].toString(),
             parameters['pdelt_subtract'].toString()].join('-');
-
-        console.log(friendly_key);
     }
 
     // disable button and indicate we are loading
@@ -215,7 +225,8 @@ function makeScale()
         {
             worker = new Worker('/assets/sound.signals.worker.js');
 
-            worker.onmessage = function (event) {
+            worker.onmessage = function (event)
+            {
                 signals_waves = event.data;
 
                 cached_signals[friendly_key] = signals_waves;
@@ -246,6 +257,7 @@ function makeScale()
                 {
                     playSound();
                 }
+
                 $("#pause_on_scale_update").removeAttr('disabled');
 
                 js_buffer.BufferAsync();
@@ -260,10 +272,10 @@ function makeScale()
 
         $('#make_scale').removeAttr('disabled');
         $('#scale_loading_notifier').children().remove('img');
-
         $('#make_scale').text('Scale updated');
 
-        setTimeout(function(){
+        setTimeout(function()
+        {
             $('#make_scale').text('Update Scale').removeAttr('disabled');
         }, 1000);
 
@@ -294,7 +306,7 @@ function initSignals(generation_method, parameters)
     var base_frequency;
     var pdelt_subtract;
 
-    if (generation_method == "musical")
+    if (generation_method == GENERATE_METHOD_MUSICAL)
     {
         var scale = parameters['scale'];
 
@@ -315,9 +327,9 @@ function initSignals(generation_method, parameters)
 
         granularity = STAFF_HEIGHT / signal_frequencies.length;
 
-        base_overtone_power = -1 * (Math.floor(granularity/2) - !(Math.floor(granularity) % 2));
+        base_overtone_power = -1 * (Math.floor(granularity / 2) - !(Math.floor(granularity) % 2));
     }
-    else if (generation_method == "alien")
+    else if (generation_method == GENERATE_METHOD_ALIEN)
     {
         // 400*2^((p-64)/12) = f
         // 108 hi key on 88key piano, 21 low key
@@ -339,7 +351,7 @@ function initSignals(generation_method, parameters)
     {
         var freq_previous = freq;
 
-        if (generation_method == "musical")
+        if (generation_method == GENERATE_METHOD_MUSICAL)
         {
             bucket_index = Math.floor(i / granularity);
 
@@ -354,7 +366,7 @@ function initSignals(generation_method, parameters)
             bucket_index_previous = bucket_index;
             overtone_power += 1;
         }
-        else if (generation_method == "alien")
+        else if (generation_method == GENERATE_METHOD_ALIEN)
         {
             freq = base_frequency * Math.pow(2, ((i * pdelt) - pdelt_subtract) / parseFloat(SEMITONE_COUNT));
         }
@@ -368,10 +380,25 @@ function initSignals(generation_method, parameters)
         }
         else
         {
+            /*
             generated_signals[DSP.SINE][i] = new Float32Array(generated_signals[DSP.SINE][i - 1]);
             generated_signals[DSP.SAW][i] = new Float32Array(generated_signals[DSP.SAW][i - 1]);
             generated_signals[DSP.SQUARE][i] = new Float32Array(generated_signals[DSP.SQUARE][i - 1]);
             generated_signals[DSP.TRIANGLE][i] = new Float32Array(generated_signals[DSP.TRIANGLE][i - 1]);
+            */
+
+            /*
+            // hopefully cloning fixes crashes people have been getting or not
+            generated_signals[DSP.SINE][i] = cloneFloat32Array(generated_signals[DSP.SINE][i - 1]);
+            generated_signals[DSP.SAW][i] = cloneFloat32Array(generated_signals[DSP.SAW][i - 1]);
+            generated_signals[DSP.SQUARE][i] = cloneFloat32Array(generated_signals[DSP.SQUARE][i - 1]);
+            generated_signals[DSP.TRIANGLE][i] = cloneFloat32Array(generated_signals[DSP.TRIANGLE][i - 1]);
+            */
+
+            generated_signals[DSP.SINE][i] = generated_signals[DSP.SINE][i - 1];
+            generated_signals[DSP.SAW][i] = generated_signals[DSP.SAW][i - 1];
+            generated_signals[DSP.SQUARE][i] = generated_signals[DSP.SQUARE][i - 1];
+            generated_signals[DSP.TRIANGLE][i] = generated_signals[DSP.TRIANGLE][i - 1];
         }
     }
 
@@ -395,8 +422,20 @@ function makeSignal(frequency, wave, amplitude)
         amplitude = MAX_AMPLITUDE;
     }
 
-    var osc = new Oscillator(wave, frequency, amplitude, NUM_SAMPLES, SAMPLE_RATE);
+    osc = new Oscillator(wave, frequency, amplitude, NUM_SAMPLES, SAMPLE_RATE);
 
     osc.generate();
     return osc.signal;
+}
+
+function cloneFloat32Array(array_to_clone)
+{
+    var clone = new Float32Array(array_to_clone.length);
+
+    for (var i = 0; i < array_to_clone.length; i++)
+    {
+        clone[i] = array_to_clone[i];
+    }
+
+    return clone;
 }

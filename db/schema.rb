@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120429204407) do
+ActiveRecord::Schema.define(:version => 20120510042813) do
 
   create_table "jams", :force => true do |t|
     t.string   "title"

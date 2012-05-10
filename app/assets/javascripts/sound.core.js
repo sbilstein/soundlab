@@ -626,8 +626,16 @@ function loadFromDataURL(dataURL)
     img.src = dataURL;
 }
 
-// Swagg functions
+function saveJam()
+{
+    var jam_data = {};
+    jam_data['data_url'] = getStorableData();
 
+}
+
+/**
+ * Saves canvas for use in AutoSwag/Draw Recall.
+ */
 function saveState(isAutoSave)
 {
     saved_states['count'] += 1;

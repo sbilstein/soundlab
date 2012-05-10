@@ -119,6 +119,7 @@ function animateLine()
  * ===========================
  */
 
+
 /**
  * Sets drawing directive and binds mouse to listen for events to draw stuff.
  * @param e Mouse event
@@ -132,11 +133,36 @@ function startPen(e)
     pen_directive["x1"] = e.pageX - CANVAS_WIDTH_OFFSET + 1;
     pen_directive["y1"] = e.pageY - CANVAS_HEIGHT_OFFSET + 1;
 
-    $("canvas.bar").mousemove(movePen);
-    $("canvas.bar").mouseup(endPen);
-    $("canvas.bar").mouseleave(endPen);
-
+	if(e.shiftKey) {
+    	$("canvas.bar").mouseup(straightPen);
+    	$("canvas.bar").mouseleave(straightPen);
+		console.log('shift pressed');
+	} else {
+    	$("canvas.bar").mousemove(movePen);
+    	$("canvas.bar").mouseup(endPen);
+    	$("canvas.bar").mouseleave(endPen);
+	}
     do_update = true;
+}
+
+function straightPen(e)
+{
+	pen_directive["x2"] = e.pageX - CANVAS_WIDTH_OFFSET + 1;
+    pen_directive["y2"] = e.pageY - CANVAS_HEIGHT_OFFSET + 1;
+    $("canvas.staff").drawLine(pen_directive);
+
+    //unbind drawing related events.
+
+    $("canvas.bar").unbind('mouseup', straightPen);
+    $("canvas.bar").unbind('mouseleave', straightPen);
+
+    if($('#autosave_enable').is(':checked'))
+    {
+        saveState(true);
+    }
+
+    asyncBuffered = false;
+    js_buffer.BufferAsync()
 }
 
 /**

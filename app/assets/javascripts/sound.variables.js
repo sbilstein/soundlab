@@ -95,7 +95,7 @@ var audio_is_playing = false;
 /**
  * DRAWING =============================================================================================================
  */
-
+var shift_down = false;
 var tool_style = PEN;
 var pen_stroke_width = 5;
 var eraser_stroke_width = 20; // never changes now.

@@ -24,37 +24,12 @@ $(document).ready(function()
     //$("#below_staff_area").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
     $("#controls").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
 
-    /*
-        .ready(function()
-    {
-        // Initialization events
-        initScale();
-        initAudio();
-        resetStaff();
-        playSound();
-    });
-    */
-
     $("#side_panel").css({top:CANVAS_HEIGHT_OFFSET, left:CANVAS_WIDTH_OFFSET + $('canvas.staff').width() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
-
 
      // Initialization events
     initScale();
     initAudio();
     resetStaff();
-
-	//Draw graph lines
-    /*
-	for(var i = 0; i < STAFF_HEIGHT; i+=signal_granularity) 
-	{
-		// #("canvas.bar").drawLine({
-		// 	x0 = 0,
-		// 	y0 = i;
-		// 	x1= STAFF_WIDTH;
-		// 	y1 = il
-		// });
-	}
-	*/
 
     // UI binding
     $("canvas.bar").mousedown(startPen);
@@ -97,6 +72,13 @@ $(document).ready(function()
     {
         setColorSignal(COLOR_BLUE, $(this).val());
     });
+
+    // Mac messes up the swag spacing to make the wave forms in the dropdown, swap out with basic text.
+    if (navigator.platform.indexOf('Mac') != -1)
+    {
+        $(".wave_select option").each(function(){ $(this).text($(this).attr('basictext')) });
+        $('.wave_select').css('letter-spacing','inherit');
+    }
 
     // Scale controls
     $('.scale_key_control').each(function()
@@ -198,7 +180,9 @@ function initScale()
     $('input[name="scale_selection"][value="scale_pentatonic"]').attr("checked", "checked");
     populateScaleControl();
 
-    //signals_waves = initSignals(GENERATE_METHOD_MUSICAL, {'scale':generateScaleFromKeys(keys_pentatonic_scale)});
+    signals_waves = initSignals(GENERATE_METHOD_MUSICAL, {'scale':generateScaleFromKeys(keys_pentatonic_scale)});
+
+    /*
     signals_waves = initSignals(GENERATE_METHOD_ALIEN,
         {
             'base_freq':440.0,
@@ -207,6 +191,7 @@ function initScale()
             'pdelt_subtract':40
         }
     );
+    */
 
     signals = signals_waves[DSP.SINE];
     cached_signals['default'] = signals_waves;

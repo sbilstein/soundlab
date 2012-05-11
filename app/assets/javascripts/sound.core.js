@@ -261,8 +261,6 @@ var BufferController = function()
             }
         }
 
-        //console.log($BA_max_amplitude);
-
         if (precompression_enabled && precompression_normalization_enabled && $BA_max_amplitude)
         {
             $BA_max_amplitude = parseFloat($BA_max_amplitude);
@@ -274,10 +272,6 @@ var BufferController = function()
                     //console.log('pre',sum_signal[i]);
                 }
                 sum_signal[i] = MAX_AMPLITUDE * (sum_signal[i] / $BA_max_amplitude);
-                if (!(i % 100))
-                {
-                    //console.log('post',sum_signal[i]);
-                }
             }
         }
 
@@ -654,43 +648,63 @@ function saveState(isAutoSave)
     var remove_img_button = $('<button>X</button>').attr('title', 'Remove from list');
     remove_img_button.click(function()
     {
-        $(this).parent().remove();
+        $(this).parent().parent().remove();
     });
 
     var recall_container= $('<div>');
-    recall_container.append(recall_img).append(remove_img_button);
+
+    var button_container = $('<div>');
+    button_container.addClass('history_item_buttons_container');
+    button_container.append(remove_img_button);
 
     if (!isAutoSave)
     {
+        recall_container.append(recall_img).append(button_container);
         $('#previous_draws').append(recall_container);
+
     }
     else
     {
         recall_img.width('142px');
 
-        var move_to_recall_button = $('<button title="Add to Draw Recall list">+</button>');
+        var move_to_recall_button = $('<button title="Add to Favorites">+</button>');
         move_to_recall_button.click(function()
         {
-            $('#previous_draws').append($(this).parent());
-            $(this).parent().children('img').width('165px');
+            $(this).parent().parent().removeClass('history_item_container');
+            $('#previous_draws').append($(this).parent().parent());
+            $(this).parent().parent().children('img').width('165px');
             $(this).remove();
         });
 
-        recall_container.append(move_to_recall_button);
+        button_container.append($('<br/>')).append(move_to_recall_button);
+
+        recall_container.addClass('history_item_container').append(button_container).append(recall_img);
 
         recall_container.hide();
-        $("#autosave_draws").append(recall_container);
+        $("#autosave_draws").prepend(recall_container);
 
         recall_container.show('slow', function()
         {
-            if( $("#autosave_limit").val() != 0 &&
-                $("#autosave_draws").children().length > $("#autosave_limit").val())
+            $(this).children().show('slow', function()
             {
-                $("#autosave_draws").children().first().hide('slow', function()
+                if( $("#autosave_limit").val() != 0 &&
+                    $("#autosave_draws").children().length > $("#autosave_limit").val())
                 {
-                    $("#autosave_draws").children().first().remove();
-                });
-            }
+                    $("#autosave_draws").children().last().children('div').hide();
+                    $("#autosave_draws").children().last().children('img').hide('slow', function()
+                    {
+                        $("#autosave_draws").children().last().css(
+                            {
+                                display: 'inline',
+                                'min-width': 'inherit'
+                            }
+                        ).hide('slow', function()
+                            {
+                                $(this).remove();
+                            });
+                    });
+                }
+            });
         });
     }
 

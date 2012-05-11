@@ -2,7 +2,8 @@
   <%= jam.up_votes %>
 
   <a class="voter" href="" onclick="
-var $radios = $('#radio-up-<%=jam.id%>').attr('checked', true); $('#submit-<%=jam.id%>').submit();
+var $radios = $('#radio-up-<%=jam.id%>').attr('checked', true);
+        $('#submit-<%=jam.id%>').submit();
         return false;"><img alt="Uparrow" src="/assets/images/uparrow.png"/>
   </a>
 </span>

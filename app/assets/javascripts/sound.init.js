@@ -12,7 +12,36 @@ $(document).ready(function()
 
     // Position canvas
     $('canvas.staff').css('border', "thin solid green");
-    $('.staff-container').css({top:CANVAS_HEIGHT_OFFSET, left: CANVAS_WIDTH_OFFSET}).removeClass('hidden');
+    $('.staff-container').css(
+        {
+            top:CANVAS_HEIGHT_OFFSET,
+            left: CANVAS_WIDTH_OFFSET
+        }).removeClass('hidden').ready(function()
+        {
+            // Position panels
+            $("#history_wrapper").css(
+                {
+                    top: $('canvas.staff')[0].getBoundingClientRect().bottom + LAYOUT_SPACING,
+                    left: CANVAS_WIDTH_OFFSET
+                }
+            ).removeClass('hidden').ready(function()
+                {
+                    $("#controls").css(
+                        {
+                            top: $('#history_wrapper')[0].getBoundingClientRect().bottom + LAYOUT_SPACING}
+                    ).removeClass('hidden');
+                });
+
+
+            $("#side_panel").css(
+                {
+                    // top:CANVAS_HEIGHT_OFFSET,
+                    top: $('canvas.staff')[0].getBoundingClientRect().top,
+                    left: $('canvas.staff')[0].getBoundingClientRect().right + LAYOUT_SPACING
+                }).removeClass('hidden');
+
+            $('.control_advanced, .control_experimental').hide();
+        });
 
     // Load up context for canvas
     staff_canvas_context = $("canvas.staff")[0].getContext("2d");
@@ -20,11 +49,7 @@ $(document).ready(function()
 
     staff_canvas_context.lineCap = 'round';
 
-    // Position panels
-    //$("#below_staff_area").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
-    $("#controls").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
 
-    $("#side_panel").css({top:CANVAS_HEIGHT_OFFSET, left:CANVAS_WIDTH_OFFSET + $('canvas.staff').width() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
 
      // Initialization events
     initScale();
@@ -180,18 +205,22 @@ function initScale()
     $('input[name="scale_selection"][value="scale_pentatonic"]').attr("checked", "checked");
     populateScaleControl();
 
-    signals_waves = initSignals(GENERATE_METHOD_MUSICAL, {'scale':generateScaleFromKeys(keys_pentatonic_scale)});
+    if (GENERATE_METHOD_DEFAULT == GENERATE_METHOD_MUSICAL)
+    {
+        signals_waves = initSignals(GENERATE_METHOD_MUSICAL, {'scale':generateScaleFromKeys(keys_pentatonic_scale)});
+    }
+    else
+    {
+        signals_waves = initSignals(GENERATE_METHOD_ALIEN,
+            {
+                'base_freq':440.0,
+                'top':108,
+                'bottom':40,
+                'pdelt_subtract':40
+            }
+        );
+    }
 
-    /*
-    signals_waves = initSignals(GENERATE_METHOD_ALIEN,
-        {
-            'base_freq':440.0,
-            'top':108,
-            'bottom':40,
-            'pdelt_subtract':40
-        }
-    );
-    */
 
     signals = signals_waves[DSP.SINE];
     cached_signals['default'] = signals_waves;

@@ -48,15 +48,20 @@ const COLOR_BLUE = "#0000FF";
 const PEN = 0;
 const ERASER = 1;
 
-const COLOR_VALUE_MAPPING = {
+var COLOR_VALUE_MAPPING = {
     'COLOR_RED':COLOR_RED,
     'COLOR_GREEN':COLOR_GREEN,
     'COLOR_BLUE':COLOR_BLUE
 };
 
-const DSP_WAVE_MAPPING = {
+var DSP_WAVE_MAPPING = {
     'DSP.SINE':DSP.SINE,
     'DSP.SAW':DSP.SAW,
     'DSP.SQUARE':DSP.SQUARE,
     'DSP.TRIANGLE':DSP.TRIANGLE
 };
+
+
+var MODE_BASIC = "basic";
+var MODE_ADVANCED = "advanced";
+var MODE_EXPERIMENTAL = "experimental";

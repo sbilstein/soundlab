@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/jams/_layer_control_table.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/jams/_robo_controls.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/jams/_scale_generators.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/jams/_mode_selector.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/new.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/show.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/show.html.erb" />
     </list>
     <ignored path="soundlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,7 +35,7 @@
     <favorites_list name="soundlab" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.50540733">
+    <splitter split-orientation="horizontal" split-proportion="0.4881038">
       <split-first>
         <leaf>
           <file leaf-file-name="sound.variables.js" pinned="false" current="false" current-in-tab="false">
@@ -50,42 +50,42 @@
           <file leaf-file-name="_staff.html.erb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="144" column="215" selection-start="4079" selection-end="4079" vertical-scroll-proportion="-8.416667">
+                <state line="145" column="215" selection-start="4080" selection-end="4080" vertical-scroll-proportion="-8.416667">
                   <folding>
-                    <marker date="1337050825000" expanded="true" signature="448:2149" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="480:2071" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="505:2062" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="529:928" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="593:784" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="631:769" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="810:915" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="969:1625" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="1036:1254" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="1074:1239" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="1280:1612" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="1453:1597" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="1670:2048" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="1733:1892" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="1771:1876" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="1918:2035" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="2197:3513" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="2230:3506" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="2255:3495" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="2359:2447" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="2470:2873" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="2495:2609" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="2634:2860" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="2688:2845" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="2897:3483" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="2922:3024" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="3049:3470" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="3421:3455" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="3678:3681" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="3759:4729" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="3862:4097" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="4335:4621" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="4347:4438" placeholder="..." />
-                    <marker date="1337050825000" expanded="true" signature="4471:4612" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="448:2118" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="480:2071" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="505:2062" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="529:928" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="593:784" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="631:769" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="810:915" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="969:1625" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="1036:1254" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="1074:1239" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="1280:1612" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="1453:1597" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="1670:2048" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="1733:1892" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="1771:1876" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="1918:2035" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="2166:3514" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="2199:3473" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="2224:3464" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="2328:2416" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="2439:2842" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="2464:2578" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="2603:2829" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="2657:2814" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="2866:3452" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="2891:2993" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="3018:3439" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="3390:3424" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="3679:3682" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="3760:4730" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="3863:4098" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="4336:4622" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="4348:4439" placeholder="..." />
+                    <marker date="1337051709000" expanded="true" signature="4472:4613" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -94,7 +94,16 @@
           <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/jams/show.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="13" column="12" selection-start="490" selection-end="490" vertical-scroll-proportion="0.0">
+                <state line="16" column="32" selection-start="535" selection-end="535" vertical-scroll-proportion="-10.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="_mode_selector.html.erb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/jams/_mode_selector.html.erb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="11" column="27" selection-start="291" selection-end="291" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -103,7 +112,7 @@
           <file leaf-file-name="sound.variables.constants.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="41" column="61" selection-start="943" selection-end="943" vertical-scroll-proportion="0.0">
+                <state line="66" column="39" selection-start="1440" selection-end="1440" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -127,19 +136,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="sound.signals.worker.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.signals.worker.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="28" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="sound.init.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="27" column="4" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.5912409">
+                <state line="88" column="32" selection-start="2532" selection-end="2532" vertical-scroll-proportion="0.22590362">
                   <folding />
                 </state>
               </provider>
@@ -148,7 +148,7 @@
           <file leaf-file-name="jams.css.scss" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="400" column="0" selection-start="4525" selection-end="4525" vertical-scroll-proportion="-11.36">
+                <state line="534" column="1" selection-start="6171" selection-end="6171" vertical-scroll-proportion="-25.12">
                   <folding />
                 </state>
               </provider>
@@ -157,7 +157,7 @@
           <file leaf-file-name="sound.core.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="23" column="53" selection-start="508" selection-end="508" vertical-scroll-proportion="0.0">
+                <state line="724" column="39" selection-start="22250" selection-end="22250" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -170,7 +170,7 @@
           <file leaf-file-name="_staff.html.erb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="76" column="30" selection-start="2141" selection-end="2141" vertical-scroll-proportion="0.1826484">
+                <state line="116" column="10" selection-start="3465" selection-end="3465" vertical-scroll-proportion="0.6757991">
                   <folding />
                 </state>
               </provider>
@@ -197,7 +197,7 @@
           <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/jams/new.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="9" column="4" selection-start="392" selection-end="412" vertical-scroll-proportion="-5.625">
+                <state line="17" column="11" selection-start="513" selection-end="513" vertical-scroll-proportion="-10.625">
                   <folding />
                 </state>
               </provider>
@@ -226,21 +226,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.robo.js" />
         <option value="$PROJECT_DIR$/app/views/jams/create.js.erb" />
         <option value="$PROJECT_DIR$/app/views/jams/index.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
-        <option value="$PROJECT_DIR$/app/views/jams/show.html.erb" />
         <option value="$PROJECT_DIR$/app/views/jams/_votes.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/jams/new.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.js" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
         <option value="$PROJECT_DIR$/app/views/jams/_layer_control_table.html.erb" />
         <option value="$PROJECT_DIR$/app/views/jams/_scale_generators.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/sound.signals.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
         <option value="$PROJECT_DIR$/app/views/jams/_robo_controls.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
+        <option value="$PROJECT_DIR$/app/views/jams/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/jams/new.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/jams/_mode_selector.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
         <option value="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
       </list>
     </option>
@@ -966,7 +966,11 @@
       <created>1337047576814</created>
       <updated>1337047576814</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Doing the layout right.">
+      <created>1337050871022</created>
+      <updated>1337050871022</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -997,12 +1001,12 @@
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991913" sideWeight="0.7021053" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3631579" sideWeight="0.48948786" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.49811321" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1936842" sideWeight="0.60883975" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1936842" sideWeight="0.6060774" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23370166" sideWeight="0.8063158" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1936842" sideWeight="0.38729283" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1936842" sideWeight="0.39005524" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22947368" sideWeight="0.57897574" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1050,7 +1054,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="I think I fixed things." />
+    <option name="LAST_COMMIT_MESSAGE" value="Doing the layout right." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1082,28 +1086,12 @@
     <MESSAGE value="Fixed play/pause when loading saved jam." />
     <MESSAGE value="Maybe scales won't cause crashes any more?" />
     <MESSAGE value="I think I fixed things." />
+    <MESSAGE value="Doing the layout right." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/jams/create.js.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="4" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/jams/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="12" selection-start="490" selection-end="490" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="61" selection-start="943" selection-end="943" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.signals.worker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="28" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0" />
@@ -1130,20 +1118,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/jams/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="4" selection-start="392" selection-end="412" vertical-scroll-proportion="-5.625">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="400" column="0" selection-start="4525" selection-end="4525" vertical-scroll-proportion="-11.36">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/jams/_scale_generators.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="186" column="121" selection-start="4424" selection-end="4424" vertical-scroll-proportion="-5.244898">
@@ -1154,20 +1128,6 @@
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.signals.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="342" column="94" selection-start="10734" selection-end="10734" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="53" selection-start="508" selection-end="508" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="4" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.5912409">
           <folding />
         </state>
       </provider>
@@ -1186,9 +1146,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="534" column="1" selection-start="6171" selection-end="6171" vertical-scroll-proportion="-25.12">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="724" column="39" selection-start="22250" selection-end="22250" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="39" selection-start="1440" selection-end="1440" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/jams/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="32" selection-start="535" selection-end="535" vertical-scroll-proportion="-10.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/jams/_mode_selector.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="27" selection-start="291" selection-end="291" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/jams/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="11" selection-start="513" selection-end="513" vertical-scroll-proportion="-10.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/sound.init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="32" selection-start="2532" selection-end="2532" vertical-scroll-proportion="0.22590362">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/jams/_staff.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="30" selection-start="2141" selection-end="2141" vertical-scroll-proportion="0.1826484">
+        <state line="116" column="10" selection-start="3465" selection-end="3465" vertical-scroll-proportion="0.6757991">
           <folding />
         </state>
       </provider>

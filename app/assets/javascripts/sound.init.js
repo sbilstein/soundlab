@@ -112,6 +112,13 @@ $(document).ready(function()
         }
     });
 
+    // Modes
+
+    $('input[name="jam_mode"]').change(function()
+    {
+        setMode($("input[name='jam_mode']:checked").val());
+    });
+
     // Start the scrub line
     playSound();
 

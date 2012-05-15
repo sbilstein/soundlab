@@ -708,3 +708,23 @@ function loadState(id)
     }
 }
 
+function setMode(mode)
+{
+    if (mode == MODE_BASIC)
+    {
+        $('.control_experimental').hide();
+        $('.control_advanced').hide();
+    }
+    else if (mode == MODE_ADVANCED)
+    {
+        $('.control_experimental').hide();
+        $('.control_advanced').show();
+    }
+    else if (mode == MODE_EXPERIMENTAL)
+    {
+        $('.control_experimental').show();
+        $('.control_advanced').show();
+    }
+
+}
+

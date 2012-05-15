@@ -159,6 +159,7 @@ saved_states['count'] = 0;
 
 var GENERATE_METHOD_ALIEN = "alien";
 var GENERATE_METHOD_MUSICAL = "musical";
+var GENERATE_METHOD_DEFAULT = GENERATE_METHOD_ALIEN;
 
 // Not gonna change unless we move away from Western music scale because we don't want to hear nice things any more.
 const SEMITONE_COUNT = 12;

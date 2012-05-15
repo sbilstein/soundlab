@@ -30,7 +30,7 @@ div.inline
 
 body
 {
-  background-image: url(/assets/gplaypattern.png);
+  background-image:url(/assets/psychedelic_pattern.png);
 }
 
 span.bold
@@ -56,7 +56,8 @@ span.bold
   -khtml-user-select: text;
 }
 
-.editable {
+.editable
+{
 	-moz-user-select: text;
 	-khtml-user-select: text;
 }
@@ -440,7 +441,7 @@ nav {
 
 #side_panel
 {
-  width:200px;
+  width:240px;
   position:absolute;
   margin-top: 0px;
 }
@@ -515,4 +516,38 @@ nav {
 .title_bar_inline p
 {
   display: inline;
+}
+
+.history_item_container
+{
+  display: table-cell;
+  height:57px;
+  min-width:195px;
+}
+
+.history_item_buttons_container
+{
+  float:right;
+  display:inline;
+  width:10px;
+  margin-right: 20px;
+}
+
+#history_wrapper
+{
+  position:absolute;
+  width:970px;
+  height:75px;
+  text-align: left;
+}
+
+#history_control_wrapper
+{
+  width:115px;
+}
+
+#autosave_draws
+{
+  max-width: 835px;
+  overflow: hidden;
 }

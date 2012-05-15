@@ -35,22 +35,7 @@
         </div>
       </div>
 
-      <div class="tr">
-        <div class="td">Decay:</div>
-
-        <div class="td">
-          <div class="range_wrapper">
-            <input type="range" min="0" max="255" step="1" value="60" id="robo_decay"/>
-          </div>
-
-        </div>
-
-        <div class="td">
-          <label><input type="checkbox" id="decay_enabled" onchange="toggleDecay();"/> Enable</label>
-        </div>
-      </div>
-
-      <div class="tr">
+      <div class="tr control_advanced">
         <div class="td">Normalize:</div>
 
         <div class="td">
@@ -66,11 +51,26 @@
         </div>
       </div>
 
+      <div class="tr control_experimental">
+        <div class="td">Decay:</div>
+
+        <div class="td">
+          <div class="range_wrapper">
+            <input type="range" min="0" max="255" step="1" value="60" id="robo_decay"/>
+          </div>
+
+        </div>
+
+        <div class="td">
+          <label><input type="checkbox" id="decay_enabled" onchange="toggleDecay();"/> Enable</label>
+        </div>
+      </div>
+
     </div>
   </div>
 
 
-  <div class="button_grouping">
+  <div class="button_grouping control_experimental">
     <label><input type="checkbox" id="robo" onclick="toggleRobo()"/> Robo Mode</label>
 
     <div class="subgroup">
@@ -274,9 +274,10 @@
 
   </div>
 </div>
-<div id="scale_controls" class="td top_align">
+<div id="scale_controls" class="td top_align control_advanced">
 <div class="button_grouping">
 
+<!-- begin musical -->
 
 <label>
   <input type="radio" name="scale_generate_method" checked="checked" value="musical" />
@@ -383,6 +384,7 @@
   </div>
 </div>
 
+<!-- range selector -->
 <div class="subgroup" style="float:right">
   <span class="bold">Range</span>
 
@@ -498,8 +500,13 @@
   </div>
 </div>
 
-<hr/>
 
+<!-- end musical -->
+
+
+
+<div class="control_experimental">
+  <hr/>
 <label>
   <input type="radio" name="scale_generate_method" value="alien" />
   <span class="bold">Alien</span>
@@ -552,52 +559,76 @@
 
 </div>
 
+</div>
+
 
 <div id="update_scale_container">
   <button id="make_scale" onclick="makeScale();">Update Scale</button>
   <div id="scale_loading_notifier"></div>
 
   <label title="Warning: Unchecking could cause app or browser instability on less capable machines!">
-        <input id="pause_on_scale_update" type="checkbox" checked="checked"> Pause on Update
+    <input id="pause_on_scale_update" type="checkbox" checked="checked"> Pause on Update
   </label>
   <br/>
 </div>
 
-</div>
 
 </div>
 
 </div>
+
+</div>
 </div>
 
 
 </div>
 
 
-<div id="side_panel" class="button_grouping hidden">
-  <span class="bold">Scale Recall</span>
-  <div id="previous_scales">
-    <button class="scale_button active_scale_button" onclick="$('.scale_button').removeClass('active_scale_button'); $(this).addClass('active_scale_button'); recallDefaultScale();" scale_key="default">Default [Pentatonic]</button>
+<div id="side_panel" class="hidden">
+  <div class="button_grouping">
+    <div class="control_advanced">
+    <span class="bold">Scale Recall</span>
+    <div id="previous_scales">
+      <button class="scale_button active_scale_button" onclick="$('.scale_button').removeClass('active_scale_button'); $(this).addClass('active_scale_button'); recallDefaultScale();" scale_key="default">Default [Pentatonic]</button>
+    </div>
+
+    <hr/>
+
+    </div>
+
+    <button style="float:right;" onclick="saveState(false);">Add current</button>
+    <span class="bold">Favorites</span>
+    <div id="previous_draws" class="recall_draw_container"></div>
+  </div>
+</div>
+
+<div id="history_wrapper" class="button_grouping hidden">
+
+  <div class="table top_align">
+    <div class="tr">
+      <div id="history_control_wrapper" class="td top_align">
+
+
+          <label>
+            <input type="checkbox" id="autosave_enable" checked="checked" /> <span class="bold">History</span>
+          </label>
+          <select id="autosave_limit" disabled="disabled">
+            <option value=3 selected="selected">3</option>
+            <option value=4>4</option>
+            <option value=10>10</option>
+            <option value=0>&#8734;</option>
+          </select>
+
+      </div>
+      <div class="td top_align">
+            <div class="table">
+                <div class="tr">
+                    <div id="autosave_draws" class="recall_draw_container"></div>
+                </div>
+            </div>
+      </div>
+    </div>
   </div>
 
-  <hr/>
-
-  <button style="float:right;" onclick="saveState(false);">Add current</button>
-  <span class="bold">Draw Recall</span>
-  <div id="previous_draws" class="recall_draw_container"></div>
-
-  <hr/>
-
-  <div style="float:right">
-    <label>
-      <input type="checkbox" id="autosave_enable" checked="checked" /> Enable
-    </label>
-    <select id="autosave_limit">
-      <option value=3>3</option>
-      <option value=10>10</option>
-      <option value=0>&#8734;</option>
-    </select>
-  </div>
-  <span class="bold">AutoSwag</span>
-  <div id="autosave_draws" class="recall_draw_container"></div>
 </div>
+

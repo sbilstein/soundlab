@@ -21,10 +21,13 @@ $(document).ready(function()
     staff_canvas_context.lineCap = 'round';
 
     // Position panels
-    //$("#below_staff_area").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
     $("#controls").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
-
     $("#side_panel").css({top:CANVAS_HEIGHT_OFFSET, left:CANVAS_WIDTH_OFFSET + $('canvas.staff').width() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
+
+
+    $('.control_advanced').hide();
+    $('.control_experimental').hide();
+
 
      // Initialization events
     initScale();

@@ -399,12 +399,6 @@ nav {
   display: inline;
 }
 
-#scale_controls
-{
-  width:200px;
-  margin-left:0.5em;
-}
-
 .top_align
 {
   vertical-align: top;
@@ -518,13 +512,6 @@ nav {
   display: inline;
 }
 
-.history_item_container
-{
-  display: table-cell;
-  height:57px;
-  min-width:195px;
-}
-
 .history_item_buttons_container
 {
   float:right;
@@ -544,10 +531,4 @@ nav {
 #history_control_wrapper
 {
   width:115px;
-}
-
-#autosave_draws
-{
-  max-width: 835px;
-  overflow: hidden;
 }

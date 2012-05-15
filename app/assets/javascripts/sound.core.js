@@ -685,26 +685,14 @@ function saveState(isAutoSave)
 
         recall_container.show('slow', function()
         {
-            $(this).children().show('slow', function()
-            {
-                if( $("#autosave_limit").val() != 0 &&
-                    $("#autosave_draws").children().length > $("#autosave_limit").val())
+                if( $("#autosave_limit").val() !== 0 &&
+                    $("#autosave_draws").children().length > parseInt($("#autosave_limit").val()))
                 {
-                    $("#autosave_draws").children().last().children('div').hide();
-                    $("#autosave_draws").children().last().children('img').hide('slow', function()
+                    $("#autosave_draws").children().last().hide('slow', function()
                     {
-                        $("#autosave_draws").children().last().css(
-                            {
-                                display: 'inline',
-                                'min-width': 'inherit'
-                            }
-                        ).hide('slow', function()
-                            {
-                                $(this).remove();
-                            });
+                        $(this).remove();
                     });
                 }
-            });
         });
     }
 

@@ -29,10 +29,7 @@ $(document).ready(function()
     $('.control_experimental').hide();
 
 
-     // Initialization events
-    initScale();
-    initAudio();
-    resetStaff();
+
 
     // UI binding
     $("canvas.bar").mousedown(startPen);
@@ -119,9 +116,6 @@ $(document).ready(function()
         setMode($("input[name='jam_mode']:checked").val());
     });
 
-    // Start the scrub line
-    playSound();
-
     // Save/Load
     if ($('#stored_data').length)
     {
@@ -130,6 +124,17 @@ $(document).ready(function()
     else
     {
         $('#new_jam').submit(function() { $('#jam_song').val(getStorableData()); return true; });
+    }
+
+    // Initialization events
+    if (getParameterByName('no_sound') !== 'true')
+    {
+        initScale();
+        initAudio();
+        resetStaff();
+
+        // Start the scrub line
+        playSound();
     }
 });
 

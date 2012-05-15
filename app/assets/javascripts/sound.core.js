@@ -685,26 +685,14 @@ function saveState(isAutoSave)
 
         recall_container.show('slow', function()
         {
-            $(this).children().show('slow', function()
-            {
-                if( $("#autosave_limit").val() != 0 &&
-                    $("#autosave_draws").children().length > $("#autosave_limit").val())
+                if( $("#autosave_limit").val() !== 0 &&
+                    $("#autosave_draws").children().length > parseInt($("#autosave_limit").val()))
                 {
-                    $("#autosave_draws").children().last().children('div').hide();
-                    $("#autosave_draws").children().last().children('img').hide('slow', function()
+                    $("#autosave_draws").children().last().hide('slow', function()
                     {
-                        $("#autosave_draws").children().last().css(
-                            {
-                                display: 'inline',
-                                'min-width': 'inherit'
-                            }
-                        ).hide('slow', function()
-                            {
-                                $(this).remove();
-                            });
+                        $(this).remove();
                     });
                 }
-            });
         });
     }
 
@@ -717,6 +705,42 @@ function loadState(id)
     {
         staff_canvas_context.putImageData(saved_states[id]['image_data'], 0, 0);
         js_buffer.BufferAsync();
+    }
+}
+
+function setMode(mode)
+{
+    if (mode == MODE_BASIC)
+    {
+        $('.control_experimental').hide();
+        $('.control_advanced').hide();
+    }
+    else if (mode == MODE_ADVANCED)
+    {
+        $('.control_experimental').hide();
+        $('.control_advanced').show();
+    }
+    else if (mode == MODE_EXPERIMENTAL)
+    {
+        $('.control_experimental').show();
+        $('.control_advanced').show();
+    }
+
+}
+
+function getParameterByName(name)
+{
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.search);
+    if(results == null)
+    {
+        return "";
+    }
+    else
+    {
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 }
 

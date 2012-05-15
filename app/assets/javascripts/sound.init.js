@@ -21,15 +21,15 @@ $(document).ready(function()
     staff_canvas_context.lineCap = 'round';
 
     // Position panels
-    //$("#below_staff_area").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
     $("#controls").css({top:CANVAS_HEIGHT_OFFSET + $('canvas.staff').height() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
-
     $("#side_panel").css({top:CANVAS_HEIGHT_OFFSET, left:CANVAS_WIDTH_OFFSET + $('canvas.staff').width() + BELOW_STAFF_HEIGHT_OFFSET}).removeClass('hidden');
 
-     // Initialization events
-    initScale();
-    initAudio();
-    resetStaff();
+
+    $('.control_advanced').hide();
+    $('.control_experimental').hide();
+
+
+
 
     // UI binding
     $("canvas.bar").mousedown(startPen);
@@ -109,8 +109,12 @@ $(document).ready(function()
         }
     });
 
-    // Start the scrub line
-    playSound();
+    // Modes
+
+    $('input[name="jam_mode"]').change(function()
+    {
+        setMode($("input[name='jam_mode']:checked").val());
+    });
 
     // Save/Load
     if ($('#stored_data').length)
@@ -120,6 +124,17 @@ $(document).ready(function()
     else
     {
         $('#new_jam').submit(function() { $('#jam_song').val(getStorableData()); return true; });
+    }
+
+    // Initialization events
+    if (getParameterByName('no_sound') !== 'true')
+    {
+        initScale();
+        initAudio();
+        resetStaff();
+
+        // Start the scrub line
+        playSound();
     }
 });
 

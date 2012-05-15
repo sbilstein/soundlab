@@ -1,0 +1,296 @@
+<div id="scale_controls" class="top_align control_advanced">
+<div class="button_grouping">
+<span class="bold">Scale Generators</span><br/>
+<div class="control_experimental">
+  <label>
+    <input type="radio" name="scale_generate_method" value="alien" />
+    <span class="bold">Alien</span>
+  </label>
+
+  <div class="table">
+    <div class="tr">
+      <div class="td">
+        Base Frequency:
+      </div>
+      <div class="td">
+        <div class="range_wrapper">
+          <input type="range" min="27.5" max="4186" step="0.1" value="440.0" id="alien_base_freq"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="tr">
+      <div class="td">
+        Parameter 1:
+      </div>
+      <div class="td">
+        <div class="range_wrapper">
+          <input type="range" min="21" max="108" step="1" value="108" id="alien_top"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="tr">
+      <div class="td">
+        Parameter 2:
+      </div>
+      <div class="td">
+        <div class="range_wrapper">
+          <input type="range" min="21" max="108" step="1" value="40" id="alien_bottom"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="tr">
+      <div class="td">
+        Parameter 3:
+      </div>
+      <div class="td">
+        <div class="range_wrapper">
+          <input type="range" min="21" max="108" step="1" value="40" id="alien_pdelt_subtract"/>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr/>
+</div>
+
+<div class="control_advanced">
+
+<label>
+  <input type="radio" name="scale_generate_method" value="musical" checked="checked"/>
+  <span class="bold">Musical</span>
+</label>
+
+
+
+<div id="scale_keys" class="subgroup">
+  <div class="table">
+    <!-- black keys -->
+
+    <div id="Cs_key" class="td black_key">
+      <label>
+        C# <br/>
+        <input type="checkbox" class="key_toggle" key="Cs" tabindex="2"/>
+      </label>
+    </div>
+
+    <div id="Ef_key" class="td black_key">
+      <label>
+        E&#9837; <br/>
+        <input type="checkbox" class="key_toggle" key="Ef" tabindex="4"/>
+      </label>
+    </div>
+
+    <div id="Fs_key" class="td black_key">
+      <label>
+        F# <br/>
+        <input type="checkbox" class="key_toggle" key="Fs" tabindex="7"/>
+      </label>
+    </div>
+
+
+    <div id="Af_key" class="td black_key">
+      <label>
+        A&#9837; <br/>
+        <input type="checkbox" class="key_toggle" key="Af" tabindex="9"/>
+      </label>
+    </div>
+
+
+    <div id="Bf_key" class="td black_key">
+      <label>
+        B&#9837; <br/>
+        <input type="checkbox" class="key_toggle" key="Bf" tabindex="11"/>
+      </label>
+    </div>
+
+
+    <!-- white keys -->
+
+
+    <div id="C_key" class="td white_key">
+      <label>
+        C  <br/>
+        <input type="checkbox" class="key_toggle" key="C" tabindex="1"/>
+      </label>
+    </div>
+
+
+    <div id="D_key" class="td white_key">
+      <label>
+        D  <br/>
+        <input type="checkbox" class="key_toggle" key="D" tabindex="3"/>
+      </label>
+    </div>
+
+    <div id="E_key" class="td white_key">
+      <label>
+        E <br/>
+        <input type="checkbox" class="key_toggle" key="E" tabindex="5"/>
+      </label>
+    </div>
+
+    <div id="F_key" class="td white_key">
+      <label>
+        F <br/>
+        <input type="checkbox" class="key_toggle" key="F" tabindex="6"/>
+      </label>
+    </div>
+
+    <div id="G_key"  class="td white_key">
+      <label>
+        G <br/>
+        <input type="checkbox" class="key_toggle" key="G" tabindex="8"/>
+      </label>
+    </div>
+
+    <div id="A_key" class="td white_key">
+      <label>
+        A  <br/>
+        <input type="checkbox" class="key_toggle" key="A" tabindex="10"/>
+      </label>
+    </div>
+
+    <div id="B_key"  class="td white_key">
+      <label>
+        B <br/>
+        <input type="checkbox" class="key_toggle" key="B" tabindex="12"/>
+      </label>
+    </div>
+
+  </div>
+</div>
+
+<div class="subgroup" style="float:right">
+  <span class="bold">Range</span>
+
+  <div class="table">
+
+    <div class="tr">
+      <div class="td">
+        Start:
+      </div>
+      <div class="td">
+        End:
+      </div>
+
+    </div>
+
+    <div class="tr">
+      <div class="td">
+        <input type="range" class="vertical_slider" min="1" max="86" step="1" value="0" id="key_bottom" onchange="setKeyStartIndex(this);"/>
+      </div>
+      <div class="td">
+        <input type="range" class="vertical_slider" min="0" max="87" step="1" value="87" id="key_top" onchange="setKeyEndIndex(this);"/>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="premade_scale_selector" class="table subgroup">
+  <div class="th">
+    <div class="td">
+      Scale
+    </div>
+    <div class="td">
+      Key
+    </div>
+  </div>
+
+  <div class="tr  premade_scale">
+    <div class="td">
+      <label>
+        <input type="radio" name="scale_selection" value="scale_pentatonic"/> Pentatonic
+      </label>
+    </div>
+
+    <div class="td scale_key_control"></div>
+  </div>
+
+  <div class="tr premade_scale">
+    <div class="td">
+      <label>
+        <input type="radio" name="scale_selection" value="scale_major"/> Major
+      </label>
+    </div>
+
+    <div id="scale_key_control_definitive" class="td">
+      <select>
+        <option value="0">C</option>
+        <option value="1">C#</option>
+        <option value="2">D</option>
+        <option value="3">E&#9837;</option>
+        <option value="4">E</option>
+        <option value="5">F</option>
+        <option value="6">F#</option>
+        <option value="7">G</option>
+        <option value="8">A&#9837;</option>
+        <option value="-3">A</option>
+        <option value="-2">B&#9837;</option>
+        <option value="-1">B</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="tr premade_scale">
+    <div class="td">
+      <label>
+        <input type="radio" name="scale_selection" value="scale_minor"/> Minor
+      </label>
+    </div>
+
+    <div class="td scale_key_control"></div>
+
+  </div>
+
+  <div class="tr premade_scale">
+    <div class="td">
+      <label>
+        <input type="radio" name="scale_selection" value="scale_octave"/> Octave
+      </label>
+    </div>
+
+    <div class="td scale_key_control"></div>
+
+  </div>
+
+  <div class="tr premade_scale">
+    <div class="td">
+      <label>
+        <input type="radio" name="scale_selection" value="scale_chromatic"/> Chromatic
+      </label>
+    </div>
+
+  </div>
+
+  <div class="tr premade_scale">
+    <div class="td">
+      <label>
+        <input type="radio" name="scale_selection" value="scale_chinese"/> Chinese
+      </label>
+    </div>
+
+
+  </div>
+</div>
+
+</div>
+
+<div id="update_scale_container">
+  <button id="make_scale" onclick="makeScale();">Update Scale</button>
+  <div id="scale_loading_notifier"></div>
+
+  <label title="Warning: Unchecking could cause app or browser instability on less capable machines!">
+    <input id="pause_on_scale_update" type="checkbox" checked="checked"> Pause on Update
+  </label>
+  <br/>
+</div>
+
+</div>
+
+</div>

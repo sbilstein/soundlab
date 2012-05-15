@@ -1,0 +1,30 @@
+<div class="button_grouping control_experimental">
+  <label><input type="checkbox" id="robo" onclick="toggleRobo()"/> Robo Mode</label>
+
+  <div class="subgroup">
+    <fieldset>
+      <!--<legend> Robo mode mode</legend>-->
+      <label> <input type=radio name=robo_mode value="chaos" checked=checked> Chaos </label>
+      <label> <input type=radio name=robo_mode value="random"> Random </label>
+      <!--<label> <input type=radio name=robo_mode value="curve"> Curve </label>-->
+    </fieldset>
+  </div>
+
+  <hr/>
+  <!-- Glitch Mode -->
+  <label><input type="checkbox" id="glitch_mode_enabled" onchange="toggleGlitchMode();"/> Glitch Mode</label>
+
+  <div class="subgroup">
+    Glitch rate:
+
+    <select id="js_node_buffer_size">
+      <option>256</option>
+      <option>512</option>
+      <option>1024</option>
+      <option selected=selected>2048</option>
+      <option>4096</option>
+      <option>8192</option>
+      <option>16384</option>
+    </select>
+  </div>
+</div>

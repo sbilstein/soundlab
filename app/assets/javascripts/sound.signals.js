@@ -340,5 +340,5 @@ function setKeyStartIndex(element)
 function setKeyEndIndex(element)
 {
     key_end_index = parseInt($(element).val());
-    $('#key_bottom').val(Math.min($('#key_bottom').val(), $(this).val() - 1));
+    $('#key_bottom').val(Math.min(parseInt($('#key_bottom').val()), parseInt($(element).val()) - 1));
 }

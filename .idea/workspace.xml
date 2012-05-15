@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a51e9845-9194-4ddf-965b-96e31deb0de0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/jams/_mode_selector.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/sound.variables.constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/jams.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/_staff.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/new.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/jams/show.html.erb" afterPath="$PROJECT_DIR$/app/views/jams/show.html.erb" />
     </list>
     <ignored path="soundlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -970,7 +962,11 @@
       <created>1337050871022</created>
       <updated>1337050871022</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Mode switching UI.">
+      <created>1337051772910</created>
+      <updated>1337051772910</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -995,7 +991,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="37" y="0" width="1860" height="1080" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32526317" sideWeight="0.48440367" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991913" sideWeight="0.7021053" order="3" side_tool="false" content_ui="tabs" />
@@ -1054,7 +1050,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Doing the layout right." />
+    <option name="LAST_COMMIT_MESSAGE" value="Mode switching UI." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1087,6 +1083,7 @@
     <MESSAGE value="Maybe scales won't cause crashes any more?" />
     <MESSAGE value="I think I fixed things." />
     <MESSAGE value="Doing the layout right." />
+    <MESSAGE value="Mode switching UI." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

@@ -180,18 +180,21 @@ function initScale()
     $('input[name="scale_selection"][value="scale_pentatonic"]').attr("checked", "checked");
     populateScaleControl();
 
-    signals_waves = initSignals(GENERATE_METHOD_MUSICAL, {'scale':generateScaleFromKeys(keys_pentatonic_scale)});
-
-    /*
-    signals_waves = initSignals(GENERATE_METHOD_ALIEN,
-        {
-            'base_freq':440.0,
-            'top':108,
-            'bottom':40,
-            'pdelt_subtract':40
-        }
-    );
-    */
+    if (GENERATE_METHOD_DEFAULT == GENERATE_METHOD_MUSICAL)
+    {
+        signals_waves = initSignals(GENERATE_METHOD_MUSICAL, {'scale':generateScaleFromKeys(keys_pentatonic_scale)});
+    }
+    else if (GENERATE_METHOD_DEFAULT == GENERATE_METHOD_ALIEN)
+    {
+        signals_waves = initSignals(GENERATE_METHOD_ALIEN,
+            {
+                'base_freq':440.0,
+                'top':108,
+                'bottom':40,
+                'pdelt_subtract':40
+            }
+        );
+    }
 
     signals = signals_waves[DSP.SINE];
     cached_signals['default'] = signals_waves;

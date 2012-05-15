@@ -134,8 +134,7 @@ function startPen(e)
     pen_directive["y1"] = e.pageY - CANVAS_HEIGHT_OFFSET + 1;
 
 	if(e.shiftKey) {
-    	$("canvas.bar").mouseup(straightPen);
-    	$("canvas.bar").mouseleave(straightPen);
+    	$("canvas.bar").mousedown(straightPen);
 		console.log('shift pressed');
 	} else {
     	$("canvas.bar").mousemove(movePen);
@@ -155,6 +154,7 @@ function straightPen(e)
 
     $("canvas.bar").unbind('mouseup', straightPen);
     $("canvas.bar").unbind('mouseleave', straightPen);
+    $("canvas.bar").mousedown(startPen);
 
     if($('#autosave_enable').is(':checked'))
     {

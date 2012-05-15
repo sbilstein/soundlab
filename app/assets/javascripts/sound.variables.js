@@ -137,6 +137,8 @@ var pen_directive = {
 	strokeCap : "round"
 }
 
+const BELOW_STAFF_HEIGHT_OFFSET = 25;
+
 /**
  * END DRAWING =========================================================================================================
  */

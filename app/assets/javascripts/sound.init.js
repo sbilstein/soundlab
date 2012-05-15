@@ -126,7 +126,7 @@ $(document).ready(function()
         $('#new_jam').submit(function() { $('#jam_song').val(getStorableData()); return true; });
     }
 
-    // Initialization events
+    // Initialize sound.
     if (getParameterByName('no_sound') !== 'true')
     {
         initScale();

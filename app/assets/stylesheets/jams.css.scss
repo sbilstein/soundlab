@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin instrument-panel {
+	border: solid 1px black;
+	box-shadow: inset 0px 0px 5px grey;
+}
+
 div.th
 {
   display:table-header-group;
@@ -30,7 +35,7 @@ div.inline
 
 body
 {
-  background-image:url(/assets/psychedelic_pattern.png);
+
 }
 
 span.bold
@@ -81,28 +86,33 @@ div.button-col
   left: 0px;
   top: 300px;
 }
+canvas {
+	@include instrument-panel;
+	position: absolute;
+	left : 0px;
+	top: 0px;
+	
+	
+	
+	.staff
+	{
+  		float: left;
+  		display:inline;
+  		z-index: 0;
+  		background-image:url(/assets/gridme.png);
+	}
 
-canvas.staff
-{
-  float: left;
-  display:inline;
-  z-index: 0;
-  position : absolute;
-  top: 0;
-  left: 0;
-  background-image:url(/assets/gridme.png);
+	.bar	
+	{
+  		float: left;
+  		display:inline;
+  		z-index: 1;
+	}
+
 }
 
-canvas.bar
-{
-  float: left;
-  display:inline;
-  z-index: 1;
 
-  position: absolute;
-  left : 0px;
-  top: 0px;
-}
+
 
 .checkbox_list
 {
@@ -121,9 +131,8 @@ canvas.bar
 {
   padding:10px;
   margin:4px;
-  border:thin green dotted;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.65);
+  @include instrument-panel;
+  background: white;
   display:block;
 }
 
@@ -185,7 +194,9 @@ header
   margin-top: 0px;
   margin-bottom: 4px;
   background: rgba(255, 255, 255, 0.65);
-  border-bottom: dotted thin green;	
+  border-bottom: solid 1px black;
+  box-shadow: inset 0px 0px 5px grey;
+
   width: 100%;
   color: black;
   font-family: inherit;
@@ -256,6 +267,7 @@ nav {
 }
 
 
+
 /* neat little hack to get visual representation of waves in unicode*/
 #dspwave_red, #dspwave_green, #dspwave_blue
 {
@@ -269,16 +281,16 @@ nav {
 
 .list-staff
 {
+	@include instrument-panel;
 	height: 75px;
 	width: 200px;
-	border: dotted 1px green;
+
 }
 
 #jam_title
 {
 	font-family: arial, helvetica, sans-serif;
     display:inline;
-    border-right:thin gray solid;
     padding-right:0.3em;
 }
 
@@ -466,7 +478,7 @@ nav {
 
 .recall_draw_container img
 {
-  border:thin green dotted;
+  @include instrument-panel;
   background: 'rgba(0, 0, 0, 0.85)';
   cursor:pointer;
   margin-bottom: 5px;
@@ -475,7 +487,7 @@ nav {
 
 .recall_draw_container img:hover
 {
-  border:thin green solid;
+  border:thin black solid;
   background:white;
 }
 
@@ -486,7 +498,7 @@ nav {
 
 .active_scale_button
 {
-  border: thin solid green;
+  border: thin solid black;
 }
 
 #play_pause_button

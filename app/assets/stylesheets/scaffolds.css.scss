@@ -1,7 +1,24 @@
+$blackbg : silver; 
+
+header
+{
+  margin-top: 0px;
+  margin-bottom: 4px;
+  background-color: $blackbg;
+  border-bottom: solid 1px black;
+  box-shadow: inset 0px 0px 5px grey;
+
+  width: 100%;
+  color: white;
+  font-family: inherit;
+  height: 20px; 	
+}
+
+
 body
 {
-  background-color: #fff;
-  color: black;
+  background-color: $blackbg;
+  color: white;
   font-family: arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -23,11 +40,11 @@ pre
 
 a
 {
-  color: #000;
+  color: #fff;
 
   &:visited
   {
-    color: #666;
+    color: #fff;
   }
 
   &:hover

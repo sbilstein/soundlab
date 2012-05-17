@@ -11,7 +11,7 @@ $(document).ready(function()
 	}
 
     // Position canvas
-    $('canvas.staff').css('border', "thin solid green");
+	// $('canvas.staff').css('border', "thin solid green");
     $('.staff-container').css({top:CANVAS_HEIGHT_OFFSET, left: CANVAS_WIDTH_OFFSET}).removeClass('hidden');
 
     // Load up context for canvas

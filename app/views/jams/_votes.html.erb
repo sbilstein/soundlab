@@ -1,4 +1,4 @@
-<span id="vote-up-<%= jam.id %>" class="up-vote-count">
+<span id="vote-up-<%= jam.id %>" class="vote-count">
   <%= jam.up_votes %>
 
   <a class="voter" href="" onclick="
@@ -8,7 +8,7 @@ var $radios = $('#radio-up-<%=jam.id%>').attr('checked', true);
   </a>
 </span>
 
-<span id="vote-down-<%= jam.id %>" class="down-vote-count">
+<span id="vote-down-<%= jam.id %>" class="vote-count">
   <%= jam.down_votes %>
 
   <a class="voter " href="" onclick="
